@@ -9,7 +9,7 @@ const Events = () => {
         <>
         <Other_header/>
         <div>
-            <h1>Привет мир !!!</h1>
+            <h1>мир !!!</h1>
         </div>
         <Footer/>
         </>
