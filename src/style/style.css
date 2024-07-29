@@ -1,0 +1,530 @@
+/* ------------шапка сайта---------- */
+header{
+    width: 100%;
+    height: 400px;
+    z-index: 2;
+}
+
+
+
+
+.price_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 97px;
+    height: 39px;
+    background-color: #EE0007;
+    border: none;
+    border-radius: 5px;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+
+.header-contact{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    color: white;
+    gap: 5px;
+    font-size: 15px;
+}
+
+#list-header:hover{
+    color: white;
+}
+
+.header-icons{
+    display: flex;
+    gap: 15px;
+}
+
+.personal-area svg{
+    background-color: white;
+    fill: black;
+    padding: 5px;
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+}
+
+.header-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+/* -------------------навигация--------------- */
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    padding: 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav li {
+    display: inline-block;
+    padding-right: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000000;
+    transition: all 0.3s ease;
+    padding: 20px 0px;
+}
+
+/* -----------выпадающий список----------- */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 0px;
+    padding: 15px;
+    min-width: 160px;
+    z-index: 1;
+    margin-left: -20px;
+    line-height: 40px; 
+}
+
+.dropdown-content .line{
+    border-top: 1px solid red;
+}
+
+.dropdown-content li {
+    display: block;   
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* -----------выпадающий список----------- */
+
+/* -------------------навигация--------------- */
+
+/* -----------заголовок сайта---------- */
+
+
+/* -----------скролл бар----------- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+    height: 350px; 
+}
+/* -------скролл бар--------------- */
+
+
+/* ---------------------новостной блог-------------------- */
+.news-and-victory{
+    width: 100%;
+    height: 800px;
+}
+
+.news_button{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.button-club{
+    width: 265px;
+    height: 105px;
+    background: #D9D9D9;
+    border: none;
+    color: #000;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-victory{
+    width: 265px;
+    height: 105px;
+    background: #F00;
+    border: none;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content-news{
+    width: 100%;
+    height: 580px;
+}
+
+.next{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F00;
+    border: none;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 360px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.button-all{
+    display: flex;
+    justify-content: center;
+}
+/* ---------------------новостной блог-------------------- */
+
+
+
+/* ------------------------магазин-------------------------------- */
+
+.online-store{
+    width: 100%;
+    height: 650px;
+    background: #000;
+}
+
+.shop{
+    width: 100%;
+    height: 80%;
+}
+
+a{
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.store-button{
+    display: flex;
+    justify-content: center;
+}
+
+#button-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    background: #F00;
+    border: none;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 360px;
+    height: 50px;
+    border-radius: 5px;  
+}
+
+/* ---------------------каталог товаров-------------------------- */
+.container{
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.container-news{
+    width: 80%;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.container .gallery,
+.container-news .gallery{
+    
+    width: 125%;
+    display: flex;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 20px;
+    padding: 10px;
+    flex: none;
+    padding: 30px 0px;
+    align-items: center;
+}
+
+.container .gallery img,
+.container-news .gallery img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;   
+}
+
+.container-news .gallery img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; 
+    width: 400px;
+    height: 250px;
+    object-fit: cover;      
+}
+
+.container .gallery div,
+.container-news .gallery div{
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    line-height: 25px;
+    margin-top: 5px;
+}
+
+.container .gallery p,
+.container-news .gallery p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.container-news .gallery p{
+    text-align: left;
+}
+
+.container::-webkit-scrollbar,
+.container-news::-webkit-scrollbar{
+    display: none;
+}
+
+.controls,
+.controls-news{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.controls svg,
+.controls-news svg{
+    fill: rgba(115, 106, 106, 0.587);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.controls svg:hover,
+.controls-news svg:hover{
+    fill: red;
+}
+
+.controls-news #rightbtn-news,
+.controls-news #rightbtn-news{
+    width: 50px;
+    cursor: pointer;
+    margin: 30px;
+}
+
+.controls #rightbtn,
+.controls #leftbtn{
+    width: 60px;
+    cursor: pointer;
+    margin: 30px;
+}
+
+/* ---------------------каталог товаров-------------------------- */
+
+
+
+/* ------------------------магазин-------------------------------- */
+
+/* -----------------------контактная информация---------------------- */
+.contact-information{
+    width: 100%;
+    height: 500px;
+}
+
+.contact{
+    width: 380px;
+    height: 300px;
+    background: black;
+    position: relative;
+    z-index: 2;
+    bottom: 420px;
+    border-radius: 5px;
+}
+
+.width-contact{
+    padding-left: 20px;
+}
+
+.info-contact{
+    padding: 25px;
+    line-height: 30px;
+}
+
+.contact-title,
+.schedule{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-top: 10px;
+
+}
+
+.contact-number-club{
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.address{
+    color: white;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.mon-schedule,
+.sun-schedule{
+    color: white;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+/* -----------------------контактная информация---------------------- */
+
+
+
+/* ---------------------------подвал сайта-------------------------- */
+footer{
+    background-color: black;
+    width: 100%;
+    height: 350px;
+}
+
+.footer-flex{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 15px;
+    align-items: center;
+}
+
+.tipe-sport{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    line-height: 50px;
+}
+
+
+.type-of-fight{
+    color: rgba(255, 255, 255, 0.619);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    padding: 15px 0px;
+}
+
+.kinds-of-sports,
+.header-components{
+    padding: 30px 40px 0px 30px;
+}
+
+.contact-footer{
+    color: rgba(255, 255, 255, 0.619);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.contact-number{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.icons{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    transition: all 0.5s ease;
+    gap: 10px;
+    justify-content: center;
+}
+
+.icons_1:hover{
+    fill: #e3070e;
+}
+
+.icons_1{
+    fill: rgba(255, 255, 255, 0.619);
+    text-decoration: none;
+    margin-right: 10px;
+    transition: all 0.5s ease;
+}
+
+
+svg.social{
+    width: 25px;
+    height: 25px;
+}
+
+.generalization{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+
+.logo-club{
+    width: 70px;
+    height: 70px;
+}
+
+
+.description{
+    color: rgba(193, 193, 193, 0.628);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.list{
+    color: rgba(255, 255, 255, 0.619);
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+/* ---------------------------подвал сайта-------------------------- */
+
+
