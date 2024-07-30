@@ -5,9 +5,12 @@ import Events from "./Events";
 import Page_Contact from "./Page-Contact";
 import Schedule from "./Schedule";
 import Price from './Price';
+import logo_title from "./Components/img/log-club.png"
+import useTitle from './Components/UseTitle';
 
 
 export default function App() {
+  useTitle("Главная", logo_title)
   return (
     <>
       <Router>

@@ -1,9 +1,11 @@
 import React from "react";
 import "./style/price.css";
+import useTitle from "./Components/UseTitle";
 import Other_header from "./Components/Other_Header";
 import Footer from "./Components/Footer";
 
 const Price = () => {
+    useTitle("Цены")
     return (
         <>
             <Other_header />
