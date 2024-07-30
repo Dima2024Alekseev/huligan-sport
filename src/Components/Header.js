@@ -1,11 +1,19 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import logo from "./img/header-icon.png"
+import logo from "./img/header-icon.png";
+import "../style/style.css"
+import video from "./video/club_2.mp4"
+
+
 
 class Header extends React.Component {
     render() {
         return (
             <header id="video-container">
+                <video className="background-video" autoPlay loop muted>
+                    <source src={video} type="video/mp4" />
+                    Ваш браузер не поддерживает видео.
+                </video>
                 <div class="header-flex">
                     <Link to="/home">
                         <div>
