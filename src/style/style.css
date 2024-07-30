@@ -22,7 +22,7 @@ header .logo-header{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: -2;
 }
 
 .header-content {
@@ -32,6 +32,16 @@ header .logo-header{
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: -1;
 }
 
 .header-flex {
@@ -84,7 +94,6 @@ header .logo-header{
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 
@@ -92,9 +101,7 @@ header .logo-header{
     display: block;
 }
 
-.line {
-    border-bottom: 1px solid #ddd;
-}
+
 /* -------------------навигация--------------- */
 
 nav ul {
@@ -568,4 +575,44 @@ svg.social{
 }
 /* ---------------------------подвал сайта-------------------------- */
 
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
+    .header-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-contact {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-icons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-icons_1 {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .price_button {
+        margin-top: 20px;
+    }
+
+    .dropdown-content {
+        position: static;
+        display: block;
+        box-shadow: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+}

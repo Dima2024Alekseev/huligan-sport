@@ -13,6 +13,7 @@ class Header extends React.Component {
                 <video className="background-video" autoPlay loop muted>
                     <source src={video} type="video/mp4" />
                 </video>
+                <div className="overlay"></div>
                 <div class="header-flex">
                     <Link to="/home">
                         <div>
