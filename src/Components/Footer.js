@@ -35,7 +35,7 @@ class Footer extends React.Component {
                         </div>
                         <div className="header-components">
                             <div>
-                                <Link to="/qqqwww" className="type-of-fight">Академия</Link>
+                                <Link to="/home" className="type-of-fight">Академия</Link>
                             </div>
                             <div>
                                 <Link to="/schedule" className="type-of-fight">Расписание</Link>

@@ -12,7 +12,7 @@ export default function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/qqqwww" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
           <Route path="/contact" element={<Page_Contact />} />

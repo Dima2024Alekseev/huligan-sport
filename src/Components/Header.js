@@ -7,7 +7,7 @@ class Header extends React.Component {
         return (
             <header id="video-container">
                 <div class="header-flex">
-                    <Link to="/">
+                    <Link to="/home">
                         <div>
                             <img src={logo} />
                         </div>
@@ -15,7 +15,7 @@ class Header extends React.Component {
                     <nav>
                         <ul>
                             <li class="dropdown">
-                                <Link to="/qqqwww">Академия</Link>
+                                <Link to="/home">Академия</Link>
                                 <ul class="dropdown-content">
                                     <li class="line"><Link to="/about">об Академии</Link></li>
 

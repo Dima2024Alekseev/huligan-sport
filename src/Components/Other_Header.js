@@ -9,7 +9,7 @@ class Other_header extends React.Component {
             <header id="inner">
                 <div class="container-events">
                     <div class="header-flex">
-                        <Link to="/">
+                        <Link to="/home">
                             <div>
                                 <img src={logo} />
                             </div>
@@ -17,7 +17,7 @@ class Other_header extends React.Component {
                         <nav>
                             <ul>
                                 <li class="dropdown">
-                                    <Link to="/qqqwww">Академия</Link>
+                                    <Link to="/home">Академия</Link>
                                     <ul class="dropdown-content">
                                         <li class="line">
                                             <Link to="/about">об Академии</Link>
