@@ -1,4 +1,13 @@
 /* ------------шапка сайта---------- */
+header{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header .logo-header{
+    width: 100px;
+    height: 100px;
+}
+
 #video-container {
     position: relative;
     width: 100%;
@@ -27,14 +36,16 @@
 
 .header-flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding: 20px;
 }
 
 .header-contact {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    color: white;
 }
 
 .header-icons {
@@ -47,11 +58,20 @@
 }
 
 .price_button {
-    background-color: #ff0000;
-    color: white;
-    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 97px;
+    height: 39px;
+    background-color: #EE0007;
+    border: none;
     border-radius: 5px;
-    cursor: pointer;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
 }
 
 .dropdown {
@@ -123,6 +143,15 @@ nav a {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.personal-area{
+    background-color: white;
+    fill: black;
+    padding: 5px;
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
 }
 /* -----------выпадающий список----------- */
 
