@@ -6,11 +6,11 @@ class Contact extends React.Component {
     return (
       <div className="contact-information">
         <YMaps>
-          <div id="map" style={{ width: "100%", height: "475px" }}>
+          <div id="map" style={{ width: "100%", height: "500px" }}>
             <Map
               defaultState={{
                 center: [56.231338, 95.700804],
-                zoom: 20,
+                zoom: 17,
               }}
               width="100%"
               height="100%"

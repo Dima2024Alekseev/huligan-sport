@@ -48,14 +48,15 @@ class News_Block extends React.Component {
                             <path d="M8.578 16.594l4.594-4.594-4.594-4.594 1.406-1.406 6 6-6 6z"></path>
                         </svg>
                     </div>
-                </div>
-                <div className="button-all">
+                    <div className="button-all">
                     <a href="./press-center.html">
                         <div className="next">
                             <p>Посмотреть все</p>
                         </div>
                     </a>
                 </div>
+                </div>
+                
             </div>
         )
     }
