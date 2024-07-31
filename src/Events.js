@@ -6,14 +6,14 @@ import Footer from "./Components/Footer";
 
 
 const Events = () => {
-    useTitle("События")
-    return(
+    useTitle("События", " ", "События Академии", "События");
+    return (
         <>
-        <Other_header/>
-        <div>
-            <h1>Hello, Git !!!</h1>
-        </div>
-        <Footer/>
+            <Other_header />
+            <div>
+                <h1>Hello, Git !!!</h1>
+            </div>
+            <Footer />
         </>
     );
 };

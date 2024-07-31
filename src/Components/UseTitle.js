@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useTitle = (title, icon) => {
+const useTitle = (title, icon, innerTitle, linkText) => {
   useEffect(() => {
     document.title = title;
     if (icon) {
@@ -10,7 +10,19 @@ const useTitle = (title, icon) => {
       link.href = icon;
       document.getElementsByTagName('head')[0].appendChild(link);
     }
-  }, [title, icon]);
+    if (innerTitle) {
+      const contentTitle = document.querySelector('.content .title h1');
+      if (contentTitle) {
+        contentTitle.textContent = innerTitle;
+      }
+    }
+    if (linkText) {
+      const linkElement = document.querySelector('.links div:nth-child(2) a');
+      if (linkElement) {
+        linkElement.textContent = linkText;
+      }
+    }
+  }, [title, icon, innerTitle, linkText]);
 };
 
 export default useTitle;

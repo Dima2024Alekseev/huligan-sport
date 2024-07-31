@@ -5,7 +5,7 @@ import Other_header from "./Components/Other_Header";
 import Footer from "./Components/Footer";
 
 const Price = () => {
-    useTitle("Цены")
+    useTitle("Цены", "", "Абонименты", "Цены")
     return (
         <>
             <Other_header />

@@ -5,7 +5,7 @@ import Other_header from "./Components/Other_Header";
 import Footer from "./Components/Footer";
 
 const Schedule = () => {
-  useTitle("Расписание тренировок");
+  useTitle("Расписание тренировок", " ", "расписание тренировок", "Расписание");
   return (
     <>
       <Other_header />

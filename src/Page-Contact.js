@@ -5,12 +5,12 @@ import Contact from "./Components/Contact-Information";
 import Footer from "./Components/Footer";
 
 const Page_Contact = () => {
-    useTitle("Контакты")
-    return(
+    useTitle("Контакты", "", "Контактная информация", "Контакты")
+    return (
         <>
-        <Other_header/>
-        <Contact/>
-        <Footer/>
+            <Other_header />
+            <Contact />
+            <Footer />
         </>
     );
 };

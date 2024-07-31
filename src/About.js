@@ -4,7 +4,7 @@ import Other_header from "./Components/Other_Header";
 import Footer from "./Components/Footer";
 
 const About = () => {
-    useTitle("Об Академии")
+    useTitle("Об Академии", "", "Об Академии", "Об Академии")
     return (
         <>
             <Other_header />
