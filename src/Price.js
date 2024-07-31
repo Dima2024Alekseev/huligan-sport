@@ -10,8 +10,8 @@ const Price = () => {
         <>
             <Other_header />
             <main>
-                <div class="training">
-                    <div class="subscription">
+                <div className="training">
+                    <div className="subscription">
                         <div id="head-price">
                             <h1>3 000 ₽ </h1>
                             <h4>Дети/Взрослые</h4>
@@ -24,7 +24,7 @@ const Price = () => {
                             <p>Абонемент на месяц</p>
                         </div>
                     </div>
-                    <div class="personally">
+                    <div className="personally">
                         <div id="head-price">
                             <h1>1 200 ₽</h1>
                             <h4>Дети/Взрослые</h4>
