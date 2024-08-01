@@ -1,13 +1,5 @@
 /* ------------шапка сайта---------- */
 
-.mobile_btn,
-.logo-mobile{
-    display: none;
-}
-
-
-
-
 header {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -49,7 +41,7 @@ header .logo-header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
 }
 
@@ -167,6 +159,11 @@ nav a {
     border-radius: 10px;
     width: 38px;
     height: 38px;
+}
+
+.mobile_btn,
+.logo-mobile{
+    display: none;
 }
 
 /* -----------выпадающий список----------- */
@@ -578,7 +575,14 @@ svg.social {
     .mobile_btn,
     .logo-mobile{
     display: block; 
+    position: relative;
+    top: 25px;
     z-index: 10;   
+    }
+
+    .logo-header{
+        width: 500px;
+        height: 500px;
     }
 
     .header-flex{
@@ -592,7 +596,7 @@ svg.social {
         bottom: 0;
         width: 100%;
         height: 100vh;
-        background-color: green;
+        background-color: black;
         z-index: 10;
         transition: left 1s;
     }
