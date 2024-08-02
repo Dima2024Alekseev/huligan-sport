@@ -683,7 +683,7 @@ svg.social {
 }
 
 
-@media(min-width:375) and (max-width:1100px) {
+@media(min-width:375px) and (max-width:1100px) {
     .position-mobile-logo-and-menu {
         display: flex;
         flex-direction: row;
