@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/shedule.css";
+import "./style/shedule.css"
 import useTitle from "./Components/UseTitle";
 import Otherheader from "./Components/OtherHeader";
 import Footer from "./Components/Footer";

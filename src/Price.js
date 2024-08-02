@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/price.css";
+import "./style/price.css"
 import useTitle from "./Components/UseTitle";
 import Otherheader from "./Components/OtherHeader";
 import Footer from "./Components/Footer";
