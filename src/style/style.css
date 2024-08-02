@@ -650,7 +650,6 @@ svg.social {
         display: flex;
         flex-direction: column;
         line-height: 100px;
-        text-transform: lowercase;
     }
 
     nav a {

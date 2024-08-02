@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from "./img/header-icon.png";
 
 
-class Other_header extends React.Component {
+class Otherheader extends React.Component {
     render() {
         return (
             <header id="inner">
@@ -125,4 +125,4 @@ class Other_header extends React.Component {
 
 }
 
-export default Other_header
+export default Otherheader

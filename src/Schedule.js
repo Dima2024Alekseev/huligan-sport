@@ -1,14 +1,14 @@
 import React from "react";
 import "./style/shedule.css";
 import useTitle from "./Components/UseTitle";
-import Other_header from "./Components/Other_Header";
+import Otherheader from "./Components/OtherHeader";
 import Footer from "./Components/Footer";
 
 const Schedule = () => {
   useTitle("Расписание тренировок", " ", "расписание тренировок", "Расписание");
   return (
     <>
-      <Other_header />
+      <Otherheader />
       <div className="schedule-content">
         <div className="Schedule_Controler">
           <div className="shedule-option">

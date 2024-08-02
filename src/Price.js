@@ -1,14 +1,14 @@
 import React from "react";
 import "./style/price.css";
 import useTitle from "./Components/UseTitle";
-import Other_header from "./Components/Other_Header";
+import Otherheader from "./Components/OtherHeader";
 import Footer from "./Components/Footer";
 
 const Price = () => {
-    useTitle("Цены", "", "Абонименты", "Цены")
+    useTitle("Цены", " ", "Абонемент", "Цены");
     return (
         <>
-            <Other_header />
+            <Otherheader />
             <main>
                 <div className="training">
                     <div className="subscription">
