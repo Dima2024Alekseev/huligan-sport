@@ -122,7 +122,7 @@ const Header = () => {
                 <div className="profile-menu-number">
                 <div className="menu-profile-flex">
                     <div onClick={() => setNav(!nav)} className="mobile_btn">
-                        {nav ? <AiOutlineClose color="white" size={50} /> : <AiOutlineMenu color="white" size={50} />}
+                        {nav ? <AiOutlineClose color="white" size={40} /> : <AiOutlineMenu color="white" size={40} />}
                     </div>
                     <div className="mobile-profile">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="36" height="32" viewBox="0 0 36 32">

@@ -566,15 +566,16 @@ svg.social {
 
 /* ---------------------------подвал сайта-------------------------- */
 
-.position-mobile-logo-and-menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0px 20px;
-}
 
 @media(max-width:1100px) {
+    .position-mobile-logo-and-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0px 20px;
+    }
+
 
     .mobile_btn,
     .logo-mobile,
@@ -585,20 +586,21 @@ svg.social {
         z-index: 10;
     }
 
-    .profile-menu-number{
+    .profile-menu-number {
         display: flex;
         flex-direction: column;
         gap: 20px;
         align-items: center;
     }
-    .menu-profile-flex{
+
+    .menu-profile-flex {
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
         gap: 20px;
     }
 
-    .mobile-profile{
+    .mobile-profile {
         background-color: white;
         border-radius: 5px;
         width: 35px;
@@ -606,13 +608,14 @@ svg.social {
 
     }
 
-    .mobile-header-contact{
+    .mobile-header-contact {
         display: flex;
         color: white;
         flex-direction: column;
         align-items: center;
         z-index: 10;
     }
+
     .logo-header {
         width: 500px;
         height: 500px;
@@ -672,7 +675,7 @@ svg.social {
         border-top: none;
     }
 
-    
+
 
     .active {
         left: 0;
