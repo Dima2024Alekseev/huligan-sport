@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import logo from "./img/header-icon.png";
-import "../style/style.css"
 import video from "./video/club_2.mp4";
 import { useState } from "react";
 
