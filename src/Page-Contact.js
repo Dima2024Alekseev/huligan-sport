@@ -4,7 +4,7 @@ import Otherheader from "./Components/OtherHeader";
 import Contact from "./Components/Contact-Information";
 import Footer from "./Components/Footer";
 
-const Page_Contact = () => {
+const PageContact = () => {
     useTitle("Контакты", "", "Контактная информация", "Контакты")
     return (
         <>
@@ -15,4 +15,4 @@ const Page_Contact = () => {
     );
 };
 
-export default Page_Contact;
+export default PageContact;

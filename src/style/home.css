@@ -1,13 +1,9 @@
 /* ------------шапка сайта---------- */
 header {
     font-family: Arial, Helvetica, sans-serif;
-   
+
 }
 
-header .logo-header {
-    width: 10vw;
-    height: 10vw;
-}
 
 #video-container {
     position: relative;
@@ -45,6 +41,11 @@ header .logo-header {
     z-index: -1;
 }
 
+header .logo-header {
+    width: 10vw;
+    height: 10vw;
+}
+
 .header-flex {
     display: flex;
     justify-content: space-evenly;
@@ -57,7 +58,8 @@ header .logo-header {
     flex-direction: column;
     align-items: center;
     color: white;
-    
+
+
 }
 
 .header-icons {
@@ -88,22 +90,7 @@ header .logo-header {
     line-height: normal;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
 /* -------------------навигация--------------- */
 
@@ -112,7 +99,7 @@ nav ul {
     margin: 0;
     padding: 0;
     background-color: white;
-    padding: 20px;
+    padding: 2vw;
     font-size: 14px;
     border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;
@@ -120,14 +107,14 @@ nav ul {
 
 nav li {
     display: inline-block;
-    padding-right: 15px;
+    padding-right: 1.5vw;
 }
 
 nav a {
     text-decoration: none;
     color: #000000;
     transition: all 0.3s ease;
-    padding: 20px 0px;
+    padding: 2vw 0vw;
 }
 
 /* -----------выпадающий список----------- */
@@ -135,11 +122,10 @@ nav a {
     display: none;
     position: absolute;
     background-color: #ffffff;
-    border-radius: 0px;
-    padding: 15px;
-    min-width: 160px;
+    padding: 1.5vw;
+    min-width: 210px;
     z-index: 1;
-    margin-left: -20px;
+    margin-left: -2vw;
     line-height: 40px;
 }
 
@@ -153,6 +139,8 @@ nav a {
 
 .dropdown:hover .dropdown-content {
     display: block;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .personal-area {
@@ -160,7 +148,7 @@ nav a {
     background-color: white;
     fill: black;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 3.8vw;
     height: 3.8vw;
 }
@@ -205,14 +193,14 @@ nav a {
 }
 
 .button-club,
-.button-victory{
+.button-victory {
     width: 26.5vw;
     height: 10.5vw;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    border-radius: 0.5vw;
+    border-radius: 5px;
     cursor: pointer;
     border: none;
 }
@@ -220,7 +208,7 @@ nav a {
 .button-club {
     background: #D9D9D9;
     color: #000;
-    }
+}
 
 .button-victory {
     background: #F00;
@@ -244,8 +232,8 @@ nav a {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    width: 360px;
-    height: 50px;
+    width: 36vw;
+    height: 5vw;
     border-radius: 5px;
     text-align: center;
 }
@@ -294,8 +282,8 @@ a {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    width: 360px;
-    height: 50px;
+    width: 36vw;
+    height: 5vw;
     border-radius: 5px;
 }
 
@@ -565,19 +553,24 @@ svg.social {
 
 @media(max-width:320px) {
     #video-container {
-        height: 50vh; /* Уменьшаем высоту контейнера для мобильных устройств */
+        height: 50vh;
+        /* Уменьшаем высоту контейнера для мобильных устройств */
     }
 
     .background-video {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Уменьшаем высоту видео для мобильных устройств */
+        object-fit: cover;
+        /* Уменьшаем высоту видео для мобильных устройств */
     }
 
     .overlay {
-        background: rgba(0, 0, 0, 0.8); /* Увеличиваем непрозрачность оверлея для лучшей читаемости */
+        background: rgba(0, 0, 0, 0.8);
+        /* Увеличиваем непрозрачность оверлея для лучшей читаемости */
     }
-    .overlay, .background-video {
+
+    .overlay,
+    .background-video {
         width: 100%;
         height: 100%;
     }
@@ -688,8 +681,6 @@ svg.social {
     .dropdown-content .line {
         border-top: none;
     }
-
-
 
     .active {
         left: 0;

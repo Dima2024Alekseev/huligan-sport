@@ -7,7 +7,7 @@ const products = [
     { src: require("./img/item6.jpg"), name: "Комплект формы", price: "3 000 ₽" }
 ];
 
-class Store_Block extends React.Component {
+class StoreBlock extends React.Component {
     render() {
         return (
             <div className="online-store">
@@ -46,4 +46,4 @@ class Store_Block extends React.Component {
     }
 }
 
-export default Store_Block
+export default StoreBlock
