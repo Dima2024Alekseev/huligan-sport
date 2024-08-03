@@ -1,5 +1,4 @@
 import React from "react";
-
 import Header from "./Components/Header";
 import News_Block from "./Components/News-Block";
 import Store_Block from "./Components/Store-Block";
