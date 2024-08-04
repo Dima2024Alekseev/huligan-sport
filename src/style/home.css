@@ -42,15 +42,15 @@ header {
 }
 
 header .logo-header {
-    width: 10vw;
-    height: 10vw;
+    width: 6vw;
+    height: 6vw;
 }
 
 .header-flex {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 2vw;
+    padding: 20px;
 }
 
 .header-contact {
@@ -77,8 +77,8 @@ header .logo-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 9vw;
-    height: 3.5vw;
+    width: 8vw;
+    height: 2.5vw;
     background-color: #EE0007;
     border: none;
     border-radius: 5px;
@@ -94,54 +94,106 @@ header .logo-header {
 
 /* -------------------навигация--------------- */
 
-nav ul {
-    list-style-type: none;
+ul.nav li ul {
+    display: none;
+}
+
+ul.nav li {
+    list-style: none;
+}
+
+ul.nav li:hover>ul {
+    display: block;
+}
+
+
+ul {
     margin: 0;
     padding: 0;
-    background-color: white;
-    padding: 2vw;
-    font-size: 14px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-nav li {
-    display: inline-block;
-    padding-right: 1.5vw;
-}
-
-nav a {
-    text-decoration: none;
-    color: #000000;
-    transition: all 0.3s ease;
-    padding: 2vw 0vw;
-}
-
-/* -----------выпадающий список----------- */
-.dropdown-content {
-    display: none;
-    position: absolute;
+ul.nav li {
     background-color: #ffffff;
-    padding: 1.5vw;
-    min-width: 210px;
-    z-index: 1;
-    margin-left: -2vw;
-    line-height: 40px;
+    float: left;
+    height: 30px;
+    list-style: none;
 }
 
-.dropdown-content .line {
-    border-top: 1px solid red;
-}
-
-.dropdown-content li {
+ul.nav li a {
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
     display: block;
+    padding: 5px 5px 5px 15px;
 }
 
-.dropdown:hover .dropdown-content {
+ul.nav li ul {
+    display: none;
+
+
+    /*скрываем вложенные пункты*/
+}
+
+ul.nav {
+    /*задаём высоту и ширину меню*/
+    background-color: #ffffff;
+    height: 30px;
+    width: 96%;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/*Выпадающее меню*/
+
+ul.nav li:hover {
+    position: relative;
+
+
+}
+
+ul.nav li:hover>ul {
     display: block;
+    position: absolute;
+    top: 30px;
+
+    /*первый уровень меню раскрывается вниз*/
+    left: -15px;
+}
+
+/*Второй и последующие уровни вложенности*/
+ul.nav li ul li {
+    padding-left: 15px;
+    line-height: 50px;
+    height: auto;
+    width: 250px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.297);
+
+
+}
+
+ul.nav li:hover ul li ul {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    /*второй и последующие уровни расскрываются вправо*/
+}
+
+
+a {
+    color: black;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: red;
+}
+
+ul.nav li ul li:last-child {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+
+/* -------------------навигация--------------- */
 
 .personal-area {
     display: flex;
@@ -551,7 +603,7 @@ svg.social {
 
 /* ---------------------------подвал сайта-------------------------- */
 
-@media(max-width:320px) {
+@media(max-width:1100px) {
     #video-container {
         height: 50vh;
         /* Уменьшаем высоту контейнера для мобильных устройств */
@@ -652,35 +704,74 @@ svg.social {
         display: none;
     }
 
-    nav ul {
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul.nav {
         background-color: transparent;
         display: flex;
         flex-direction: column;
-        line-height: 50px;
+        position: relative;
+        bottom: 100px;
+        right: 30px;
         text-transform: uppercase;
     }
 
-    nav a {
-        color: white;
-        font-size: 18px;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
+    ul.nav li {
         background-color: transparent;
-        padding: 15px;
-        min-width: 130%;
-        top: -15px;
-        left: 110%;
-        z-index: 1;
-        line-height: 40px;
-        text-transform: uppercase;
+        color: white;
+        border: none;
+        list-style: none;
+
+        /*ширина блока меню*/
     }
 
-    .dropdown-content .line {
-        border-top: none;
+    ul.nav li a {
+        text-decoration: none;
+        display: block;
+
     }
+
+    ul.nav li ul {
+        display: none;
+        /*скрываем вложенные пункты*/
+    }
+
+    /*Выпадающее меню*/
+
+    ul.nav li:hover {
+        /* позиционирование вложенных элементов
+         * будет расчитыватьться относительно
+         * родительского элемента
+         */
+        position: relative;
+    }
+
+    ul.nav li:hover>ul {
+        display: block;
+    }
+
+    ul.nav li:hover ul {
+        position: absolute;
+        top: 0;
+        left: 180px;
+    }
+
+    ul.nav li ul li {
+        padding-left: 0px;
+        line-height: 20px;
+        height: auto;
+
+    }
+
+
+
+
+
+
+
 
     .active {
         left: 0;

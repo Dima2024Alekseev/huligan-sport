@@ -11,60 +11,34 @@ class Otherheader extends React.Component {
                     <div className="header-flex">
                         <Link to="/home">
                             <div>
-                                <img style={{ width: '10vw', height: '10vw' }} src={logo} alt="" />
+                                <img style={{ width: '6vw', height: '6vw' }} src={logo} alt="" />
                             </div>
                         </Link>
                         <nav>
+                    <ul class="nav">
+                        <li><Link to="/home">Академия</Link>
                             <ul>
-                                <li className="dropdown">
-                                    <Link to="/home">Академия</Link>
-                                    <ul className="dropdown-content">
-                                        <li className="line">
-                                            <Link to="/about">об Академии</Link>
-                                        </li>
-
-                                        <li>
-                                            <Link to="/contact">Контакты</Link>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li className="dropdown">
-                                    <a href="#">Направления</a>
-                                    <ul className="dropdown-content">
-                                        <li className="line">
-                                            <a href="#service1"> Мма</a>
-                                        </li>
-                                        <li>
-                                            <a href="#service2">Грэпплинг</a>
-                                        </li>
-                                        <li>
-                                            <a href="#service3">Бокс</a>
-                                        </li>
-                                        <li>
-                                            <a href="#service3">Рукопашный бой</a>
-                                        </li>
-                                        <li>
-                                            <a href="#service3">Каратэ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#service3">Женская самооборона</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <Link to="/schedule">Расписание</Link>
-                                </li>
-                                <li>
-                                    <Link to="/events">События</Link>
-                                </li>
-                                <li>
-                                    <a href="./press-center.html">Пресс-центр</a>
-                                </li>
-                                <li>
-                                    <a href="./online-store.html">Интернет-магазин</a>
-                                </li>
+                                <li><Link to="/about">об Академии</Link></li>
+                                <li><Link to="/contact">Контакты</Link></li>
                             </ul>
-                        </nav>
+                        </li>
+                        <li><a href="#">Направления</a>
+                            <ul>
+                                <li><a href="#">ММА</a></li>
+                                <li><a href="#">Грэпплинг</a></li>
+                                <li><a href="#">Бокс</a></li>
+                                <li><a href="#">Кикбоксинг</a></li>
+                                <li><a href="#">Рукопашный бой</a></li>
+                                <li><a href="#">Каратэ</a></li>
+                                <li><a href="#">Женская самооборона</a></li>
+                            </ul>
+                        </li>
+                        <li><Link to="/schedule">Расписание</Link></li>
+                        <li><Link to="/events">События</Link></li>
+                        <li><a href="#">Пресс-центр</a></li>
+                        <li><a href="#">Интернем-магазин</a></li>
+                    </ul>
+                </nav>
                         <Link to="/price">
                             <div className="price_button">
                                 <p>Цены</p>
