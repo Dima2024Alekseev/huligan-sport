@@ -707,6 +707,7 @@ svg.social {
     ul {
         margin: 0;
         padding: 0;
+
     }
 
     ul.nav {
@@ -714,16 +715,23 @@ svg.social {
         display: flex;
         flex-direction: column;
         position: relative;
-        bottom: 100px;
         right: 30px;
         text-transform: uppercase;
+        justify-content: center;
+        gap: 20px;
+        font-size: 15px;
+
     }
 
     ul.nav li {
+        position: relative;
         background-color: transparent;
         color: white;
         border: none;
         list-style: none;
+        line-height: 20px;
+
+
 
         /*ширина блока меню*/
     }
@@ -731,11 +739,11 @@ svg.social {
     ul.nav li a {
         text-decoration: none;
         display: block;
-
     }
 
     ul.nav li ul {
         display: none;
+
         /*скрываем вложенные пункты*/
     }
 
@@ -755,23 +763,17 @@ svg.social {
 
     ul.nav li:hover ul {
         position: absolute;
-        top: 0;
-        left: 180px;
+        top: -10px;
+        left: 190px;
     }
 
     ul.nav li ul li {
         padding-left: 0px;
-        line-height: 20px;
+        line-height: 40px;
         height: auto;
+        width: 130%;
 
     }
-
-
-
-
-
-
-
 
     .active {
         left: 0;

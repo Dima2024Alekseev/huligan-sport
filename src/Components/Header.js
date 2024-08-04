@@ -22,7 +22,6 @@ const Header = () => {
                         <img className="logo-header" src={logo} alt="" />
                     </div>
                 </Link>
-
                 <nav>
                     <ul class="nav">
                         <li><Link to="/home">Академия</Link>
