@@ -5,7 +5,6 @@
 
 .container-events{
     margin: auto;
-    width: 1200px;
     display: flex;
     flex-direction: column;
     
