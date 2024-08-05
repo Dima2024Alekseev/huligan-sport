@@ -94,15 +94,15 @@ header .logo-header {
 
 /* -------------------навигация--------------- */
 
-ul.nav li ul {
+ul.navigation li ul {
     display: none;
 }
 
-ul.nav li {
+ul.navigation li {
     list-style: none;
 }
 
-ul.nav li:hover>ul {
+ul.navigation li:hover>ul {
     display: block;
 }
 
@@ -112,28 +112,28 @@ ul {
     padding: 0;
 }
 
-ul.nav li {
+ul.navigation li {
     background-color: #ffffff;
     float: left;
     height: 30px;
     list-style: none;
 }
 
-ul.nav li a {
+ul.navigation li a {
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
     display: block;
     padding: 5px 5px 5px 15px;
 }
 
-ul.nav li ul {
+ul.navigation li ul {
     display: none;
 
 
     /*скрываем вложенные пункты*/
 }
 
-ul.nav {
+ul.navigation {
     /*задаём высоту и ширину меню*/
     background-color: #ffffff;
     height: 30px;
@@ -144,13 +144,13 @@ ul.nav {
 
 /*Выпадающее меню*/
 
-ul.nav li:hover {
+ul.navigation li:hover {
     position: relative;
 
 
 }
 
-ul.nav li:hover>ul {
+ul.navigation li:hover>ul {
     display: block;
     position: absolute;
     top: 30px;
@@ -160,7 +160,7 @@ ul.nav li:hover>ul {
 }
 
 /*Второй и последующие уровни вложенности*/
-ul.nav li ul li {
+ul.navigation li ul li {
     padding-left: 15px;
     line-height: 50px;
     height: auto;
@@ -170,7 +170,7 @@ ul.nav li ul li {
 
 }
 
-ul.nav li:hover ul li ul {
+ul.navigation li:hover ul li ul {
     position: absolute;
     top: 0;
     left: 150px;
@@ -187,7 +187,7 @@ a:hover {
     color: red;
 }
 
-ul.nav li ul li:last-child {
+ul.navigation li ul li:last-child {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -627,12 +627,17 @@ svg.social {
         height: 100%;
     }
 
+    header .logo-header{
+        width: 20vw;
+        height: 20vw;
+    }
+
     .position-mobile-logo-and-menu {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: flex-start;
-        padding: 0px 20px;
+        align-items: center;
+        padding: 0px 10px;
     }
 
 
@@ -643,6 +648,11 @@ svg.social {
         position: relative;
         top: 20px;
         z-index: 10;
+    }
+
+    svg.social {
+        width: 7vw;
+        height: 7vw;
     }
 
     .profile-menu-number {
@@ -675,10 +685,7 @@ svg.social {
         z-index: 10;
     }
 
-    .logo-header {
-        width: 500px;
-        height: 500px;
-    }
+   
 
     .header-flex {
         display: flex;
@@ -699,8 +706,8 @@ svg.social {
 
     .header-flex .logo-header,
     .header-flex .price_button,
-    .header-flex .personal-area,
-    .header-contact {
+    .header-flex .personal-area
+    {
         display: none;
     }
 
@@ -710,20 +717,21 @@ svg.social {
 
     }
 
-    ul.nav {
+    ul.navigation {
         background-color: transparent;
         display: flex;
         flex-direction: column;
         position: relative;
         right: 30px;
         text-transform: uppercase;
+        font-weight: 600;
         justify-content: center;
         gap: 20px;
         font-size: 15px;
 
     }
 
-    ul.nav li {
+    ul.navigation li {
         position: relative;
         background-color: transparent;
         color: white;
@@ -736,12 +744,12 @@ svg.social {
         /*ширина блока меню*/
     }
 
-    ul.nav li a {
+    ul.navigation li a {
         text-decoration: none;
         display: block;
     }
 
-    ul.nav li ul {
+    ul.navigation li ul {
         display: none;
 
         /*скрываем вложенные пункты*/
@@ -749,7 +757,7 @@ svg.social {
 
     /*Выпадающее меню*/
 
-    ul.nav li:hover {
+    ul.navigation li:hover {
         /* позиционирование вложенных элементов
          * будет расчитыватьться относительно
          * родительского элемента
@@ -757,22 +765,28 @@ svg.social {
         position: relative;
     }
 
-    ul.nav li:hover>ul {
+    ul.navigation li:hover>ul {
         display: block;
     }
 
-    ul.nav li:hover ul {
+    ul.navigation li:hover ul {
         position: absolute;
         top: -10px;
         left: 190px;
     }
 
-    ul.nav li ul li {
+    ul.navigation li ul li {
         padding-left: 0px;
         line-height: 40px;
         height: auto;
         width: 130%;
 
+    }
+
+    .header-contact{
+        position: relative;
+        gap: 10px;
+        top: 200px;
     }
 
     .active {
