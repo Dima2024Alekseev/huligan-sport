@@ -727,7 +727,8 @@ svg.social {
         font-weight: 600;
         justify-content: center;
         gap: 20px;
-        font-size: 15px;
+        font-size: 15px;    
+        bottom: 25px;
 
     }
 
