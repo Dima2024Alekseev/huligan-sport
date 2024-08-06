@@ -30,7 +30,7 @@ const Otherheader = () => {
                                 <h3>+7 (999) 445-12-03</h3>
                             </div>
                         </a>
-                        <a href="./waiting-list.html" id="list-header">
+                        <a href="#" id="list-header">
                             <div>
                                 <p>Лист ожидания</p>
                             </div>
@@ -50,7 +50,7 @@ const Otherheader = () => {
                             </a>
                         </div>
                     </div>
-                    <a href="./registration.html">
+                    <a href="#">
                         <div className="personal-area">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="3.6vw" height="3.2vw" viewBox="0 0 36 32">
                                 <title>личный кабинет</title>
@@ -62,7 +62,7 @@ const Otherheader = () => {
                 <MobileMenu nav={nav} setNav={setNav}/>
                 <div className="content">
                     <div className="title">
-                        <h1>Расписание</h1>
+                        <h1></h1>
                     </div>
                     <div className="links">
                         <div style={{ borderRight: '1px solid white', paddingRight: '10px' }}>

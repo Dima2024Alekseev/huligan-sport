@@ -154,8 +154,6 @@ ul.navigation li:hover>ul {
     display: block;
     position: absolute;
     top: 30px;
-
-    /*первый уровень меню раскрывается вниз*/
     left: -15px;
 }
 
@@ -165,10 +163,13 @@ ul.navigation li ul li {
     line-height: 50px;
     height: auto;
     width: 250px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.297);
-
-
+    
 }
+
+ul.navigation li ul li:not(:last-child){
+    border-bottom: 1px solid rgba(0, 0, 0, 0.297);
+}
+
 
 ul.navigation li:hover ul li ul {
     position: absolute;
@@ -693,7 +694,7 @@ svg.social {
         justify-content: center;
         align-items: flex-start;
         position: fixed;
-        left: -110%;
+        left: -120%;
         right: 0;
         top: 0;
         bottom: 0;

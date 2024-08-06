@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 const Header = () => {
-    const [nav, setNav] = useState(false)
+    const [nav, setNav] = useState(false);
     return (
         <header id="video-container">
             <video className="background-video" autoPlay loop muted>
@@ -35,7 +35,7 @@ const Header = () => {
                             <h3>+7 (999) 445-12-03</h3>
                         </div>
                     </a>
-                    <a href="./waiting-list.html" id="list-header">
+                    <a href="#" id="list-header">
                         <div>
                             <p>Лист ожидания</p>
                         </div>
@@ -55,7 +55,7 @@ const Header = () => {
                         </a>
                     </div>
                 </div>
-                <a href="">
+                <a href="#">
                     <div className="personal-area">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="3.6vw" height="3.2vw" viewBox="0 0 36 32">
                             <title>личный кабинет</title>
