@@ -1,13 +1,39 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import logo from "./img/header-icon.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
 
 
 const Otherheader = () => {
     const [nav, setNav] = useState(false);
+    useEffect(() => {
+        const inner = document.getElementById('inner');
+        let angle = 0;
+        let direction = 1; // 1 для увеличения, -1 для уменьшения
+
+        function updateGradient() {
+            angle += direction;
+
+            // Изменяем направление, когда угол достигает 150 или 50 градусов
+            if (angle >= 250) {
+                direction = -0.5;
+            } else if (angle <= 50) {
+                direction = 0.5;
+            }
+
+            inner.style.background = `linear-gradient(${angle}deg, #000000 50%, rgba(125, 186, 232, 0) 100%), url(https://rcc-sport.ru/local/templates/main/img/bg-red.png) top right, #121212`;
+            requestAnimationFrame(updateGradient);
+        }
+
+        updateGradient();
+
+        // Очистка анимации при размонтировании компонента
+        return () => {
+            cancelAnimationFrame(updateGradient);
+        };
+    }, []);
     return (
         <header id="inner">
             <div className="container-events">
@@ -59,7 +85,7 @@ const Otherheader = () => {
                         </div>
                     </a>
                 </div>
-                <MobileMenu nav={nav} setNav={setNav}/>
+                <MobileMenu nav={nav} setNav={setNav} />
                 <div className="content">
                     <div className="title">
                         <h1></h1>
