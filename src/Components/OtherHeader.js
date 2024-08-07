@@ -69,7 +69,7 @@ const Otherheader = () => {
                             <Link to="/home">Главная</Link>
                         </div>
                         <div>
-                            <Link to="/schedule" style={{ color: 'white', paddingLeft: '10px' }}>Расписание</Link>
+                            <Link to="#" style={{ color: 'white', paddingLeft: '10px' }}></Link>
                         </div>
                     </div>
                 </div>
