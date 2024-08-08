@@ -196,15 +196,7 @@ ul.navigation li ul li:last-child {
 
 /* -------------------навигация--------------- */
 
-.personal-area {
-    display: flex;
-    background-color: white;
-    fill: black;
-    padding: 5px;
-    border-radius: 5px;
-    width: 3.8vw;
-    height: 3.8vw;
-}
+
 
 .mobile_btn,
 .logo-mobile,
@@ -670,13 +662,7 @@ svg.social {
         gap: 20px;
     }
 
-    .mobile-profile {
-        background-color: white;
-        border-radius: 5px;
-        width: 35px;
-        height: 35px;
-
-    }
+    
 
     .mobile-header-contact {
         display: flex;
