@@ -70,11 +70,11 @@ class Footer extends React.Component {
                             </div>
                         </a>
                         <div className="icons">
-                            <a className="icons_1" href="https://vk.com/mmakansk">
-                            <Icon16LogoVk fill="rgba(193, 193, 193, 0.628)"/>
+                            <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
+                                <Icon16LogoVk width={30} height={30} fill="rgba(193, 193, 193, 0.628)" />
                             </a>
-                            <a className="icons_1" href="https://t.me/mmakansk">
-                            <BsTelegram fill="rgba(193, 193, 193, 0.628)"/>
+                            <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
+                                <BsTelegram size={24} fill="rgba(193, 193, 193, 0.628)" />
                             </a>
                         </div>
                     </div>

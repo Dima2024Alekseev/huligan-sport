@@ -64,10 +64,10 @@ const Otherheader = () => {
                             </div>
                         </a>
                         <div className="header-icons">
-                            <a className="header-icons_1" href="https://vk.com/mmakansk">
+                            <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
                                 <Icon16LogoVk width={30} height={30} />
                             </a>
-                            <a className="header-icons_1" href="https://t.me/mmakansk">
+                            <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
                                 <BsTelegram size={24} />
                             </a>
                         </div>

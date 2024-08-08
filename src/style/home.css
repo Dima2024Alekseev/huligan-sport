@@ -163,10 +163,10 @@ ul.navigation li ul li {
     line-height: 50px;
     height: auto;
     width: 250px;
-    
+
 }
 
-ul.navigation li ul li:not(:last-child){
+ul.navigation li ul li:not(:last-child) {
     border-bottom: 1px solid rgba(0, 0, 0, 0.171);
 }
 
@@ -545,7 +545,7 @@ footer {
 .icons {
     text-align: center;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     width: 25px;
     height: 25px;
     transition: all 0.5s ease;
@@ -620,7 +620,7 @@ svg.social {
         height: 100%;
     }
 
-    header .logo-header{
+    header .logo-header {
         width: 20vw;
         height: 20vw;
     }
@@ -662,7 +662,7 @@ svg.social {
         gap: 20px;
     }
 
-    
+
 
     .mobile-header-contact {
         display: flex;
@@ -672,7 +672,7 @@ svg.social {
         z-index: 10;
     }
 
-   
+
 
     .header-flex {
         display: flex;
@@ -693,8 +693,7 @@ svg.social {
 
     .header-flex .logo-header,
     .header-flex .price_button,
-    .header-flex .personal-area
-    {
+    .header-flex .personal-area {
         display: none;
     }
 
@@ -714,7 +713,7 @@ svg.social {
         font-weight: 600;
         justify-content: center;
         gap: 20px;
-        font-size: 15px;    
+        font-size: 15px;
         bottom: 50px;
 
     }
@@ -771,7 +770,7 @@ svg.social {
 
     }
 
-    .header-contact{
+    .header-contact {
         position: relative;
         gap: 10px;
         top: 200px;

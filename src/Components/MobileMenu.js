@@ -18,7 +18,7 @@ const MobileMenu = ({ nav, setNav }) => {
                         {nav ? <AiOutlineClose color="white" size={40} /> : <AiOutlineMenu color="white" size={40} />}
                     </div>
                     <div className="mobile-profile">
-                    <Icon24UserSquare fill="white" width={50} height={50}/>
+                        <Icon24UserSquare fill="white" width={50} height={50} />
                     </div>
                 </div>
             </div>

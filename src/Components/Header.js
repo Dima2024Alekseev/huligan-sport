@@ -26,7 +26,7 @@ const Header = () => {
                         <img className="logo-header" src={logo} alt="" />
                     </div>
                 </Link>
-                <Navbar/>
+                <Navbar />
                 <Link to="/price">
                     <div className="price_button">
                         <p>Цены</p>
@@ -44,22 +44,22 @@ const Header = () => {
                         </div>
                     </a>
                     <div className="header-icons">
-                        <a className="header-icons_1" href="https://vk.com/mmakansk">
-                            <Icon16LogoVk width={30} height={30}/>
+                        <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
+                            <Icon16LogoVk width={30} height={30} />
                         </a>
-                        <a className="header-icons_1" href="https://t.me/mmakansk">
-                            <BsTelegram size={24}/>
+                        <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
+                            <BsTelegram size={24} />
                         </a>
                     </div>
                 </div>
                 <a href="#">
                     <div className="personal-area">
-                    <Icon24UserSquare fill="white" width={50} height={50}/>
+                        <Icon24UserSquare fill="white" width={50} height={50} />
                     </div>
                 </a>
 
             </div>
-            <MobileMenu nav={nav} setNav={setNav}/>
+            <MobileMenu nav={nav} setNav={setNav} />
         </header>
     );
 }
