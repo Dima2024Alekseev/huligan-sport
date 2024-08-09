@@ -146,6 +146,7 @@ ul.navigation {
 
 ul.navigation li:hover {
     position: relative;
+    z-index: 1;
 
 
 }
