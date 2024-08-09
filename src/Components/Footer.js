@@ -48,10 +48,10 @@ class Footer extends React.Component {
                         </div>
                         <div className="header-components">
                             <div>
-                                <a href="./press-center.html" className="type-of-fight">Пресс-центр</a>
+                                <Link to="/precc-center" className="type-of-fight">Пресс-центр</Link>
                             </div>
                             <div>
-                                <a href="./online-store.html" className="type-of-fight">Интернет-магазин</a>
+                                <Link to="/online-store" className="type-of-fight">Интернет-магазин</Link>
                             </div>
                             <div>
                                 <Link to="/price" className="type-of-fight">Цены</Link>

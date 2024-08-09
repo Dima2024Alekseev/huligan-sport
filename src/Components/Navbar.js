@@ -24,8 +24,8 @@ const Navbar = () => {
                 </li>
                 <li><Link to="/schedule">Расписание</Link></li>
                 <li><Link to="/events">События</Link></li>
-                <li><a href="#">Пресс-центр</a></li>
-                <li><a href="#">Интернет-магазин</a></li>
+                <li><Link to="/precc-center">Пресс-центр</Link></li>
+                <li><a href="/online-store">Интернет-магазин</a></li>
             </ul>
         </nav>
     )

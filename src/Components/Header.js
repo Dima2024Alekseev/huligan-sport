@@ -52,11 +52,11 @@ const Header = () => {
                         </a>
                     </div>
                 </div>
-                <a href="#">
+                <Link to="/personal-account">
                     <div className="personal-area">
                         <Icon24UserSquare fill="white" width={50} height={50} />
                     </div>
-                </a>
+                </Link>
 
             </div>
             <MobileMenu nav={nav} setNav={setNav} />
