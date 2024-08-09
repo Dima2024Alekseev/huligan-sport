@@ -1,17 +1,21 @@
 import React from "react";
 import "./style/events.css"
-import useTitle from "./Components/UseTitle";
-import Otherheader from "./Components/OtherHeader";
+import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Posts from "./Components/Post";
 
 
 const Events = () => {
-    useTitle("События", " ", "События Академии", "События");
     return (
         <>
-            <Otherheader />
-            <Posts/>
+            <Header
+                title="События"
+                showBlock={true}
+                showGradient={true}
+                innerTitle="События Академии"
+                linkText="События"
+            />
+            <Posts />
             <Footer />
         </>
     );

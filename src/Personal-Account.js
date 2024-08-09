@@ -1,14 +1,19 @@
 import React from "react";
 import "./style/events.css";
-import useTitle from "./Components/UseTitle";
+
 import Footer from "./Components/Footer";
-import HeaderProfile from "./Components/Header-Profile";
+import Header from "./Components/Header";
 
 const Account = () => {
-    useTitle("Интернет-магазин", " ", "Интернет-магазин", "Интернет-магазин");
+    
     return (
         <>
-            <HeaderProfile />
+            <Header
+            title='Аккаунт'
+            showForm={true}
+            showGradient={true}
+            formFields={{ name: true, lastname: true, birthdate: true, email: true, password: true, confirmPassword: true }}
+             />
             <Footer />
         </>
     );

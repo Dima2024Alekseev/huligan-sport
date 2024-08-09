@@ -1,14 +1,17 @@
 import React from "react";
 import "./style/price.css"
-import useTitle from "./Components/UseTitle";
-import Otherheader from "./Components/OtherHeader";
+import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 
 const Price = () => {
-    useTitle("Цены", " ", "Абонемент", "Цены");
     return (
         <>
-            <Otherheader />
+            <Header
+            showGradient={true}
+            title = 'Цены'
+            showBlock={true}
+            innerTitle='Абонемент'
+            linkText='Цены' />
             <main>
                 <div className="training">
                     <div className="subscription">

@@ -1,15 +1,19 @@
 import React from "react";
 import "./style/events.css";
-import useTitle from "./Components/UseTitle";
-import Otherheader from "./Components/OtherHeader";
+import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 
 
 const Store = () => {
-    useTitle("Интернет-магазин", " ", "Интернет-магазин", "Интернет-магазин");
     return (
         <>
-            <Otherheader />
+            <Header
+                showGradient={true}
+                showBlock={true}
+                title="Интернет-магазин"
+                innerTitle="Интернет-магазин"
+                linkText="Интернет-магазин"
+            />
             <Footer />
         </>
     );

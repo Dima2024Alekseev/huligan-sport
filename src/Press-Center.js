@@ -1,15 +1,19 @@
 import React from "react";
 import "./style/events.css";
-import useTitle from "./Components/UseTitle";
-import Otherheader from "./Components/OtherHeader";
+import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 
 
 const Press = () => {
-    useTitle("Пресс-центр", " ", "Пресс-центр", "Пресс-центр");
     return (
         <>
-            <Otherheader />
+            <Header
+                title="Пресс-центр"
+                showBlock={true}
+                innerTitle="Пресс-центр"
+                linkText="Пресс-центр"
+                showGradient={true}
+            />
             <Footer />
         </>
     );
