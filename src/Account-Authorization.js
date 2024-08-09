@@ -2,6 +2,7 @@ import React from "react";
 import "./style/events.css";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import Form from "./Components/Form";
 
 const Authorization = () => {
     
@@ -9,11 +10,11 @@ const Authorization = () => {
         <>
             <Header
             title='Авторизация аккаунта'
-            showForm={true}
-            showGradient={true}
-            formTitle='Авторизация'
-            formFields={{ email: true, password: true, confirmPassword: true }}
-             />
+            showGradient={true}/>
+            <Form
+                showFields={{ email: true, password: true, confirmPassword: true }}
+                formTitle='Авторизация'
+            />
             <Footer />
         </>
     );

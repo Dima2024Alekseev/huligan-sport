@@ -16,7 +16,7 @@ import useTitle from './Components/UseTitle';
 
 
 export default function App() {
-  useTitle("Главная", logo_title)
+  useTitle("Хулиган. Академия боевых единоборств", logo_title)
   return (
     <>
       <Router>

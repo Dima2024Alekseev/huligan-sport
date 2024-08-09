@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../style/profile.css'; // Убедитесь, что ваш CSS файл подключен
 
-const Form = ({ showFields, formTitle  }) => {
+const Form = ({ showFields, formTitle }) => {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',

@@ -5,11 +5,10 @@ import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
 import { Icon16LogoVk, Icon24UserSquare } from '@vkontakte/icons';
 import { BsTelegram } from "react-icons/bs";
-import Form from "./Form";
 import useTitle from './UseTitle';
 import video from "./video/club_2.mp4"
 
-const Header = ({ title, icon, innerTitle, linkText, showVideo, showForm, showGradient, showBlock, formFields, formTitle }) => {
+const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, showBlock }) => {
   useTitle(title, icon, innerTitle, linkText);
 
   const [nav, setNav] = useState(false);
@@ -107,8 +106,6 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showForm, showGr
           </div>
         </div>
       </div>}
-      
-      {showForm && <Form showFields={formFields} formTitle={formTitle} />}
     </div>
   );
 };
