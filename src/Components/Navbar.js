@@ -25,7 +25,7 @@ const Navbar = () => {
                 <li><Link to="/schedule">Расписание</Link></li>
                 <li><Link to="/events">События</Link></li>
                 <li><Link to="/precc-center">Пресс-центр</Link></li>
-                <li><a href="/online-store">Интернет-магазин</a></li>
+                <li><Link to="/online-store">Интернет-магазин</Link></li>
             </ul>
         </nav>
     )
