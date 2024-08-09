@@ -6,17 +6,16 @@ import Form from "./Components/Form";
 
 const Registration = () => {
     return (
-        <>
+        <div id="inner">
             <Header
                 title='Регистрация аккаунта'
-                showGradient={true}
             />
             <Form
                 showFields={{ name: true, lastname: true, birthdate: true, email: true, password: true, confirmPassword: true }}
                 formTitle='Регистрация'
             />
             <Footer />
-        </>
+        </div>
     );
 };
 
