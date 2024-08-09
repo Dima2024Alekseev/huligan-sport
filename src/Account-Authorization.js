@@ -1,22 +1,22 @@
 import React from "react";
 import "./style/events.css";
-
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
-const Account = () => {
+const Authorization = () => {
     
     return (
         <>
             <Header
-            title='Аккаунт'
+            title='Авторизация аккаунта'
             showForm={true}
             showGradient={true}
-            formFields={{ name: true, lastname: true, birthdate: true, email: true, password: true, confirmPassword: true }}
+            formTitle='Авторизация'
+            formFields={{ email: true, password: true, confirmPassword: true }}
              />
             <Footer />
         </>
     );
 };
 
-export default Account;
+export default Authorization;

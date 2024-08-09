@@ -9,7 +9,7 @@ import Form from "./Form";
 import useTitle from './UseTitle';
 import video from "./video/club_2.mp4"
 
-const Header = ({ title, icon, innerTitle, linkText, showVideo, showForm, showGradient, showBlock, formFields }) => {
+const Header = ({ title, icon, innerTitle, linkText, showVideo, showForm, showGradient, showBlock, formFields, formTitle }) => {
   useTitle(title, icon, innerTitle, linkText);
 
   const [nav, setNav] = useState(false);
@@ -85,7 +85,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showForm, showGr
                 </a>
               </div>
             </div>
-            <Link to="/personal-account">
+            <Link to="/registration-account">
               <div className="personal-area">
                 <Icon24UserSquare fill="white" width={50} height={50} />
               </div>
@@ -108,7 +108,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showForm, showGr
         </div>
       </div>}
       
-      {showForm && <Form showFields={formFields} />}
+      {showForm && <Form showFields={formFields} formTitle={formTitle} />}
     </div>
   );
 };

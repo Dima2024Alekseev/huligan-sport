@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../style/profile.css'; // Убедитесь, что ваш CSS файл подключен
 
-const Form = ({ showFields }) => {
+const Form = ({ showFields, formTitle  }) => {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -28,7 +29,7 @@ const Form = ({ showFields }) => {
   return (
     <div className="content-registration">
       <form onSubmit={handleSubmit}>
-        <p className="form-title">Регистрация</p>
+        <p className="form-title">{formTitle}</p>
         {showFields.name && (
           <div className="flex">
             <label>
@@ -61,7 +62,7 @@ const Form = ({ showFields }) => {
           <span>Потвердите пароль</span>
         </label>
         <button type="submit" className="submit">Зарегистрироваться</button>
-        <p className="signin">Уже есть аккаунт?<a href="authorization.html"> Войти</a> </p>
+        <p className="signin">Уже есть аккаунт?<Link to='/authorization-account'> Войти</Link> </p>
       </form>
     </div>
   );

@@ -9,7 +9,8 @@ import PageContact from "./Page-Contact";
 import Schedule from "./Schedule";
 import Store from './Online-Store';
 import Price from './Price';
-import Account from './Personal-Account';
+import Registration from './Registration-Account';
+import Authorization from './Account-Authorization';
 import logo_title from "./Components/img/log-club.png"
 import useTitle from './Components/UseTitle';
 
@@ -28,7 +29,8 @@ export default function App() {
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/online-store" element={<Store />} />
           <Route path="/price" element={<Price />} />
-          <Route path="/personal-account" element={<Account />} />
+          <Route path="/registration-account" element={<Registration />} />
+          <Route path="/authorization-account" element={<Authorization />} />
         </Routes>
       </Router>
     </>
