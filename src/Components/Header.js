@@ -70,11 +70,11 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
                   <h3>+7 (999) 445-12-03</h3>
                 </div>
               </a>
-              <a href="#" id="list-header">
+              <Link to="/waiting-list" id="list-header">
                 <div>
                   <p>Лист ожидания</p>
                 </div>
-              </a>
+              </Link>
               <div className="header-icons">
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
                   <Icon16LogoVk width={30} height={30} />

@@ -64,11 +64,11 @@ class Footer extends React.Component {
                                 <p>+7 (999) 445-12-03</p>
                             </div>
                         </a>
-                        <a href="./waiting-list.html" className="list">
+                        <Link to="/waiting-list" className="list">
                             <div>
                                 <p>Лист ожидания</p>
                             </div>
-                        </a>
+                        </Link>
                         <div className="icons">
                             <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
                                 <Icon16LogoVk width={30} height={30} fill="rgba(193, 193, 193, 0.628)" />

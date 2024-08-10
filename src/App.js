@@ -11,6 +11,7 @@ import Store from './Online-Store';
 import Price from './Price';
 import Registration from './Registration-Account';
 import Authorization from './Account-Authorization';
+import Waiting from './Waiting-List';
 import logo_title from "./Components/img/log-club.png"
 import useTitle from './Components/UseTitle';
 
@@ -24,13 +25,14 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/precc-center" element={<Press/>}/>
+          <Route path="/precc-center" element={<Press />} />
           <Route path="/contact" element={<PageContact />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/online-store" element={<Store />} />
           <Route path="/price" element={<Price />} />
           <Route path="/registration-account" element={<Registration />} />
           <Route path="/authorization-account" element={<Authorization />} />
+          <Route path="/waiting-list" element={< Waiting />} />
         </Routes>
       </Router>
     </>
