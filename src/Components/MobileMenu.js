@@ -17,9 +17,11 @@ const MobileMenu = ({ nav, setNav }) => {
                     <div onClick={() => setNav(!nav)} className="mobile_btn">
                         {nav ? <AiOutlineClose color="white" size={40} /> : <AiOutlineMenu color="white" size={40} />}
                     </div>
+                    <Link to= '/registration-account'>
                     <div className="mobile-profile">
                         <Icon24UserSquare fill="white" width={50} height={50} />
                     </div>
+                    </Link>
                 </div>
             </div>
         </div>

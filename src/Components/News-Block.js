@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 class NewsBlock extends React.Component {
@@ -49,14 +50,14 @@ class NewsBlock extends React.Component {
                         </svg>
                     </div>
                     <div className="button-all">
-                    <a href="./press-center.html">
-                        <div className="next">
-                            <p>Посмотреть все</p>
-                        </div>
-                    </a>
+                        <Link to="/precc-center">
+                            <div className="next">
+                                <p>Посмотреть все</p>
+                            </div>
+                        </Link>
+                    </div>
                 </div>
-                </div>
-                
+
             </div>
         )
     }

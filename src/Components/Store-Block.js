@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const products = [
     { src: require("./img/item1.jpg"), name: "Кепка", price: "1 000 ₽" },
     { src: require("./img/item2.jpg"), name: "Бейсболка", price: "1 000 ₽" },
@@ -35,11 +36,11 @@ class StoreBlock extends React.Component {
                     </div>
                 </div>
                 <div className="store-button">
-                    <a href="./online-store.html" >
+                    <Link to="/online-store" >
                         <div id="button-style">
                             <p>В магазин</p>
                         </div>
-                    </a>
+                    </Link>
                 </div>
             </div>
         )
