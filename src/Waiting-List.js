@@ -12,7 +12,7 @@ const Waiting = () => {
             />
             <Form
                 showFields={{ name: true, lastname:true, phone: true, age: true, direction: true }}
-                formTitle='Форма для заполнения заявки'
+                formTitle='Форма заполнения заявки'
                 title_button = 'Отправить заявку'
             />
             <Footer />
