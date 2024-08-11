@@ -15,10 +15,12 @@
 
 .shedule-option {
     display: flex;
+    align-items: center;
     flex-direction: row;
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
+    
 }
 
 table {
@@ -44,3 +46,28 @@ table th {
     height: 50px;
     border: 10px solid black;
 }
+
+.shedule-option select {
+    padding: 5px;
+    background: transparent;
+    border: none;
+    width: 100%;
+    color: black;
+    border-radius: 5px;
+}
+
+
+
+select:focus .shedule {
+    outline: none;
+}
+
+
+option .shedule{
+    background-color: #000000;
+    color: #000000;
+    
+}
+
+
+  

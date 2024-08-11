@@ -16,7 +16,7 @@ const Schedule = () => {
         <div className="Schedule_Controler">
           <div className="shedule-option">
             <p style={{ color: "rgba(0, 0, 0, 0.466)" }}>Месяц:</p>
-            <select>
+            <select className="shedule">
               <option value="option1">Май</option>
               <option value="option2">Июнь</option>
             </select>
