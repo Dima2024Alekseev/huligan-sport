@@ -249,6 +249,7 @@ ul.navigation li ul li:last-child {
     border-radius: 5px;
     cursor: pointer;
     border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .button-club {
@@ -257,6 +258,16 @@ ul.navigation li ul li:last-child {
 }
 
 .button-victory {
+    background: #D9D9D9;
+    color: #000;
+}
+
+.button-club.active {
+    background: #F00;
+    color: #FFF;
+}
+
+.button-victory.active {
     background: #F00;
     color: #FFF;
 }
@@ -335,14 +346,16 @@ a {
 
 /* ---------------------каталог товаров-------------------------- */
 .container,
-.container-news {
+.container-news,
+.container-victory {
     width: 100%;
     display: flex;
     overflow-x: scroll;
 }
 
 .container .gallery,
-.container-news .gallery {
+.container-news .gallery,
+.container-victory .gallery {
     width: 100%;
     display: flex;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -354,13 +367,15 @@ a {
 }
 
 .container .gallery img,
-.container-news .gallery img {
+.container-news .gallery img,
+.container-victory .gallery img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
-.container-news .gallery img {
+.container-news .gallery img,
+.container-victory .gallery img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
@@ -370,7 +385,8 @@ a {
 }
 
 .container .gallery div,
-.container-news .gallery div {
+.container-news .gallery div,
+.container-victory .gallery div {
     background-color: white;
     padding: 10px;
     text-align: center;
@@ -380,12 +396,14 @@ a {
 }
 
 .container .gallery p,
-.container-news .gallery p {
+.container-news .gallery p,
+.container-victory .gallery p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
 }
 
-.container-news .gallery p {
+.container-news .gallery p
+.container-victory .gallery p {
     text-align: left;
 }
 
@@ -395,7 +413,8 @@ a {
 }
 
 .controls,
-.controls-news {
+.controls-news,
+.container-victory {
     display: flex;
     justify-content: center;
     align-items: center;
