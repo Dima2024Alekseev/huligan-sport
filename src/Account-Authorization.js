@@ -1,8 +1,8 @@
 import React from "react";
 import "./style/events.css";
-import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Form from "./Components/Form";
+import Footer from "./Components/Footer";
 
 const Authorization = () => {
 
@@ -13,6 +13,7 @@ const Authorization = () => {
             <Form
                 showFields={{ email: true, password: true, confirmPassword: true }}
                 formTitle='Авторизация'
+                title_button = 'Войти'
             />
             <Footer />
         </div>

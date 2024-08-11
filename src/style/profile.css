@@ -67,11 +67,7 @@ form {
   color: #EE0007;
 }
 
-.flex {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-}
+
 
 form label {
   position: relative;
@@ -92,10 +88,7 @@ form label #indentation {
   padding: 15px 10px 15px 10px;
 }
 
-form label #name {
-  padding: 15px 10px 15px 10px;
-  width: 150px;
-}
+
 
 form label input+span {
   color: rgba(255, 255, 255, 0.5);

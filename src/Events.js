@@ -1,8 +1,8 @@
 import React from "react";
 import "./style/events.css"
 import Header from "./Components/Header";
-import Footer from "./Components/Footer";
 import Posts from "./Components/Post";
+import Footer from "./Components/Footer";
 
 
 const Events = () => {

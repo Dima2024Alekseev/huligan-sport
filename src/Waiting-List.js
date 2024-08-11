@@ -11,8 +11,9 @@ const Waiting = () => {
                 title='Лист ожидания'
             />
             <Form
-                showFields={{ name: true, phone: true, age: true, direction: true }}
+                showFields={{ name: true, lastname:true, phone: true, age: true, direction: true }}
                 formTitle='Форма для заполнения заявки'
+                title_button = 'Отправить заявку'
             />
             <Footer />
         </div>

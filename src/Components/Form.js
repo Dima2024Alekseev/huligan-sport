@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../style/profile.css';
 
-const Form = ({ showFields, formTitle }) => {
+const Form = ({ showFields, formTitle, title_button }) => {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -34,17 +34,16 @@ const Form = ({ showFields, formTitle }) => {
       <form onSubmit={handleSubmit}>
         <p className="form-title">{formTitle}</p>
         {showFields.name && (
-          <div className="flex">
-            <label>
-              <input id="name" type="text" placeholder="" required value={formData.name} onChange={handleChange} />
-              <span>Имя</span>
-            </label>
-
-            <label>
-              <input id="lastname" type="text" placeholder="" required value={formData.lastname} onChange={handleChange} />
-              <span>Фамилия</span>
-            </label>
-          </div>
+          <label>
+            <input id="name" type="text" placeholder="" required value={formData.name} onChange={handleChange} />
+            <span>Имя</span>
+          </label>
+        )}
+        {showFields.lastname && (
+        <label>
+          <input id="lastname" type="text" placeholder="" required value={formData.lastname} onChange={handleChange} />
+          <span>Фамилия</span>
+        </label>
         )}
         {showFields.birthdate && (
           <label id="indentation">
@@ -96,7 +95,7 @@ const Form = ({ showFields, formTitle }) => {
             </select>
           </label>
         )}
-        <button type="submit" className="submit">Зарегистрироваться</button>
+        <button type="submit" className="submit">{title_button}</button>
         <p className="signin">Уже есть аккаунт?<Link to='/authorization-account'> Войти</Link> </p>
       </form>
     </div>
