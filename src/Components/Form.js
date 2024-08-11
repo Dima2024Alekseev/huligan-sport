@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../style/profile.css'; // Убедитесь, что ваш CSS файл подключен
+import '../style/profile.css';
 
 const Form = ({ showFields, formTitle }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,9 @@ const Form = ({ showFields, formTitle }) => {
     email: '',
     password: '',
     confirmPassword: '',
+    phone: '',
+    age: '',
+    direction: '',
   });
 
   const handleChange = (e) => {
@@ -49,18 +52,50 @@ const Form = ({ showFields, formTitle }) => {
             <span>Дата рождения</span>
           </label>
         )}
-        <label id="indentation">
-          <input id="email" type="email" placeholder="" required value={formData.email} onChange={handleChange} />
-          <span>Email</span>
-        </label>
-        <label id="indentation">
-          <input id="password" type="password" placeholder="" required value={formData.password} onChange={handleChange} />
-          <span>Пароль</span>
-        </label>
-        <label id="indentation">
-          <input id="confirmPassword" type="password" placeholder="" required value={formData.confirmPassword} onChange={handleChange} />
-          <span>Потвердите пароль</span>
-        </label>
+        {showFields.email && (
+          <label id="indentation">
+            <input id="email" type="email" placeholder="" required value={formData.email} onChange={handleChange} />
+            <span>Email</span>
+          </label>
+        )}
+        {showFields.password && (
+          <label id="indentation">
+            <input id="password" type="password" placeholder="" required value={formData.password} onChange={handleChange} />
+            <span>Пароль</span>
+          </label>
+        )}
+        {showFields.confirmPassword && (
+          <label id="indentation">
+            <input id="confirmPassword" type="password" placeholder="" required value={formData.confirmPassword} onChange={handleChange} />
+            <span>Потвердите пароль</span>
+          </label>
+        )}
+        {showFields.phone && (
+          <label id="indentation">
+            <input id="phone" type="tel" placeholder="" required value={formData.phone} onChange={handleChange} />
+            <span>Телефон</span>
+          </label>
+        )}
+        {showFields.age && (
+          <label id="indentation">
+            <input id="age" type="text" placeholder="" required value={formData.age} onChange={handleChange} />
+            <span>Возраст</span>
+          </label>
+        )}
+        {showFields.direction && (
+          <label id="indentation">
+            <select id="direction" required value={formData.direction} onChange={handleChange}>
+              <option value="" disabled>Выберите направление</option>
+              <option value="Мма">Мма</option>
+              <option value="Грэпплинг">Грэпплинг</option>
+              <option value="Бокс">Бокс</option>
+              <option value="Кикбоксинг">Кикбоксинг</option>
+              <option value="Рукопашный бой">Рукопашный бой</option>
+              <option value="Каратэ">Каратэ</option>
+              <option value="Женская самооборона">Женская самооборона</option>
+            </select>
+          </label>
+        )}
         <button type="submit" className="submit">Зарегистрироваться</button>
         <p className="signin">Уже есть аккаунт?<Link to='/authorization-account'> Войти</Link> </p>
       </form>

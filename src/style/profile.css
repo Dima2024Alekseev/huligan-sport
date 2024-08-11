@@ -145,6 +145,32 @@ a:hover {
   background-color: #c4080e;
 }
 
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #333;
+  color: rgba(255, 255, 255, 0.5);
+  width: 410px;
+  padding: 15px 10px 15px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 5px;
+}
+
+select::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+select:focus,
+select:active {
+  color: rgb(255, 255, 255);
+}
+
+option {
+  background-color: #333;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 @keyframes pulse {
   from {
     transform: scale(0.9);
