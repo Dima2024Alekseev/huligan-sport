@@ -49,7 +49,7 @@ class NewsBlock extends Component {
                                 slidesPerView={2}
                                 centeredSlides={true}
                                 autoplay={{
-                                    delay: 10000,
+                                    delay: 5000,
                                     disableOnInteraction: false,
                                 }}
                                 pagination={{
@@ -104,7 +104,7 @@ class NewsBlock extends Component {
                                 slidesPerView={2}
                                 centeredSlides={true}
                                 autoplay={{
-                                    delay: 10000,
+                                    delay: 8000,
                                     disableOnInteraction: false,
                                 }}
                                 pagination={{
