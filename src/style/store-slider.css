@@ -16,7 +16,7 @@
 }
 
 .content-store img {
-    width: 80%;
+    width: 75%;
     height: auto;
     border-radius: 5px;
 }
@@ -24,7 +24,7 @@
 .content-store p {
     background-color: white;
     border-radius: 5px;
-    width: 80%;
+    width: 75%;
     padding: 10px 0px;
     line-height: 30px;
     text-align: center;

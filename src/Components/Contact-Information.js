@@ -5,7 +5,12 @@ class Contact extends React.Component {
     return (
       <div className="contact-information">
         <div>
-          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3d897469566a332b4d1908c68eb7363ab50a0295acf74168d96606ecb5284dc9&amp;source=constructor" width="100%" height="500px" frameborder="0"></iframe>
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3A3d897469566a332b4d1908c68eb7363ab50a0295acf74168d96606ecb5284dc9&amp;source=constructor"
+            width="100%"
+            height="500px"
+            title="Yandex Map"
+          ></iframe>
         </div>
         <div className="width-contact">
           <div className="contact">
@@ -20,8 +25,8 @@ class Contact extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Contact
+export default Contact;
