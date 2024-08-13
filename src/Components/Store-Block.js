@@ -1,40 +1,63 @@
-import React from "react";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import '../style/store-slider.css';
+import { Pagination, Navigation } from 'swiper/modules';
 import { Link } from "react-router-dom";
-const products = [
-    { src: require("./img/item1.jpg"), name: "Кепка", price: "1 000 ₽" },
-    { src: require("./img/item2.jpg"), name: "Бейсболка", price: "1 000 ₽" },
-    { src: require("./img/item3.jpg"), name: "Обновленный комплект формы", price: "3 000 ₽" },
-    { src: require("./img/item4.jpg"), name: "Футболка \"Хулиган\"", price: "1 500 ₽" },
-    { src: require("./img/item6.jpg"), name: "Комплект формы", price: "3 000 ₽" }
-];
+import logo from "./img/item1.jpg";
+import logo_2 from "./img/item2.jpg";
+import logo_3 from "./img/item3.jpg";
+import logo_4 from "./img/item4.jpg";
+import logo_5 from "./img/item6.jpg";
+
 
 class StoreBlock extends React.Component {
     render() {
         return (
             <div className="online-store">
-                <div className="shop">
-                    <div className="controls">
-                        <svg id="leftbtn" version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-                            <path d="M15.422 16.594l-1.406 1.406-6-6 6-6 1.406 1.406-4.594 4.594z"></path>
-                        </svg>
-                        <div className="container">
-                            <div className="gallery">
-                                {products.map((product, index) => (
-                                    <span key={index}>
-                                        <img src={product.src} alt={product.name} />
-                                        <div>
-                                            <p>{product.name}</p>
-                                            <p><strong>{product.price}</strong></p>
-                                        </div>
-                                    </span>
-                                ))}
-                            </div>
+                <Swiper
+                    slidesPerView={3}
+                    loop={true}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    navigation={true}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                >
+                    <SwiperSlide>
+                        <div className='content-store'>
+                            <img src={logo} />
+                            <p>Кепка<br /><strong>1 000 ₽</strong></p>
                         </div>
-                        <svg id="rightbtn" version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-                            <path d="M8.578 16.594l4.594-4.594-4.594-4.594 1.406-1.406 6 6-6 6z"></path>
-                        </svg>
-                    </div>
-                </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='content-store'>
+                            <img src={logo_2} />
+                            <p>Бейсболка<br /><strong>1 000 ₽</strong></p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='content-store'>
+                            <img src={logo_3} />
+                            <p>Обновленный комплект формы<br /><strong>3 000 ₽</strong></p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='content-store'>
+                            <img src={logo_4} />
+                            <p>Футболка "Хулиган"<br /><strong>1 500 ₽</strong></p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className='content-store'>
+                            <img src={logo_5} />
+                            <p>Комплект формы<br /><strong>3 000 ₽</strong></p>
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
                 <div className="store-button">
                     <Link to="/online-store" >
                         <div id="button-style">

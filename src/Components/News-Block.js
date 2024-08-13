@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import '../style/slider.css'
+import '../style/news-slider.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 class NewsBlock extends Component {
@@ -49,7 +49,7 @@ class NewsBlock extends Component {
                                 slidesPerView={2}
                                 centeredSlides={true}
                                 autoplay={{
-                                    delay: 5000,
+                                    delay: 4000,
                                     disableOnInteraction: false,
                                 }}
                                 pagination={{
