@@ -1,22 +1,12 @@
 import React from "react";
-import { YMaps, Map } from "@pbe/react-yandex-maps";
 
 class Contact extends React.Component {
   render() {
     return (
       <div className="contact-information">
-        <YMaps>
-          <div id="map" style={{ width: "100%", height: "500px" }}>
-            <Map
-              defaultState={{
-                center: [56.231338, 95.700804],
-                zoom: 17,
-              }}
-              width="100%"
-              height="100%"
-            />
-          </div>
-        </YMaps>
+        <div>
+          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3d897469566a332b4d1908c68eb7363ab50a0295acf74168d96606ecb5284dc9&amp;source=constructor" width="100%" height="500px" frameborder="0"></iframe>
+        </div>
         <div className="width-contact">
           <div className="contact">
             <div className="info-contact">

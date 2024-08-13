@@ -12,9 +12,16 @@ import logo_3 from "./img/item3.jpg";
 import logo_4 from "./img/item4.jpg";
 import logo_5 from "./img/item6.jpg";
 
-
 class StoreBlock extends React.Component {
     render() {
+        const items = [
+            { img: logo, text: 'Кепка', price: '1 000 ₽' },
+            { img: logo_2, text: 'Бейсболка', price: '1 000 ₽' },
+            { img: logo_3, text: 'Обновленный комплект формы', price: '3 000 ₽' },
+            { img: logo_4, text: 'Футболка "Хулиган"', price: '1 500 ₽' },
+            { img: logo_5, text: 'Комплект формы', price: '3 000 ₽' },
+        ];
+
         return (
             <div className="online-store">
                 <Swiper
@@ -27,39 +34,17 @@ class StoreBlock extends React.Component {
                     modules={[Pagination, Navigation]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <div className='content-store'>
-                            <img src={logo} />
-                            <p>Кепка<br /><strong>1 000 ₽</strong></p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='content-store'>
-                            <img src={logo_2} />
-                            <p>Бейсболка<br /><strong>1 000 ₽</strong></p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='content-store'>
-                            <img src={logo_3} />
-                            <p>Обновленный комплект формы<br /><strong>3 000 ₽</strong></p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='content-store'>
-                            <img src={logo_4} />
-                            <p>Футболка "Хулиган"<br /><strong>1 500 ₽</strong></p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className='content-store'>
-                            <img src={logo_5} />
-                            <p>Комплект формы<br /><strong>3 000 ₽</strong></p>
-                        </div>
-                    </SwiperSlide>
+                    {items.map((item, index) => (
+                        <SwiperSlide key={index}>
+                            <div className='content-store'>
+                                <img src={item.img} alt={item.text} />
+                                <p>{item.text}<br /><strong>{item.price}</strong></p>
+                            </div>
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
                 <div className="store-button">
-                    <Link to="/online-store" >
+                    <Link to="/online-store">
                         <div id="button-style">
                             <p>В магазин</p>
                         </div>
@@ -70,4 +55,4 @@ class StoreBlock extends React.Component {
     }
 }
 
-export default StoreBlock
+export default StoreBlock;
