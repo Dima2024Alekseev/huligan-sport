@@ -1,8 +1,8 @@
 import React from "react";
 import logo from "./img/footer-logo.png";
 import { Link } from 'react-router-dom';
-import { Icon16LogoVk } from '@vkontakte/icons';
-import { BsTelegram } from "react-icons/bs";
+import { FaTelegram } from "react-icons/fa";
+import { FaVk } from "react-icons/fa6";
 
 class Footer extends React.Component {
     render() {
@@ -71,10 +71,10 @@ class Footer extends React.Component {
                         </Link>
                         <div className="icons">
                             <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
-                                <Icon16LogoVk width={30} height={30} fill="rgba(193, 193, 193, 0.628)" />
+                                <FaVk size={24} fill="rgba(193, 193, 193, 0.628)" />
                             </a>
                             <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
-                                <BsTelegram size={24} fill="rgba(193, 193, 193, 0.628)" />
+                                <FaTelegram size={24} fill="rgba(193, 193, 193, 0.628)" />
                             </a>
                         </div>
                     </div>

@@ -64,7 +64,9 @@ header .logo-header {
 
 .header-icons {
     display: flex;
+    margin-top: 5px;
     align-items: center;
+    gap: 5px;
 }
 
 .header-icons_1 {
@@ -567,7 +569,7 @@ footer {
 .icons {
     text-align: center;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 25px;
     height: 25px;
     transition: all 0.5s ease;

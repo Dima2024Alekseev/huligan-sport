@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import logo from "./img/header-icon.png";
 import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
-import { Icon16LogoVk, Icon24UserSquare } from '@vkontakte/icons';
-import { BsTelegram } from "react-icons/bs";
+import { Icon24UserSquare } from '@vkontakte/icons';
+import { FaTelegram } from "react-icons/fa";
+import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
 import video from "./video/club_2.mp4"
 
@@ -77,10 +78,10 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
               </Link>
               <div className="header-icons">
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
-                  <Icon16LogoVk width={30} height={30} />
+                   <FaVk size={24} />
                 </a>
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
-                  <BsTelegram size={24} />
+                  <FaTelegram size={24} />
                 </a>
               </div>
             </div>
