@@ -4,8 +4,7 @@ import NewsBlock from "./Components/News-Block";
 import StoreBlock from "./Components/Store-Block";
 import Contact from "./Components/Contact-Information";
 import Footer from "./Components/Footer";
-import axios from "axios";
-import postsData from "./posts.json"
+import postsData from "./data/posts.json"
 
 
 const Home = () => {
