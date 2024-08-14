@@ -22,8 +22,12 @@ class NewsBlock extends Component {
     render() {
         const { posts } = this.props;
 
-        // Фильтрация постов, которые содержат фотографии
-        const filteredPosts = posts.filter(post => post.photoUrls && post.photoUrls.length > 0);
+        // Фильтрация постов
+        const filteredPosts = posts.filter(post =>
+            post.photoUrls &&
+            post.photoUrls.length > 0 &&
+            !post.text.toLowerCase().includes('расписание')
+        );
 
         return (
             <div className="news-and-victory">
