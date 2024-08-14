@@ -17,18 +17,19 @@ const Posts = () => {
         fetchPosts();
     }, []);
 
+    // Фильтрация постов, которые содержат фотографии
+    const filteredPosts = posts.filter(post => post.photoUrls && post.photoUrls.length > 0);
+
     return (
         <div>
             <h1>Посты из группы ХУЛИГАН Академия боевых единоборств</h1>
-            {posts.map(post => (
+            {filteredPosts.map(post => (
                 <div key={post.id}>
                     <h2>{post.text}</h2>
                     <p>{new Date(post.date * 1000).toLocaleString()}</p>
                     {post.photoUrls && (
                         <div>
-                            {post.photoUrls.map((url, index) => (
-                                <img key={index} src={url} alt={`Photo ${index + 1}`} style={{ maxWidth: '100%', margin: '10px 0' }} />
-                            ))}
+                            <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
                         </div>
                     )}
                     <hr />

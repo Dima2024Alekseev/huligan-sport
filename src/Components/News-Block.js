@@ -20,6 +20,11 @@ class NewsBlock extends Component {
     };
 
     render() {
+        const { posts } = this.props;
+
+        // Фильтрация постов, которые содержат фотографии
+        const filteredPosts = posts.filter(post => post.photoUrls && post.photoUrls.length > 0);
+
         return (
             <div className="news-and-victory">
                 <div className="news_button">
@@ -59,41 +64,14 @@ class NewsBlock extends Component {
                                 modules={[Autoplay, Pagination, Navigation]}
                                 className="mySwiper"
                             >
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun4-18.userapi.com/s/v1/ig2/du7eB8kkxeGfFcM1-wMmfS9M8hK6CRy9DG9gM77JC8mC9ErOR7c0p807vdUD_FG3sUvaznxiQqMSw4DnOa_8raZm.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=euhcwqxddIGzfNrWof4l9dzPiU9wn8P8wWm6vGnqJTI&cs=807x605' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun4-18.userapi.com/s/v1/ig2/du7eB8kkxeGfFcM1-wMmfS9M8hK6CRy9DG9gM77JC8mC9ErOR7c0p807vdUD_FG3sUvaznxiQqMSw4DnOa_8raZm.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=euhcwqxddIGzfNrWof4l9dzPiU9wn8P8wWm6vGnqJTI&cs=807x605' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun4-18.userapi.com/s/v1/ig2/du7eB8kkxeGfFcM1-wMmfS9M8hK6CRy9DG9gM77JC8mC9ErOR7c0p807vdUD_FG3sUvaznxiQqMSw4DnOa_8raZm.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=euhcwqxddIGzfNrWof4l9dzPiU9wn8P8wWm6vGnqJTI&cs=807x605' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun4-18.userapi.com/s/v1/ig2/du7eB8kkxeGfFcM1-wMmfS9M8hK6CRy9DG9gM77JC8mC9ErOR7c0p807vdUD_FG3sUvaznxiQqMSw4DnOa_8raZm.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=euhcwqxddIGzfNrWof4l9dzPiU9wn8P8wWm6vGnqJTI&cs=807x605' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun4-18.userapi.com/s/v1/ig2/du7eB8kkxeGfFcM1-wMmfS9M8hK6CRy9DG9gM77JC8mC9ErOR7c0p807vdUD_FG3sUvaznxiQqMSw4DnOa_8raZm.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=euhcwqxddIGzfNrWof4l9dzPiU9wn8P8wWm6vGnqJTI&cs=807x605' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
+                                {filteredPosts.map(post => (
+                                    <SwiperSlide key={post.id}>
+                                        <div className="content-news">
+                                            <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
+                                            <p>{post.text}</p>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
                             </Swiper>
                         </div>
                     )}
@@ -114,41 +92,14 @@ class NewsBlock extends Component {
                                 modules={[Autoplay, Pagination, Navigation]}
                                 className="mySwiper"
                             >
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun9-66.userapi.com/s/v1/ig2/dRpk9vWvw7Zv3Jci-zmZKQjzvjEUU4wNa50DewX1hUYxL-GJ8ePVzMXmXwv48rtSb10rbdUz5On1Cv06lTjAbzUG.jpg?quality=95&as=32x24,48x36,72x55,108x82,160x121,240x182,360x273,480x363,540x409,640x485,720x545,1080x818,1240x939&from=bu&u=GO883H06stwAFMkotz4_4uXgn6pIGU7fkLedk_203Yg&cs=807x611' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun9-66.userapi.com/s/v1/ig2/dRpk9vWvw7Zv3Jci-zmZKQjzvjEUU4wNa50DewX1hUYxL-GJ8ePVzMXmXwv48rtSb10rbdUz5On1Cv06lTjAbzUG.jpg?quality=95&as=32x24,48x36,72x55,108x82,160x121,240x182,360x273,480x363,540x409,640x485,720x545,1080x818,1240x939&from=bu&u=GO883H06stwAFMkotz4_4uXgn6pIGU7fkLedk_203Yg&cs=807x611' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun9-66.userapi.com/s/v1/ig2/dRpk9vWvw7Zv3Jci-zmZKQjzvjEUU4wNa50DewX1hUYxL-GJ8ePVzMXmXwv48rtSb10rbdUz5On1Cv06lTjAbzUG.jpg?quality=95&as=32x24,48x36,72x55,108x82,160x121,240x182,360x273,480x363,540x409,640x485,720x545,1080x818,1240x939&from=bu&u=GO883H06stwAFMkotz4_4uXgn6pIGU7fkLedk_203Yg&cs=807x611' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun9-66.userapi.com/s/v1/ig2/dRpk9vWvw7Zv3Jci-zmZKQjzvjEUU4wNa50DewX1hUYxL-GJ8ePVzMXmXwv48rtSb10rbdUz5On1Cv06lTjAbzUG.jpg?quality=95&as=32x24,48x36,72x55,108x82,160x121,240x182,360x273,480x363,540x409,640x485,720x545,1080x818,1240x939&from=bu&u=GO883H06stwAFMkotz4_4uXgn6pIGU7fkLedk_203Yg&cs=807x611' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="content-news">
-                                        <img src='https://sun9-66.userapi.com/s/v1/ig2/dRpk9vWvw7Zv3Jci-zmZKQjzvjEUU4wNa50DewX1hUYxL-GJ8ePVzMXmXwv48rtSb10rbdUz5On1Cv06lTjAbzUG.jpg?quality=95&as=32x24,48x36,72x55,108x82,160x121,240x182,360x273,480x363,540x409,640x485,720x545,1080x818,1240x939&from=bu&u=GO883H06stwAFMkotz4_4uXgn6pIGU7fkLedk_203Yg&cs=807x611' />
-                                        <p>🤼‍♂30.06.24 состоялся турнир по грэпплингу в Академии боевых единоборств «Хулиган»
-                                            🤝Выражаем благодарность тренерам и спортсменам, которые поддержали наш турнир</p>
-                                    </div>
-                                </SwiperSlide>
+                                {filteredPosts.map(post => (
+                                    <SwiperSlide key={post.id}>
+                                        <div className="content-news">
+                                            <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
+                                            <p>{post.text}</p>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
                             </Swiper>
                         </div>
                     )}
