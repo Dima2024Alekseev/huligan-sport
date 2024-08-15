@@ -16,6 +16,11 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 минут в миллисекунд�
 
 app.use(cors());
 
+const removeLinksFromText = (text) => {
+  if (!text) return text;
+  return text.replace(/\[id\d+\|([^\]]+)\]/g, '$1');
+};
+
 app.get('/api/posts', async (req, res) => {
   try {
     const cacheKey = 'vk_posts';
@@ -47,12 +52,13 @@ app.get('/api/posts', async (req, res) => {
 
     const posts = response.data.response.items;
     const postsWithPhotos = await Promise.all(posts.map(async post => {
+      const textWithoutLinks = removeLinksFromText(post.text);
       if (post.attachments) {
         const photoAttachments = post.attachments.filter(attachment => attachment.type === 'photo');
         const photoUrls = photoAttachments.map(photo => photo.photo.sizes.pop().url);
-        return { ...post, photoUrls };
+        return { ...post, text: textWithoutLinks, photoUrls };
       }
-      return post;
+      return { ...post, text: textWithoutLinks };
     }));
 
     // Запись данных в файл
@@ -80,12 +86,13 @@ const checkForNewPosts = async () => {
 
     const posts = response.data.response.items;
     const postsWithPhotos = await Promise.all(posts.map(async post => {
+      const textWithoutLinks = removeLinksFromText(post.text);
       if (post.attachments) {
         const photoAttachments = post.attachments.filter(attachment => attachment.type === 'photo');
         const photoUrls = photoAttachments.map(photo => photo.photo.sizes.pop().url);
-        return { ...post, photoUrls };
+        return { ...post, text: textWithoutLinks, photoUrls };
       }
-      return post;
+      return { ...post, text: textWithoutLinks };
     }));
 
     // Запись данных в файл
