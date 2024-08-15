@@ -25,7 +25,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/precc-center" element={<Press />} />
+          <Route path="/press-center" element={<Press />} />
           <Route path="/contact" element={<PageContact />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/online-store" element={<Store />} />

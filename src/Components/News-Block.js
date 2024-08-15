@@ -19,6 +19,13 @@ class NewsBlock extends Component {
         this.setState({ activeButton: button });
     };
 
+    truncateText = (text, maxLength) => {
+        if (text.length <= maxLength) {
+            return text;
+        }
+        return text.slice(0, maxLength) + '... <a href="/press-center"><strong>Читать далее</strong></a>';
+    };
+
     render() {
         const { posts } = this.props;
 
@@ -72,7 +79,7 @@ class NewsBlock extends Component {
                                     <SwiperSlide key={post.id}>
                                         <div className="content-news">
                                             <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
-                                            <p>{post.text}</p>
+                                            <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
                                         </div>
                                     </SwiperSlide>
                                 ))}
@@ -100,7 +107,7 @@ class NewsBlock extends Component {
                                     <SwiperSlide key={post.id}>
                                         <div className="content-news">
                                             <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
-                                            <p>{post.text}</p>
+                                            <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
                                         </div>
                                     </SwiperSlide>
                                 ))}
@@ -109,7 +116,7 @@ class NewsBlock extends Component {
                     )}
 
                     <div className="button-all">
-                        <Link to="/precc-center">
+                        <Link to="/press-center">
                             <div className="next">
                                 <p>Посмотреть все</p>
                             </div>

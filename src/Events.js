@@ -1,7 +1,6 @@
 import React from "react";
 import "./style/events.css"
 import Header from "./Components/Header";
-import Posts from "./Components/Post";
 import Footer from "./Components/Footer";
 
 
@@ -15,7 +14,6 @@ const Events = () => {
                 innerTitle="События Академии"
                 linkText="События"
             />
-            <Posts />
             <Footer />
         </>
     );
