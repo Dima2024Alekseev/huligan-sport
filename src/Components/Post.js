@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import postsData from '../data/posts.json'; // Импортируйте JSON файл
+import axios from 'axios';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        // Используйте данные из JSON файла
-        setPosts(postsData);
+        // Получение данных из API
+        axios.get('http://localhost:5000/api/posts')
+            .then(response => {
+                setPosts(response.data);
+            })
+            .catch(error => {
+                console.error('Ошибка при получении данных:', error);
+            });
     }, []);
 
     // Фильтрация постов, которые содержат фотографии
