@@ -17,7 +17,7 @@ const FILE_PATH = path.join(__dirname, 'src', 'data', 'posts.json'); // Обно
 const db = 'mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/news?retryWrites=true&w=majority&appName=Cluster0';
 
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db)
   .then(() => console.log('Соединенние с БД установленно'))
   .catch((error) => console.log(error));
 
