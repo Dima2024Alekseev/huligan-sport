@@ -81,8 +81,12 @@ const checkForNewPosts = async () => {
 
     await Post.bulkWrite(bulkOps);
 
-    // Отфильтровать и ограничить количество постов
-    const firstFivePosts = postsWithPhotos.slice(0, 10);
+    // Отфильтровать и ограничить количество постов, исключив посты с видео
+    const filteredPosts = postsWithPhotos.filter(post => {
+      return !post.attachments || !post.attachments.some(attachment => attachment.type === 'video');
+    });
+
+    const firstFivePosts = filteredPosts.slice(0, 6);
 
     // Запись данных в файл
     fs.writeFileSync(FILE_PATH, JSON.stringify(firstFivePosts, null, 2));

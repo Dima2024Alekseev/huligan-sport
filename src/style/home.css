@@ -588,6 +588,16 @@ svg.social {
 
 @media(min-width:320px) and (max-width:1200px) {
 
+    .contact {
+        width: 250px;
+        height: 400px;
+        background: black;
+        position: relative;
+        z-index: 2;
+        bottom: 420px;
+        border-radius: 5px;
+    }
+
     .button-club,
     .button-victory {
         width: 150px;
@@ -603,7 +613,7 @@ svg.social {
         font-size: 14px;
     }
 
-    .button-all{
+    .button-all {
         margin: 0;
     }
 
