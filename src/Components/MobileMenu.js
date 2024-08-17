@@ -9,7 +9,7 @@ const MobileMenu = ({ nav, setNav }) => {
         <div className="position-mobile-logo-and-menu">
             <Link to="/home">
                 <div className="logo-mobile">
-                    <img className="logo-header" src={logo} alt="" />
+                    <img className="logo-header" src={logo}/>
                 </div>
             </Link>
             <div className="profile-menu-number">

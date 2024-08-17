@@ -4,22 +4,22 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
     return (
         <nav>
-            <ul class="navigation">
+            <ul className="navigation">
                 <li><Link to="/home">Академия</Link>
                     <ul>
                         <li><Link to="/about">об Академии</Link></li>
                         <li><Link to="/contact">Контакты</Link></li>
                     </ul>
                 </li>
-                <li><a href="#">Направления</a>
+                <li><Link to="#">Направления</Link>
                     <ul>
-                        <li><a href="#">ММА</a></li>
-                        <li><a href="#">Грэпплинг</a></li>
-                        <li><a href="#">Бокс</a></li>
-                        <li><a href="#">Кикбоксинг</a></li>
-                        <li><a href="#">Рукопашный бой</a></li>
-                        <li><a href="#">Каратэ</a></li>
-                        <li><a href="#">Женская самооборона</a></li>
+                        <li><Link to="#">ММА</Link></li>
+                        <li><Link to="#">Грэпплинг</Link></li>
+                        <li><Link to="#">Бокс</Link></li>
+                        <li><Link to="#">Кикбоксинг</Link></li>
+                        <li><Link to="#">Рукопашный бой</Link></li>
+                        <li><Link to="#">Каратэ</Link></li>
+                        <li><Link to="#">Женская самооборона</Link></li>
                     </ul>
                 </li>
                 <li><Link to="/schedule">Расписание</Link></li>

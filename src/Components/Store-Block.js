@@ -25,7 +25,14 @@ class StoreBlock extends React.Component {
         return (
             <div className="online-store">
                 <Swiper
-                    slidesPerView={3}
+                    breakpoints={{
+                        320: {
+                            slidesPerView: 1,
+                        },
+                        768:{
+                            slidesPerView: 3
+                        }
+                    }}
                     loop={true}
                     pagination={{
                         clickable: true,
@@ -37,7 +44,7 @@ class StoreBlock extends React.Component {
                     {items.map((item, index) => (
                         <SwiperSlide key={index}>
                             <div className='content-store'>
-                                <img src={item.img} alt={item.text} />
+                                <img src={item.img}/>
                                 <p>{item.text}<br /><strong>{item.price}</strong></p>
                             </div>
                         </SwiperSlide>

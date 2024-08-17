@@ -62,7 +62,14 @@ class NewsBlock extends Component {
                         <div className="container-news">
                             <Swiper
                                 spaceBetween={30}
-                                slidesPerView={2}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                    },
+                                    768:{
+                                        slidesPerView: 2
+                                    }
+                                }}
                                 centeredSlides={true}
                                 autoplay={{
                                     delay: 3000,
@@ -78,7 +85,7 @@ class NewsBlock extends Component {
                                 {filteredPosts.map(post => (
                                     <SwiperSlide key={post.id}>
                                         <div className="content-news">
-                                            <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
+                                            <img src={post.photoUrls[0]} style={{ maxWidth: '100%', margin: '10px 0' }} />
                                             <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
                                         </div>
                                     </SwiperSlide>
@@ -90,7 +97,14 @@ class NewsBlock extends Component {
                         <div className="container-victory">
                             <Swiper
                                 spaceBetween={30}
-                                slidesPerView={2}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                    },
+                                    768:{
+                                        slidesPerView: 2
+                                    }
+                                }}
                                 centeredSlides={true}
                                 autoplay={{
                                     delay: 3000,
@@ -106,7 +120,7 @@ class NewsBlock extends Component {
                                 {filteredPosts.map(post => (
                                     <SwiperSlide key={post.id}>
                                         <div className="content-news">
-                                            <img src={post.photoUrls[0]} alt={`Photo 1`} style={{ maxWidth: '100%', margin: '10px 0' }} />
+                                            <img src={post.photoUrls[0]} style={{ maxWidth: '100%', margin: '10px 0' }} />
                                             <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
                                         </div>
                                     </SwiperSlide>

@@ -56,7 +56,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
           <div className={nav ? ["header-flex", "active"].join(' ') : ["header-flex"]}>
             <Link to="/home">
               <div>
-                <img className="logo-header" src={logo} alt="" />
+                <img className="logo-header" src={logo}/>
               </div>
             </Link>
             <Navbar />

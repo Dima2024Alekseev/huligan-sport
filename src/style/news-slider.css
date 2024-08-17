@@ -57,7 +57,7 @@
 }
 
 .swiper-button-prev:hover,
-.swiper-button-next:hover{
+.swiper-button-next:hover {
     color: red;
 }
 
@@ -67,7 +67,7 @@
 }
 
 
-.content-news{
+.content-news {
     width: 100%;
     height: auto;
     display: flex;
@@ -77,13 +77,59 @@
 }
 
 .content-news img {
-    width: 90%; /* Устанавливаем ширину изображения */
+    width: 90%;
+    /* Устанавливаем ширину изображения */
     height: auto;
-    border-radius: 5px; /* Сохраняем пропорции изображения */
+    border-radius: 5px;
+    /* Сохраняем пропорции изображения */
 }
 
 .content-news p {
-    width: 90%; /* Устанавливаем ширину текста */
-    text-align: justify; /* Центрируем текст */
+    width: 90%;
+    /* Устанавливаем ширину текста */
+    text-align: justify;
+    /* Центрируем текст */
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: var(--swiper-navigation-top-offset, 40%);
+    width: calc(var(--swiper-navigation-size) / 44* 27);
+    height: var(--swiper-navigation-size);
+    margin-top: calc(0px -(var(--swiper-navigation-size) / 2));
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    transition: all 0.3s ease;
+}
+
+
+@media(min-width:320px) and (max-width:1200px) {
+
+    .container-news .swiper-button-prev,
+    .swiper-button-next,
+    .container-victory .swiper-button-prev,
+    .swiper-button-next {
+        position: absolute;
+        top: var(--swiper-navigation-top-offset, 40%);
+        width: calc(var(--swiper-navigation-size) / 100);
+        height: var(--swiper-navigation-size);
+        color: black;
+        --swiper-navigation-size: 30px;
+    }
+
+    .content-news img {
+        width: 80%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    .content-news p {
+        width: 80%;
+        text-align: justify;
+    }
+}

@@ -416,40 +416,6 @@ a {
     display: none;
 }
 
-.controls,
-.controls-news,
-.container-victory {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 50px;
-}
-
-.controls svg,
-.controls-news svg {
-    fill: rgba(115, 106, 106, 0.587);
-    transition: all 0.5s ease;
-    cursor: pointer;
-}
-
-.controls svg:hover,
-.controls-news svg:hover {
-    fill: red;
-}
-
-.controls-news #rightbtn-news,
-.controls-news #rightbtn-news {
-    width: 50px;
-    cursor: pointer;
-    margin: 30px;
-}
-
-.controls #rightbtn,
-.controls #leftbtn {
-    width: 60px;
-    cursor: pointer;
-    margin: 30px;
-}
 
 /* ---------------------каталог товаров-------------------------- */
 
@@ -620,7 +586,30 @@ svg.social {
 
 /* ---------------------------подвал сайта-------------------------- */
 
-@media(max-width:1100px) {
+@media(min-width:320px) and (max-width:1200px) {
+
+    .button-club,
+    .button-victory {
+        width: 150px;
+        height: 60px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .next,
+    #button-style {
+        width: 200px;
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .button-all{
+        margin: 0;
+    }
+
+
+
+
     #video-container {
         height: 50vh;
         /* Уменьшаем высоту контейнера для мобильных устройств */
