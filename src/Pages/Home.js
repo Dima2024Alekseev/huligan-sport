@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Components/Header";
-import NewsBlock from "./Components/News-Block";
-import StoreBlock from "./Components/Store-Block";
-import Contact from "./Components/Contact-Information";
-import Footer from "./Components/Footer";
-import postsData from "./data/posts.json"
+import Header from "../Components/Header";
+import NewsBlock from "../Components/News-Block";
+import StoreBlock from "../Components/Store-Block";
+import Contact from "../Components/Contact-Information";
+import Footer from "../Components/Footer";
+import postsData from "../data/posts.json"
 
 
 const Home = () => {

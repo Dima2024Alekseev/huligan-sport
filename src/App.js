@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import "./style/config.css";
 import "./style/home.css";
-import Home from "./Home";
-import About from "./About";
-import Events from "./Events";
-import Press from './Press-Center';
-import PageContact from "./Page-Contact";
-import Schedule from "./Schedule";
-import Store from './Online-Store';
-import Price from './Price';
-import Registration from './Registration-Account';
-import Authorization from './Account-Authorization';
-import Waiting from './Waiting-List';
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import Events from "./Pages/Events";
+import Press from './Pages/Press-Center';
+import PageContact from "./Pages/Page-Contact";
+import Schedule from "./Pages/Schedule";
+import Store from './Pages/Online-Store';
+import Price from './Pages/Price';
+import Registration from './Pages/Registration-Account';
+import Authorization from './Pages/Account-Authorization';
+import Waiting from './Pages/Waiting-List';
 import logo_title from "./Components/img/log-club.png"
 import useTitle from './Components/UseTitle';
 

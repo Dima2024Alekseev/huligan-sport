@@ -1,7 +1,7 @@
 import React from "react";
-import "./style/price.css"
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
+import "../style/price.css"
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 const Price = () => {
     return (
