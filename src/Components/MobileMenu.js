@@ -19,7 +19,7 @@ const MobileMenu = ({ nav, setNav }) => {
                     </div>
                     <Link to= '/registration-account'>
                     <div className="mobile-profile">
-                        <Icon24UserSquare fill="white" width={50} height={50} />
+                        <Icon24UserSquare className="profile-icon" width={50} height={50}  />
                     </div>
                     </Link>
                 </div>

@@ -587,7 +587,6 @@ svg.social {
 /* ---------------------------подвал сайта-------------------------- */
 
 @media(min-width:320px) and (max-width:1200px) {
-
     .contact {
         width: 250px;
         height: 400px;

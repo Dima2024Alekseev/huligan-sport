@@ -87,7 +87,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
             </div>
             <Link to="/registration-account">
               <div className="personal-area">
-                <Icon24UserSquare fill="white" width={50} height={50} />
+                <Icon24UserSquare className="profile-icon" fill="white" width={50} height={50} />
               </div>
             </Link>
           </div>
