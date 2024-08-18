@@ -78,17 +78,13 @@
 
 .content-news img {
     width: 90%;
-    /* Устанавливаем ширину изображения */
     height: auto;
     border-radius: 5px;
-    /* Сохраняем пропорции изображения */
 }
 
 .content-news p {
     width: 90%;
-    /* Устанавливаем ширину текста */
     text-align: justify;
-    /* Центрируем текст */
 }
 
 .swiper-button-prev,

@@ -44,7 +44,7 @@ class StoreBlock extends React.Component {
                     {items.map((item, index) => (
                         <SwiperSlide key={index}>
                             <div className='content-store'>
-                                <img src={item.img}/>
+                                <img src={item.img} alt='' />
                                 <p>{item.text}<br /><strong>{item.price}</strong></p>
                             </div>
                         </SwiperSlide>

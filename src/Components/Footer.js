@@ -80,7 +80,7 @@ class Footer extends React.Component {
                     </div>
                 </div>
                 <div className="generalization">
-                    <img className="logo-club" src={logo}/>
+                    <img className="logo-club" alt="" src={logo}/>
                     <span className="description">©Академия  боевых единоборств ХУЛИГАН, 2024</span>
                 </div>
             </footer>

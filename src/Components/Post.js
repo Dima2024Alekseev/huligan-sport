@@ -27,7 +27,7 @@ const Posts = () => {
                     <p>{new Date(post.date * 1000).toLocaleString()}</p>
                     {post.photoUrls && (
                         <div>
-                            <img src={post.photoUrls[0]} style={{ maxWidth: '100%', margin: '10px 0' }} />
+                            <img src={post.photoUrls[0]} alt='' style={{ maxWidth: '100%', margin: '10px 0' }} />
                         </div>
                     )}
                     <hr />

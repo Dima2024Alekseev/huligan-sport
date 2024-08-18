@@ -26,6 +26,42 @@ class NewsBlock extends Component {
         return text.slice(0, maxLength) + '... <a href="/press-center"><strong>Читать далее</strong></a>';
     };
 
+    renderSwiper = (posts) => {
+        return (
+            <Swiper
+                spaceBetween={30}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2
+                    }
+                }}
+                centeredSlides={true}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                pagination={{
+                    clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
+            >
+                {posts.map(post => (
+                    <SwiperSlide key={post.id}>
+                        <div className="content-news">
+                            <img src={post.photoUrls[0]} alt="" style={{ maxWidth: '100%', margin: '10px 0' }} />
+                            <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        );
+    };
+
     render() {
         const { posts } = this.props;
 
@@ -57,78 +93,16 @@ class NewsBlock extends Component {
                     </div>
                 </div>
                 <div className="content">
-
                     {this.state.activeButton === 'club' && (
                         <div className="container-news">
-                            <Swiper
-                                spaceBetween={30}
-                                breakpoints={{
-                                    320: {
-                                        slidesPerView: 1,
-                                    },
-                                    768:{
-                                        slidesPerView: 2
-                                    }
-                                }}
-                                centeredSlides={true}
-                                autoplay={{
-                                    delay: 3000,
-                                    disableOnInteraction: false,
-                                }}
-                                pagination={{
-                                    clickable: true,
-                                }}
-                                navigation={true}
-                                modules={[Autoplay, Pagination, Navigation]}
-                                className="mySwiper"
-                            >
-                                {filteredPosts.map(post => (
-                                    <SwiperSlide key={post.id}>
-                                        <div className="content-news">
-                                            <img src={post.photoUrls[0]} style={{ maxWidth: '100%', margin: '10px 0' }} />
-                                            <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
-                                        </div>
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
+                            {this.renderSwiper(filteredPosts)}
                         </div>
                     )}
                     {this.state.activeButton === 'victory' && (
                         <div className="container-victory">
-                            <Swiper
-                                spaceBetween={30}
-                                breakpoints={{
-                                    320: {
-                                        slidesPerView: 1,
-                                    },
-                                    768:{
-                                        slidesPerView: 2
-                                    }
-                                }}
-                                centeredSlides={true}
-                                autoplay={{
-                                    delay: 3000,
-                                    disableOnInteraction: false,
-                                }}
-                                pagination={{
-                                    clickable: true,
-                                }}
-                                navigation={true}
-                                modules={[Autoplay, Pagination, Navigation]}
-                                className="mySwiper"
-                            >
-                                {filteredPosts.map(post => (
-                                    <SwiperSlide key={post.id}>
-                                        <div className="content-news">
-                                            <img src={post.photoUrls[0]} style={{ maxWidth: '100%', margin: '10px 0' }} />
-                                            <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
-                                        </div>
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
+                            {this.renderSwiper(filteredPosts)}
                         </div>
                     )}
-
                     <div className="button-all">
                         <Link to="/press-center">
                             <div className="next">
