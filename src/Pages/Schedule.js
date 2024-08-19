@@ -1,17 +1,47 @@
-import React from "react";
-import "../style/shedule.css"
+import React, { useState } from "react";
+import "../style/shedule.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 const Schedule = () => {
+  const [selectedCategory, setSelectedCategory] = useState("Выберите");
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const scheduleData = [
+    { time: "17:00", pn: "Дети соревновательная группа", vt: "", sr: "Дети соревновательная группа", ct: "", pt: "Дети соревновательная группа", sb: "" },
+    { time: "18:00", pn: "", vt: "Дети младшая группа", sr: "", ct: "Дети младшая группа", pt: "", sb: "Дети средняя группа / Дети младшая группа" },
+    { time: "19:00", pn: "ММА взрослые", vt: "Дети средняя группа", sr: "ММА взрослые", ct: "Дети средняя группа", pt: "ММА взрослые", sb: "" },
+    { time: "19:30", pn: "", vt: "Женская группа", sr: "", ct: "Женская группа", pt: "", sb: "" },
+  ];
+
+  const filteredSchedule = scheduleData.map(row => {
+    if (selectedCategory === "Выберите") {
+      return row;
+    }
+    const filteredRow = {
+      time: row.time,
+      pn: row.pn.includes(selectedCategory) ? row.pn : "",
+      vt: row.vt.includes(selectedCategory) ? row.vt : "",
+      sr: row.sr.includes(selectedCategory) ? row.sr : "",
+      ct: row.ct.includes(selectedCategory) ? row.ct : "",
+      pt: row.pt.includes(selectedCategory) ? row.pt : "",
+      sb: row.sb.includes(selectedCategory) ? row.sb : "",
+    };
+    return filteredRow;
+  });
+
   return (
     <>
       <Header
-      showGradient={true}
-      title='Расписание'
-      showBlock={true}
-      innerTitle='расписание тренировок'
-      linkText= 'Расписание'/>
+        showGradient={true}
+        title='Расписание'
+        showBlock={true}
+        innerTitle='расписание тренировок'
+        linkText='Расписание'
+      />
       <div className="schedule-content">
         <div className="Schedule_Controler">
           <div className="shedule-option">
@@ -30,64 +60,41 @@ const Schedule = () => {
           </div>
           <div className="shedule-option">
             <p style={{ color: "rgba(0, 0, 0, 0.466)" }}>Категория:</p>
-            <select>
-              <option value="option1">Выберите</option>
-              <option value="option2">Дети соревновательная группа</option>
-              <option value="option2">Дети средняя группа</option>
-              <option value="option2">Дети младшая группа</option>
-              <option value="option2">ММА взрослые</option>
-              <option value="option2">Женская группа</option>
+            <select value={selectedCategory} onChange={handleCategoryChange}>
+              <option value="Выберите">Выберите</option>
+              <option value="Дети соревновательная группа">Дети соревновательная группа</option>
+              <option value="Дети средняя группа">Дети средняя группа</option>
+              <option value="Дети младшая группа">Дети младшая группа</option>
+              <option value="ММА взрослые">ММА взрослые</option>
+              <option value="Женская группа">Женская группа</option>
             </select>
           </div>
         </div>
         <div>
           <table>
-            <tbody><tr>
-              <th>Время</th>
-              <th>ПН</th>
-              <th>ВТ</th>
-              <th>СР</th>
-              <th>ЧТ</th>
-              <th>ПТ</th>
-              <th>СБ</th>
-            </tr>
+            <tbody>
               <tr>
-                <td><strong>17:00</strong></td>
-                <td className="background">Дети<br />соревновательная группа</td>
-                <td className="background"></td>
-                <td className="background">Дети<br />соревновательная группа</td>
-                <td className="background"></td>
-                <td className="background">Дети<br />соревновательная группа</td>
-                <td className="background"></td>
+                <th>Время</th>
+                <th>ПН</th>
+                <th>ВТ</th>
+                <th>СР</th>
+                <th>ЧТ</th>
+                <th>ПТ</th>
+                <th>СБ</th>
               </tr>
-              <tr>
-                <td><strong>18:00</strong></td>
-                <td className="background"></td>
-                <td className="background">Дети младшая группа</td>
-                <td className="background"></td>
-                <td className="background">Дети младшая группа</td>
-                <td className="background"></td>
-                <td className="background">Дети средняя группа /<br />Дети младшая группа</td>
-              </tr>
-              <tr>
-                <td><strong>19:00</strong></td>
-                <td className="background">ММА взрослые</td>
-                <td className="background">Дети средняя группа</td>
-                <td className="background">ММА взрослые</td>
-                <td className="background">Дети средняя группа</td>
-                <td className="background">ММА взрослые</td>
-                <td className="background"></td>
-              </tr>
-              <tr>
-                <td><strong>19:30</strong></td>
-                <td className="background"></td>
-                <td className="background">Женская группа</td>
-                <td className="background"></td>
-                <td className="background">Женская группа</td>
-                <td className="background"></td>
-                <td className="background"></td>
-              </tr>
-            </tbody></table>
+              {filteredSchedule.map((row, index) => (
+                <tr key={index}>
+                  <td><strong>{row.time}</strong></td>
+                  <td className="background">{row.pn}</td>
+                  <td className="background">{row.vt}</td>
+                  <td className="background">{row.sr}</td>
+                  <td className="background">{row.ct}</td>
+                  <td className="background">{row.pt}</td>
+                  <td className="background">{row.sb}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
       <Footer />

@@ -12,7 +12,7 @@ class Contact extends React.Component {
             title="Yandex Map"
           ></iframe>
         </div>
-        <div className="width-contact">
+       
           <div className="contact">
             <div className="info-contact">
               <h2 className="contact-title">Контакты</h2>
@@ -23,7 +23,7 @@ class Contact extends React.Component {
               <p className="sun-schedule">Воскресенье: с 9.00 до 22.00</p>
             </div>
           </div>
-        </div>
+        
       </div>
     );
   }
