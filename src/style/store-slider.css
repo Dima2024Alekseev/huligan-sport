@@ -17,9 +17,12 @@
 
 .content-store img {
     width: 65%;
+    position: relative;
     height: auto;
     border-radius: 5px;
+    transition: all 0.3s ease;
 }
+
 
 .content-store p {
     background-color: white;
