@@ -53,7 +53,7 @@ class NewsBlock extends Component {
                 {posts.map(post => (
                     <SwiperSlide key={post.id}>
                         <div className="content-news">
-                            <img src={post.photoUrls[0]} alt="" style={{ maxWidth: '100%', margin: '10px 0' }} />
+                            <img src={post.photoUrls[0]} alt="" style={{ margin: '10px 0' }} />
                             <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
                         </div>
                     </SwiperSlide>
