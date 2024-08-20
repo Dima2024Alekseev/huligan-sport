@@ -10,15 +10,18 @@ form {
   flex-direction: column;
   gap: 15px;
   max-width: 500px;
-  width: 500px; /* Зафиксировать ширину */
-  height: auto; /* Автоматическая высота */
+  width: 500px;
+  /* Зафиксировать ширину */
+  height: auto;
+  /* Автоматическая высота */
   padding: 50px;
   border-radius: 5px;
   position: relative;
   background-color: #1a1a1a;
   color: #fff;
   border: 1px solid #333;
-  box-sizing: border-box; /* Включить padding и border в общую ширину и высоту */
+  box-sizing: border-box;
+  /* Включить padding и border в общую ширину и высоту */
 }
 
 .form-title {
@@ -81,7 +84,8 @@ form label input {
   outline: 0;
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 5px;
-  box-sizing: border-box; /* Включить padding и border в общую ширину и высоту */
+  box-sizing: border-box;
+  /* Включить padding и border в общую ширину и высоту */
 }
 
 form label #indentation {
@@ -174,4 +178,20 @@ option {
     transform: scale(1.8);
     opacity: 0;
   }
+}
+
+@media(min-width:320px) and (max-width:425px) {
+  form {
+    width: 290px;
+    padding: 25px;
+  }
+
+  .form-title {
+    font-size: 24px;
+  }
+
+  .form label input {
+    padding: 20px 10px 15px 10px;
+  }
+
 }
