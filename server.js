@@ -39,8 +39,14 @@ app.get('/api/posts', async (req, res) => {
 
     const posts = await Post.find({});
     const postsJSON = posts.map(post => post.toObject()); // Преобразование объектов Mongoose в простые объекты JavaScript
-    myCache.set(cacheKey, postsJSON);
-    res.json(postsJSON);
+
+    // Фильтрация постов, которые содержат фотографии
+    const filteredPosts = postsJSON.filter(post => {
+      return post.photoUrls && post.photoUrls.length > 0 && post.text && !/\[club\d+\|/.test(post.text);
+    });
+
+    myCache.set(cacheKey, filteredPosts);
+    res.json(filteredPosts);
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
     res.status(500).json({ error: 'Ошибка при получении данных' });

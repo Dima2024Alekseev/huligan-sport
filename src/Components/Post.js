@@ -19,19 +19,12 @@ const Posts = () => {
             });
     }, []);
 
-    // Фильтрация постов, которые содержат фотографии
-    const filteredPosts = posts.filter(post => {
-        return post.photoUrls && post.photoUrls.length > 0 && post.text && !/\[club\d+\|/.test(post.text);
-      });
-      
-
-
     return (
         <div>
             {loading ? (
                 <ContentLoader />
             ) : (
-                filteredPosts.map(post => (
+                posts.map(post => (
                     <div className='news' key={post.id}>
                         <h3>{post.text}</h3>
                         {/* <p>{new Date(post.date * 1000).toLocaleString()}</p> */}
