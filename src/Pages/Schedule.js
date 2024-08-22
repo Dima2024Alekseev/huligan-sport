@@ -5,30 +5,30 @@ import Footer from "../Components/Footer";
 
 const ScheduleControl = ({ selectedCategory, handleCategoryChange }) => {
   return (
-    <div className="Schedule_Controler">
-      <div className="schedule-option">
+    <div className="schedule_controler">
+      <div className="schedule-mounth">
         <p>Месяц:</p>
         <select className="schedule">
           <option value="option1">Май</option>
           <option value="option2">Июнь</option>
         </select>
       </div>
-      <div className="schedule-option">
+      <div className="schedule-mounth">
         <p>Неделя:</p>
         <select className="schedule">
           <option value="option1">Текущие</option>
           <option value="option2">Прошлое</option>
         </select>
       </div>
-      <div className="schedule-option">
+      <div className="schedule-mounth">
         <p>Категория:</p>
         <select className="schedule" value={selectedCategory} onChange={handleCategoryChange}>
-          <option value="Выберите">Выберите</option>
-          <option value="Дети соревновательная группа">Дети соревновательная группа</option>
-          <option value="Дети средняя группа">Дети средняя группа</option>
-          <option value="Дети младшая группа">Дети младшая группа</option>
-          <option value="ММА взрослые">ММА взрослые</option>
-          <option value="Женская группа">Женская группа</option>
+          <option value="option1">Выберите</option>
+          <option value="option2">Дети соревновательная группа</option>
+          <option value="option3">Дети средняя группа</option>
+          <option value="option4">Дети младшая группа</option>
+          <option value="option5">ММА взрослые</option>
+          <option value="option6">Женская группа</option>
         </select>
       </div>
     </div>
@@ -51,12 +51,12 @@ const ScheduleTable = ({ scheduleData }) => {
         {scheduleData.map((row, index) => (
           <tr key={index}>
             <td><strong>{row.time}</strong></td>
-            <td className="background">{row.pn}</td>
-            <td className="background">{row.vt}</td>
-            <td className="background">{row.sr}</td>
-            <td className="background">{row.ct}</td>
-            <td className="background">{row.pt}</td>
-            <td className="background">{row.sb}</td>
+            <td>{row.pn}</td>
+            <td>{row.vt}</td>
+            <td>{row.sr}</td>
+            <td>{row.ct}</td>
+            <td>{row.pt}</td>
+            <td>{row.sb}</td>
           </tr>
         ))}
       </tbody>

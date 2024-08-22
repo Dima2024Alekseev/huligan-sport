@@ -6,25 +6,44 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.Schedule_Controler {
+.schedule_controler {
     display: flex;
     flex-direction: row;
     gap: 20px;
     padding: 0px 20px;
 }
 
-.schedule-option {
+.schedule-mounth {
     display: flex;
     align-items: center;
     flex-direction: row;
     border: 1px solid black;
     padding: 5px 10px;
     border-radius: 5px;
-    
+
 }
 
-.schedule-option p{
+.schedule-mounth select {
+    padding: 5px;
+    background: transparent;
+    border: none;
+    width: 100%;
+    color: black;
+
+}
+
+.schedule-mounth select:focus,
+.schedule-mounth select:active {
+    color: black;
+}
+
+.schedule-mounth p {
     color: rgba(0, 0, 0, 0.466);
+}
+
+.schedule-mounth select{
+    padding: 10px;
+    
 }
 
 table {
@@ -39,7 +58,7 @@ table th {
     padding: 20px;
 }
 
-.background {
+table td:not(:first-child) {
     background: linear-gradient(130deg, #000000 30%, rgba(125, 186, 232, 0) 100%),
         url(https://rcc-sport.ru/local/templates/main/img/bg-red.png) top right, #121212;
     color: white;
@@ -51,32 +70,14 @@ table th {
     border: 10px solid black;
 }
 
-.schedule-option select {
-    padding: 5px;
-    background: transparent;
-    border: none;
-    width: 100%;
-    color: black;
-   
-}
-
-.schedule-option select:focus,
-.schedule-option select:active{
-    color: black;
-}
-
-
 
 select:focus .schedule {
     outline: none;
 }
 
 
-option .schedule{
+option .schedule {
     background-color: #000000;
     color: #000000;
-    
+
 }
-
-
-  
