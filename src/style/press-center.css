@@ -1,0 +1,22 @@
+.news {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    margin: 50px 10px;
+}
+
+.news h3 {
+    line-height: 30px;
+    text-align: justify;
+    padding: 0px 20px;
+
+}
+
+.news img {
+    width: auto;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 5px;
+}
