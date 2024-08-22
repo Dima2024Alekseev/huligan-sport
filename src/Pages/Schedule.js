@@ -3,6 +3,67 @@ import "../style/schedule.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
+const ScheduleControl = ({ selectedCategory, handleCategoryChange }) => {
+  return (
+    <div className="Schedule_Controler">
+      <div className="schedule-option">
+        <p>Месяц:</p>
+        <select className="schedule">
+          <option value="option1">Май</option>
+          <option value="option2">Июнь</option>
+        </select>
+      </div>
+      <div className="schedule-option">
+        <p>Неделя:</p>
+        <select className="schedule">
+          <option value="option1">Текущие</option>
+          <option value="option2">Прошлое</option>
+        </select>
+      </div>
+      <div className="schedule-option">
+        <p>Категория:</p>
+        <select className="schedule" value={selectedCategory} onChange={handleCategoryChange}>
+          <option value="Выберите">Выберите</option>
+          <option value="Дети соревновательная группа">Дети соревновательная группа</option>
+          <option value="Дети средняя группа">Дети средняя группа</option>
+          <option value="Дети младшая группа">Дети младшая группа</option>
+          <option value="ММА взрослые">ММА взрослые</option>
+          <option value="Женская группа">Женская группа</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+
+const ScheduleTable = ({ scheduleData }) => {
+  return (
+    <table>
+      <tbody>
+        <tr>
+          <th>Время</th>
+          <th>ПН</th>
+          <th>ВТ</th>
+          <th>СР</th>
+          <th>ЧТ</th>
+          <th>ПТ</th>
+          <th>СБ</th>
+        </tr>
+        {scheduleData.map((row, index) => (
+          <tr key={index}>
+            <td><strong>{row.time}</strong></td>
+            <td className="background">{row.pn}</td>
+            <td className="background">{row.vt}</td>
+            <td className="background">{row.sr}</td>
+            <td className="background">{row.ct}</td>
+            <td className="background">{row.pt}</td>
+            <td className="background">{row.sb}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
 const Schedule = () => {
   const [selectedCategory, setSelectedCategory] = useState("Выберите");
 
@@ -17,20 +78,12 @@ const Schedule = () => {
     { time: "19:30", pn: "", vt: "Женская группа", sr: "", ct: "Женская группа", pt: "", sb: "" },
   ];
 
-  const filteredSchedule = scheduleData.map(row => {
+  const filteredSchedule = scheduleData.filter(row => {
     if (selectedCategory === "Выберите") {
-      return row;
+      return true;
     }
-    const filteredRow = {
-      time: row.time,
-      pn: row.pn.includes(selectedCategory) ? row.pn : "",
-      vt: row.vt.includes(selectedCategory) ? row.vt : "",
-      sr: row.sr.includes(selectedCategory) ? row.sr : "",
-      ct: row.ct.includes(selectedCategory) ? row.ct : "",
-      pt: row.pt.includes(selectedCategory) ? row.pt : "",
-      sb: row.sb.includes(selectedCategory) ? row.sb : "",
-    };
-    return filteredRow;
+    const combinedRow = Object.values(row).join(" ");
+    return combinedRow.includes(selectedCategory);
   });
 
   return (
@@ -43,59 +96,11 @@ const Schedule = () => {
         linkText='Расписание'
       />
       <div className="schedule-content">
-        <div className="Schedule_Controler">
-          <div className="shedule-option">
-            <p style={{ color: "rgba(0, 0, 0, 0.466)" }}>Месяц:</p>
-            <select className="shedule">
-              <option value="option1">Май</option>
-              <option value="option2">Июнь</option>
-            </select>
-          </div>
-          <div className="shedule-option">
-            <p style={{ color: "rgba(0, 0, 0, 0.466)" }}>Неделя:</p>
-            <select>
-              <option value="option1">Текущие</option>
-              <option value="option2">Прошлое</option>
-            </select>
-          </div>
-          <div className="shedule-option">
-            <p style={{ color: "rgba(0, 0, 0, 0.466)" }}>Категория:</p>
-            <select value={selectedCategory} onChange={handleCategoryChange}>
-              <option value="Выберите">Выберите</option>
-              <option value="Дети соревновательная группа">Дети соревновательная группа</option>
-              <option value="Дети средняя группа">Дети средняя группа</option>
-              <option value="Дети младшая группа">Дети младшая группа</option>
-              <option value="ММА взрослые">ММА взрослые</option>
-              <option value="Женская группа">Женская группа</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <table>
-            <tbody>
-              <tr>
-                <th>Время</th>
-                <th>ПН</th>
-                <th>ВТ</th>
-                <th>СР</th>
-                <th>ЧТ</th>
-                <th>ПТ</th>
-                <th>СБ</th>
-              </tr>
-              {filteredSchedule.map((row, index) => (
-                <tr key={index}>
-                  <td><strong>{row.time}</strong></td>
-                  <td className="background">{row.pn}</td>
-                  <td className="background">{row.vt}</td>
-                  <td className="background">{row.sr}</td>
-                  <td className="background">{row.ct}</td>
-                  <td className="background">{row.pt}</td>
-                  <td className="background">{row.sb}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ScheduleControl
+          selectedCategory={selectedCategory}
+          handleCategoryChange={handleCategoryChange}
+        />
+        <ScheduleTable scheduleData={filteredSchedule} />
       </div>
       <Footer />
     </>

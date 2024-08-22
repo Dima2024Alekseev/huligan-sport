@@ -13,7 +13,7 @@
     padding: 0px 20px;
 }
 
-.shedule-option {
+.schedule-option {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -21,6 +21,10 @@
     padding: 5px 10px;
     border-radius: 5px;
     
+}
+
+.schedule-option p{
+    color: rgba(0, 0, 0, 0.466);
 }
 
 table {
@@ -47,23 +51,28 @@ table th {
     border: 10px solid black;
 }
 
-.shedule-option select {
+.schedule-option select {
     padding: 5px;
     background: transparent;
     border: none;
     width: 100%;
     color: black;
-    border-radius: 5px;
+   
+}
+
+.schedule-option select:focus,
+.schedule-option select:active{
+    color: black;
 }
 
 
 
-select:focus .shedule {
+select:focus .schedule {
     outline: none;
 }
 
 
-option .shedule{
+option .schedule{
     background-color: #000000;
     color: #000000;
     

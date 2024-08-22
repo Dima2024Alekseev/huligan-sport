@@ -13,9 +13,10 @@ const myCache = new NodeCache({ stdTTL: 300 }); // Кэширование дан
 
 const ACCESS_TOKEN = 'vk1.a.JRi3rpmUhtiZ8X3cPmNGdiwy3C7xhbHSI76u110imU2VsgD99A-C1bkAtC5Xs1V9-KAn-armltwY4qcc8crO-5YXZIKwBpskmG9kjV7iBLMRwXC_lRCTH9tToNVo81AdDgPC839c3W6pZKvh1MIF_Uff-G88i_TISVdZbDHzRa-FKpgoWx6v2G1o4SWXS0nhI7UHFyXyX0K8rFkaCNh4JA';
 const GROUP_ID = '216523190';
-const FILE_PATH = path.join(__dirname, 'src', 'data', 'posts.json'); // Обновленный путь
+const FILE_PATH = path.join(__dirname, 'src', 'data', 'posts.json'); // Путь к файлу для сохранения постов
 const db = 'mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/news?retryWrites=true&w=majority&appName=Cluster0';
 
+// Подключение к базе данных MongoDB
 mongoose
   .connect(db)
   .then(() => console.log('Соединенние с БД установленно'))
@@ -23,11 +24,13 @@ mongoose
 
 app.use(cors());
 
+// Фильтр для удаления ссылок вида [id... из текста
 const removeLinksFromText = (text) => {
   if (!text) return text;
   return text.replace(/\[id\d+\|([^\]]+)\]/g, '$1');
 };
 
+// Маршрут для получения постов
 app.get('/api/posts', async (req, res) => {
   try {
     const cacheKey = 'vk_posts';
@@ -40,7 +43,7 @@ app.get('/api/posts', async (req, res) => {
     const posts = await Post.find({});
     const postsJSON = posts.map(post => post.toObject()); // Преобразование объектов Mongoose в простые объекты JavaScript
 
-    // Фильтрация постов, которые содержат фотографии
+    // Фильтрация постов, которые содержат фотографии больше одной фотографии и ссылки в тексте типа club
     const filteredPosts = postsJSON.filter(post => {
       return post.photoUrls && post.photoUrls.length > 0 && post.text && !/\[club\d+\|/.test(post.text);
     });
@@ -87,14 +90,14 @@ const checkForNewPosts = async () => {
 
     await Post.bulkWrite(bulkOps);
 
-    // Отфильтровать и ограничить количество постов, исключив посты с видео
+    // Фильтрация постов исключающая посты с видео
     const filteredPosts = postsWithPhotos.filter(post => {
       return !post.attachments || !post.attachments.some(attachment => attachment.type === 'video');
     });
 
     const firstFivePosts = filteredPosts.slice(0, 6);
 
-    // Запись данных в файл
+    // Запись данных в файл для главной странице в новостном блоке(временное хранилище)
     fs.writeFileSync(FILE_PATH, JSON.stringify(firstFivePosts, null, 2));
 
     myCache.set('vk_posts', postsWithPhotos); // Кэширование данных
