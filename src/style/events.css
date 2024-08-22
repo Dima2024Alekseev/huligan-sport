@@ -1,77 +1,30 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.container-events{
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-
-.content,
-.events-next{
-    display: flex; 
-    flex-direction: column;  
-    padding: 7%;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.content h1{
-    color: white;
-    text-transform: uppercase;
-    font-size: 40px;
-}
-
-.links{
-    color: rgba(255, 255, 255, 0.562);
-    margin-top: 10%;
-    display: flex;
-    font-size: 14px;
-}
-
-a:hover{
-    color: #e3070e;
-}
-
-main{
-    width: 100%;
-    height: 500px;
-}
-
-.events-next{
-    flex-direction: row;
-    gap: 10px;
-    
-}
-
-select{
+select {
     color: red;
     border: none;
 }
-
-
 
 select:focus {
     outline: none;
 }
 
-
-option{
+option {
     background-color: #f5f5f5;
     color: #333;
     padding: 8px 10px;
 }
 
 option:first-child {
-    background-color: red; /* Цвет фона первого элемента */
+    background-color: red;
+    /* Цвет фона первого элемента */
     color: white;
 }
-  
 
-#events-sport img{
+#events-sport img {
     border-radius: 5px;
     margin-left: 50px;
     margin-top: -50px;
@@ -79,7 +32,7 @@ option:first-child {
     height: auto;
 }
 
-.news{
+.news {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -88,14 +41,14 @@ option:first-child {
     margin: 50px 10px;
 }
 
-.news h3{
+.news h3 {
     line-height: 30px;
     text-align: justify;
     padding: 0px 20px;
-   
+
 }
 
-.news img{
+.news img {
     width: auto;
     height: 350px;
     object-fit: contain;
