@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../style/profile.css';
+
 
 const Form = ({ showFields, formTitle, title_button }) => {
   const [formData, setFormData] = useState({

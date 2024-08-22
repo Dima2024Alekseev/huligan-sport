@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/events.css";
+import "../style/profile.css";
 import Header from "../Components/Header";
 import Form from "../Components/Form";
 import Footer from "../Components/Footer";

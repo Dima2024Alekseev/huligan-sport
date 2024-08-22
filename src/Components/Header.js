@@ -52,7 +52,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
           </video>
         )}
         {showVideo && <div className="overlay"></div>}
-        <div className="container-events">
+        <div>
           <div className={nav ? ["header-flex", "active"].join(' ') : ["header-flex"]}>
             <Link to="/home">
               <div>

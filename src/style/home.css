@@ -358,58 +358,6 @@ a {
     overflow-x: scroll;
 }
 
-.container .gallery,
-.container-news .gallery,
-.container-victory .gallery {
-    width: 100%;
-    display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-gap: 20px;
-    padding: 10px;
-    flex: none;
-    padding: 30px 0px;
-    align-items: baseline;
-}
-
-.container .gallery img,
-.container-news .gallery img,
-.container-victory .gallery img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.container-news .gallery img,
-.container-victory .gallery img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    width: 400px;
-    height: 250px;
-    object-fit: cover;
-}
-
-.container .gallery div,
-.container-news .gallery div,
-.container-victory .gallery div {
-    background-color: white;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-    line-height: 25px;
-    margin-top: 5px;
-}
-
-.container .gallery p,
-.container-news .gallery p,
-.container-victory .gallery p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-}
-
-.container-news .gallery p .container-victory .gallery p {
-    text-align: left;
-}
 
 .container::-webkit-scrollbar,
 .container-news::-webkit-scrollbar {
