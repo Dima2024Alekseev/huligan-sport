@@ -10,7 +10,7 @@ import logo from "./img/item1.jpg";
 import logo_2 from "./img/item2.jpg";
 import logo_3 from "./img/item3.jpg";
 import logo_4 from "./img/item4.jpg";
-import logo_5 from "./img/item6.jpg";
+import logo_5 from "./img/item5.jpg";
 
 class StoreBlock extends React.Component {
     render() {

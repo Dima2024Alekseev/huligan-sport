@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import "../style/online-store.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-
+import item from "../Components/img/item1.jpg";
+import item_2 from "../Components/img/item2.jpg";
+import item_3 from "../Components/img/item3.jpg";
+import item_4 from "../Components/img/item4.jpg";
+import item_5 from "../Components/img/item5.jpg";
+import Modal from "../Components/Modal";
 
 const Store = () => {
+    const [modalActive, setModalActive] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const openModal = (imageSrc) => {
+        setSelectedImage(imageSrc);
+        setModalActive(true);
+    };
+
+    const closeModal = () => {
+        setSelectedImage(null);
+        setModalActive(false);
+    };
+    const OrderClick = () => {
+        window.open("https://t.me/bychkov1203", "_blank");
+    };
+
     return (
         <>
             <Header
@@ -13,7 +35,35 @@ const Store = () => {
                 innerTitle="Интернет-магазин"
                 linkText="Интернет-магазин"
             />
+            <div className="content-item">
+                <div className="item-name-price">
+                    <img onClick={() => openModal(item)} src={item} alt="" />
+                    <p>Кепка<br/>1 000 ₽</p>
+                    <button onClick={OrderClick}>Заказать</button>
+                </div>
+                <div className="item-name-price">
+                    <img onClick={() => openModal(item_2)} src={item_2} alt="" />
+                    <p>Бейсболка<br/>1 000 ₽</p>
+                    <button onClick={OrderClick}>Заказать</button>
+                </div>
+                <div className="item-name-price">
+                    <img onClick={() => openModal(item_3)} src={item_3} alt="" />
+                    <p>Обновленная форма<br/>3 000 ₽</p>
+                    <button onClick={OrderClick}>Заказать</button>
+                </div>
+                <div className="item-name-price">
+                    <img onClick={() => openModal(item_4)} src={item_4} alt="" />
+                    <p>Футболка "Хулиган"<br/>1 500 ₽</p>
+                    <button onClick={OrderClick}>Заказать</button>
+                </div>
+                <div className="item-name-price">
+                    <img onClick={() => openModal(item_5)} src={item_5} alt="" />
+                    <p>Комплект формы<br/>3 000 ₽</p>
+                    <button onClick={OrderClick}>Заказать</button>
+                </div>
+            </div>
             <Footer />
+            <Modal active={modalActive} setActive={closeModal} imageSrc={selectedImage} />
         </>
     );
 };

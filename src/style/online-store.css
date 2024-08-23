@@ -1,0 +1,47 @@
+.content-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px 0px;
+}
+
+img {
+    border-radius: 5px;
+    width: 85%;
+    height: auto;
+    cursor: pointer;
+}
+
+.item-name-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-name-price p {
+    width: 85%;
+    color: white;
+    background: black;
+    text-align: center;
+    padding: 10px 0px;
+    line-height: 25px;
+    position: relative;
+    bottom: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.item-name-price button {
+    border: none;
+    background: red;
+    color: white;
+    width: 85%;
+    padding: 15px;
+    position: relative;
+    bottom: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
