@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import "./style/config.css";
-import "./style/home.css";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Events from "./Pages/Events";
@@ -12,16 +12,18 @@ import Price from './Pages/Price';
 import Registration from './Pages/Registration-Account';
 import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
-import logo_title from "./Components/img/log-club.png"
+import "./style/config.css";
+import "./style/home.css";
+import logo_title from "./Components/img/log-club.png";
 import useTitle from './Components/UseTitle';
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
 
-export default function App() {
-  useTitle("Хулиган. Академия боевых единоборств", logo_title)
   return (
-    <>
-      <Router>
-        <Routes>
+    <TransitionGroup>
+      <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+        <Routes location={location}>
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
@@ -32,10 +34,19 @@ export default function App() {
           <Route path="/price" element={<Price />} />
           <Route path="/registration-account" element={<Registration />} />
           <Route path="/authorization-account" element={<Authorization />} />
-          <Route path="/waiting-list" element={< Waiting />} />
+          <Route path="/waiting-list" element={<Waiting />} />
         </Routes>
-      </Router>
-    </>
+      </CSSTransition>
+    </TransitionGroup>
+  );
+};
+
+export default function App() {
+  useTitle("Хулиган. Академия боевых единоборств", logo_title);
+
+  return (
+    <Router>
+      <AnimatedRoutes />
+    </Router>
   );
 }
-

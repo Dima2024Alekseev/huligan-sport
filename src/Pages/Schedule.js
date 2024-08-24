@@ -23,12 +23,12 @@ const ScheduleControl = ({ selectedCategory, handleCategoryChange }) => {
       <div className="schedule-mounth">
         <p>Категория:</p>
         <select className="schedule" value={selectedCategory} onChange={handleCategoryChange}>
-          <option value="option1">Выберите</option>
-          <option value="option2">Дети соревновательная группа</option>
-          <option value="option3">Дети средняя группа</option>
-          <option value="option4">Дети младшая группа</option>
-          <option value="option5">ММА взрослые</option>
-          <option value="option6">Женская группа</option>
+          <option value="Выберите">Выберите</option>
+          <option value="Дети соревновательная группа">Дети соревновательная группа</option>
+          <option value="Дети средняя группа">Дети средняя группа</option>
+          <option value="Дети младшая группа">Дети младшая группа</option>
+          <option value="ММА взрослые">ММА взрослые</option>
+          <option value="Женская группа">Женская группа</option>
         </select>
       </div>
     </div>

@@ -14,10 +14,6 @@ const About = () => {
                 linkText="об Академии"
                 showGradient={true}
             />
-            <div>
-                <h1>О клубе </h1>
-                <p>Проверка связи </p>
-            </div>
             <Footer />
         </>
     );
