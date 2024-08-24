@@ -7,7 +7,7 @@ import item_2 from "../Components/img/item2.jpg";
 import item_3 from "../Components/img/item3.jpg";
 import item_4 from "../Components/img/item4.jpg";
 import item_5 from "../Components/img/item5.jpg";
-import Modal from "../Components/Modal";
+import Modal from "../Components/Modal Window/Modal";
 
 const Store = () => {
     const [modalActive, setModalActive] = useState(false);

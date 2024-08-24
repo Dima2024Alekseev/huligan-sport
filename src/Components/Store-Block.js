@@ -29,7 +29,7 @@ class StoreBlock extends React.Component {
                         320: {
                             slidesPerView: 1,
                         },
-                        768:{
+                        768: {
                             slidesPerView: 3
                         }
                     }}

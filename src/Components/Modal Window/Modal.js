@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/modal.css"; // Подключение файла стилей для модального окна
+import "../Modal Window/modal.css";
 
 const Modal = ({ active, setActive, imageSrc }) => {
     return (
