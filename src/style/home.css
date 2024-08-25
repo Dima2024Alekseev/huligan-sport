@@ -154,15 +154,32 @@ ul.navigation li:hover>ul {
 /*Второй и последующие уровни вложенности*/
 ul.navigation li ul li {
     padding-left: 15px;
-    line-height: 50px;
+    line-height: 40px;
     height: auto;
     width: 250px;
 
 }
 
-ul.navigation li ul li:not(:last-child) {
+ul.navigation li ul li {
+    position: relative;
     border-bottom: 1px solid rgba(0, 0, 0, 0.171);
 }
+
+ul.navigation li ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: red;
+    transition: width 0.3s ease-in-out;
+}
+
+ul.navigation li ul li:hover::before {
+    width: 5px; /* Ширина линии при наведении */
+}
+
 
 
 ul.navigation li:hover ul li ul {
@@ -235,7 +252,7 @@ ul.navigation li ul li:last-child {
 .button-victory {
     width: 26.5vw;
     height: 10.5vw;
-    font-size: 1.25rem;
+    font-size: 2vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -265,23 +282,7 @@ ul.navigation li ul li:last-child {
     color: #FFF;
 }
 
-.next {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #F00;
-    border: none;
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 36vw;
-    height: 5vw;
-    border-radius: 5px;
-    text-align: center;
-}
+
 
 .button-all {
     display: flex;
@@ -316,7 +317,7 @@ a {
     justify-content: center;
 }
 
-#button-style {
+.button-style {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -325,7 +326,7 @@ a {
     border: none;
     color: #FFF;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 1.5vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -717,8 +718,7 @@ svg.social {
         font-weight: 600;
     }
 
-    .next,
-    #button-style {
+    .button-style {
         width: 200px;
         height: 50px;
         font-size: 14px;

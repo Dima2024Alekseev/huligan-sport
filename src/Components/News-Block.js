@@ -105,7 +105,7 @@ class NewsBlock extends Component {
                     )}
                     <div className="button-all">
                         <Link to="/press-center">
-                            <div className="next">
+                            <div className="button-style">
                                 <p>Посмотреть все</p>
                             </div>
                         </Link>

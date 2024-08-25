@@ -52,7 +52,7 @@ class StoreBlock extends React.Component {
                 </Swiper>
                 <div className="store-button">
                     <Link to="/online-store">
-                        <div id="button-style">
+                        <div className="button-style">
                             <p>В магазин</p>
                         </div>
                     </Link>
