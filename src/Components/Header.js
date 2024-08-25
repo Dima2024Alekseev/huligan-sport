@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from "./img/header-icon.png";
 import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
-import { Icon24UserSquare } from '@vkontakte/icons';
+import { TbUserSquareRounded } from "react-icons/tb";
 import { FaTelegram } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
@@ -78,16 +78,16 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
               </Link>
               <div className="header-icons">
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
-                   <FaVk size={24} />
+                   <FaVk className="social-network" size={24} />
                 </a>
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
-                  <FaTelegram size={24} />
+                  <FaTelegram className="social-network" size={24} />
                 </a>
               </div>
             </div>
             <Link to="/registration-account">
               <div className="personal-area">
-                <Icon24UserSquare className="profile-icon" fill="white" width={50} height={50} />
+                <TbUserSquareRounded className="profile-icon" size={45} color="white" />
               </div>
             </Link>
           </div>

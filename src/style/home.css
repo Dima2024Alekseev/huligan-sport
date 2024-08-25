@@ -1,10 +1,4 @@
 /* ------------шапка сайта---------- */
-header {
-    font-family: Arial, Helvetica, sans-serif;
-
-}
-
-
 #video-container {
     position: relative;
     width: 100%;
@@ -58,8 +52,6 @@ header .logo-header {
     flex-direction: column;
     align-items: center;
     color: white;
-
-
 }
 
 .header-icons {
@@ -123,7 +115,6 @@ ul.navigation li {
 
 ul.navigation li a {
     text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
     display: block;
     padding: 5px 5px 5px 15px;
 }
@@ -391,7 +382,6 @@ a {
 
 .contact-title {
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
     font-size: 17px;
     margin-top: 10px;
@@ -409,7 +399,6 @@ a {
 .address {
     color: white;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-size: 15px;
     margin-top: 20px;
@@ -419,7 +408,6 @@ a {
 .sun-schedule {
     color: white;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: 500;
     font-size: 15px;
 }
@@ -449,7 +437,6 @@ footer {
 
 .type-of-fight {
     color: rgba(255, 255, 255, 0.619);
-    font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     padding: 15px 0px;
 }
@@ -461,7 +448,6 @@ footer {
 
 .contact-footer {
     color: rgba(255, 255, 255, 0.619);
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
 
@@ -515,14 +501,12 @@ svg.social {
 
 .description {
     color: rgba(193, 193, 193, 0.628);
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
 
 .list {
     color: rgba(255, 255, 255, 0.619);
     cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* ---------------------------подвал сайта-------------------------- */

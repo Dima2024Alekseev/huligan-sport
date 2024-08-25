@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { Icon24UserSquare } from '@vkontakte/icons';
+import { TbUserSquareRounded } from "react-icons/tb";
 import logo from "./img/header-icon.png";
 
 const MobileMenu = ({ nav, setNav }) => {
@@ -19,7 +19,7 @@ const MobileMenu = ({ nav, setNav }) => {
                     </div>
                     <Link to= '/registration-account'>
                     <div className="mobile-profile">
-                        <Icon24UserSquare className="profile-icon" fill="white" width={50} height={50}  />
+                        <TbUserSquareRounded color="white" size={40}/>
                     </div>
                     </Link>
                 </div>
