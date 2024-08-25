@@ -22,7 +22,7 @@
     top: var(--swiper-pagination-top, auto);
     left: 0;
     width: 100%;
-    margin-top: 20px;
+    padding: 20px 0px;
 }
 
 .mySwiper {
@@ -111,11 +111,11 @@
 @media(min-width:320px) and (max-width:1200px) {
 
     .container-news .swiper-button-prev,
-    .swiper-button-next,
+    .container-news .swiper-button-next,
     .container-victory .swiper-button-prev,
-    .swiper-button-next {
+    .container-victory .swiper-button-next {
         position: absolute;
-        top: var(--swiper-navigation-top-offset, 40%);
+        top: var(--swiper-navigation-top-offset, 50%);
         width: calc(var(--swiper-navigation-size) / 100);
         height: var(--swiper-navigation-size);
         color: black;
@@ -138,4 +138,6 @@
         width: 80%;
         text-align: justify;
     }
+
+    
 }
