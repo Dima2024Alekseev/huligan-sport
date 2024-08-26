@@ -35,33 +35,43 @@ const Store = () => {
                 innerTitle="Интернет-магазин"
                 linkText="Интернет-магазин"
             />
-            <div className="content-item">
-                <div className="item-name-price">
-                    <img onClick={() => openModal(item)} src={item} alt="" />
-                    <p>Кепка<br/>1 000 ₽</p>
-                    <button onClick={OrderClick}>Заказать</button>
-                </div>
-                <div className="item-name-price">
-                    <img onClick={() => openModal(item_2)} src={item_2} alt="" />
-                    <p>Бейсболка<br/>1 000 ₽</p>
-                    <button onClick={OrderClick}>Заказать</button>
-                </div>
-                <div className="item-name-price">
-                    <img onClick={() => openModal(item_3)} src={item_3} alt="" />
-                    <p>Обновленная форма<br/>3 000 ₽</p>
-                    <button onClick={OrderClick}>Заказать</button>
-                </div>
-                <div className="item-name-price">
-                    <img onClick={() => openModal(item_4)} src={item_4} alt="" />
-                    <p>Футболка "Хулиган"<br/>1 500 ₽</p>
-                    <button onClick={OrderClick}>Заказать</button>
-                </div>
-                <div className="item-name-price">
-                    <img onClick={() => openModal(item_5)} src={item_5} alt="" />
-                    <p>Комплект формы<br/>3 000 ₽</p>
-                    <button onClick={OrderClick}>Заказать</button>
-                </div>
-            </div>
+            <main className="content-item">
+                <section>
+                    <div className="item-name-price">
+                        <img onClick={() => openModal(item)} src={item} alt="" />
+                        <p>Кепка<br />1 000 ₽</p>
+                        <button onClick={OrderClick}>Заказать</button>
+                    </div>
+                </section>
+                <section>
+                    <div className="item-name-price">
+                        <img onClick={() => openModal(item_2)} src={item_2} alt="" />
+                        <p>Бейсболка<br />1 000 ₽</p>
+                        <button onClick={OrderClick}>Заказать</button>
+                    </div>
+                </section>
+                <section>
+                    <div className="item-name-price">
+                        <img onClick={() => openModal(item_3)} src={item_3} alt="" />
+                        <p>Обновленная форма<br />3 000 ₽</p>
+                        <button onClick={OrderClick}>Заказать</button>
+                    </div>
+                </section>
+                <section>
+                    <div className="item-name-price">
+                        <img onClick={() => openModal(item_4)} src={item_4} alt="" />
+                        <p>Футболка "Хулиган"<br />1 500 ₽</p>
+                        <button onClick={OrderClick}>Заказать</button>
+                    </div>
+                </section>
+                <section>
+                    <div className="item-name-price">
+                        <img onClick={() => openModal(item_5)} src={item_5} alt="" />
+                        <p>Комплект формы<br />3 000 ₽</p>
+                        <button onClick={OrderClick}>Заказать</button>
+                    </div>
+                </section>
+            </main>
             <Footer />
             <Modal active={modalActive} setActive={closeModal} imageSrc={selectedImage} />
         </>

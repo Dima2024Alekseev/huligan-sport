@@ -1,0 +1,13 @@
+.position-title-photo {
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+
+
+section div img {
+    width: 20%;
+    height: auto;
+    border-radius: 5px;
+}
