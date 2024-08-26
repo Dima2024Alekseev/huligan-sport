@@ -13,7 +13,6 @@ const Home = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                // Используйте данные из JSON файла
                 setPosts(postsData);
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
@@ -28,11 +27,12 @@ const Home = () => {
                 showVideo={true}
                 title="Хулиган. Академия боевых единоборств"
             />
-            <NewsBlock posts={posts} />
-            <StoreBlock />
-            <Contact />
+            <main>
+                <NewsBlock posts={posts} />
+                <StoreBlock />
+                <Contact />
+            </main>
             <Footer />
-
         </>
     );
 };
