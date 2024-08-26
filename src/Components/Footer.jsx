@@ -12,27 +12,27 @@ class Footer extends React.Component {
                     <div className="tipe-sport">
                         <div className="kinds-of-sports">
                             <div>
-                                <Link to="#" className="type-of-fight">Мма</Link>
+                                <Link to="/mma" className="type-of-fight">Мма</Link>
                             </div>
                             <div>
-                                <Link to="#" className="type-of-fight">Грэпплинг</Link>
+                                <Link to="/grappling" className="type-of-fight">Грэпплинг</Link>
                             </div>
                             <div>
-                                <Link to="#" className="type-of-fight">Бокс</Link>
+                                <Link to="/boxing" className="type-of-fight">Бокс</Link>
                             </div>
                             <div>
-                                <Link to="#" className="type-of-fight">Кикбоксинг</Link>
+                                <Link to="/kickboxing" className="type-of-fight">Кикбоксинг</Link>
                             </div>
                         </div>
                         <div className="kinds-of-sports">
                             <div>
-                                <Link to="#" className="type-of-fight">Рукопашный бой</Link>
+                                <Link to="/hand-to-hand-combat" className="type-of-fight">Рукопашный бой</Link>
                             </div>
                             <div>
-                                <Link to="#" className="type-of-fight">Каратэ</Link>
+                                <Link to="/karate" className="type-of-fight">Каратэ</Link>
                             </div>
                             <div>
-                                <Link to="#" className="type-of-fight">Женская самооборона</Link>
+                                <Link to="/womens-self-defense" className="type-of-fight">Женская самооборона</Link>
                             </div>
                         </div>
                         <div className="header-components">
@@ -80,7 +80,7 @@ class Footer extends React.Component {
                     </div>
                 </div>
                 <div className="generalization">
-                    <img className="logo-club" alt="" src={logo}/>
+                    <img className="logo-club" alt="" src={logo} />
                     <span className="description">©Академия  боевых единоборств ХУЛИГАН, 2024</span>
                 </div>
             </footer>

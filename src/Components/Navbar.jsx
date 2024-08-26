@@ -13,13 +13,13 @@ const Navbar = () => {
                 </li>
                 <li><Link to="#">Направления</Link>
                     <ul>
-                        <li><Link to="#">ММА</Link></li>
-                        <li><Link to="#">Грэпплинг</Link></li>
-                        <li><Link to="#">Бокс</Link></li>
-                        <li><Link to="#">Кикбоксинг</Link></li>
-                        <li><Link to="#">Рукопашный бой</Link></li>
-                        <li><Link to="#">Каратэ</Link></li>
-                        <li><Link to="#">Женская самооборона</Link></li>
+                        <li><Link to="/mma">ММА</Link></li>
+                        <li><Link to="/grappling">Грэпплинг</Link></li>
+                        <li><Link to="/boxing">Бокс</Link></li>
+                        <li><Link to="/kickboxing">Кикбоксинг</Link></li>
+                        <li><Link to="/hand-to-hand-combat">Рукопашный бой</Link></li>
+                        <li><Link to="/karate">Каратэ</Link></li>
+                        <li><Link to="/womens-self-defense">Женская самооборона</Link></li>
                     </ul>
                 </li>
                 <li><Link to="/schedule">Расписание</Link></li>

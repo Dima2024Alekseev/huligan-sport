@@ -2,19 +2,19 @@ import React from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
-const Boxing = () => {
+const Hand = () => {
     return (
         <>
             <Header
                 showGradient={true}
                 showBlock={true}
-                title="Бокс"
-                innerTitle="Бокс"
-                linkText="Бокс"
+                title="Рукопашный бой"
+                innerTitle="Рукопашный бой"
+                linkText="Рукопашный бой"
             />
             <Footer />
         </>
     )
 }
 
-export default Boxing;
+export default Hand;
