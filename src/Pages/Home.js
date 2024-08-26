@@ -9,7 +9,6 @@ import postsData from "../data/posts.json"
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
-
     useEffect(() => {
         const fetchPosts = async () => {
             try {
