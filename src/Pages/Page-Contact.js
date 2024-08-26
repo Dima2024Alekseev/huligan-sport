@@ -7,12 +7,14 @@ const PageContact = () => {
     return (
         <>
             <Header
-            showGradient={true}
-            showBlock={true}
-            title='Контакты'
-            innerTitle='Контактная информация'
-            linkText='Контакты' />
-            <Contact />
+                showGradient={true}
+                showBlock={true}
+                title='Контакты'
+                innerTitle='Контактная информация'
+                linkText='Контакты' />
+            <main>
+                <Contact />
+            </main>
             <Footer />
         </>
     );

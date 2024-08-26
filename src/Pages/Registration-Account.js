@@ -11,11 +11,13 @@ const Registration = () => {
             <Header
                 title='Регистрация аккаунта'
             />
-            <Form
-                showFields={{ name: true, lastname: true, birthdate: true, email: true, password: true, confirmPassword: true }}
-                formTitle='Регистрация'
-                title_button='Зарегистрироваться'
-            />
+            <main>
+                <Form
+                    showFields={{ name: true, lastname: true, birthdate: true, email: true, password: true, confirmPassword: true }}
+                    formTitle='Регистрация'
+                    title_button='Зарегистрироваться'
+                />
+            </main>
             <Footer />
         </div>
     );

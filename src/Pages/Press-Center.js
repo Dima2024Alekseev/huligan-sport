@@ -15,7 +15,9 @@ const Press = () => {
                 linkText="Пресс-центр"
                 showGradient={true}
             />
+            <main>
             <Post/>
+            </main>
             <Footer />
         </>
     );

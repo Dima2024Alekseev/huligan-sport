@@ -10,11 +10,13 @@ const Authorization = () => {
         <div id="inner">
             <Header
                 title='Авторизация аккаунта' />
-            <Form
-                showFields={{ email: true, password: true, confirmPassword: true }}
-                formTitle='Авторизация'
-                title_button = 'Войти'
-            />
+            <main>
+                <Form
+                    showFields={{ email: true, password: true, confirmPassword: true }}
+                    formTitle='Авторизация'
+                    title_button='Войти'
+                />
+            </main>
             <Footer />
         </div>
     );
