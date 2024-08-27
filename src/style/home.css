@@ -151,6 +151,7 @@ ul.navigation li ul li {
 
 ul.navigation li ul li {
     position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.171);
     border-bottom: 1px solid rgba(0, 0, 0, 0.171);
 }
 
