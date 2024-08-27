@@ -43,6 +43,19 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
     }
   }, [showGradient]);
 
+  useEffect(() => {
+    if (nav) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+
+    // Возвращение вертикальной прокрутки при размонтировании компонента
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+  }, [nav]);
+
   return (
     <div id={showGradient ? "inner" : ""}>
       <header id={showVideo ? "video-container" : ""}>
