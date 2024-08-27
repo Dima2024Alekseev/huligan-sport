@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <nav>
             <ul className="navigation">
-                <li><Link to="/home">Академия</Link>
+                <li className="first-li"><Link to="/home">Академия</Link>
                     <ul>
                         <li><Link to="/about">об Академии</Link></li>
                         <li><Link to="/contact">Контакты</Link></li>
@@ -25,7 +25,7 @@ const Navbar = () => {
                 <li><Link to="/schedule">Расписание</Link></li>
                 <li><Link to="/events">События</Link></li>
                 <li><Link to="/press-center">Пресс-центр</Link></li>
-                <li><Link to="/online-store">Интернет-магазин</Link></li>
+                <li className="last-li"><Link to="/online-store">Интернет-магазин</Link></li>
             </ul>
         </nav>
     )

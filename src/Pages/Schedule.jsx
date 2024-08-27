@@ -5,7 +5,7 @@ import Footer from "../Components/Footer";
 
 const ScheduleControl = ({ selectedCategory, handleCategoryChange }) => {
   return (
-    <div className="schedule_controler">
+    <section className="schedule_controler">
       <div className="schedule-mounth">
         <p>Месяц:</p>
         <select className="schedule">
@@ -31,7 +31,7 @@ const ScheduleControl = ({ selectedCategory, handleCategoryChange }) => {
           <option value="Женская группа">Женская группа</option>
         </select>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -95,13 +95,13 @@ const Schedule = () => {
         innerTitle='расписание тренировок'
         linkText='Расписание'
       />
-      <div className="schedule-content">
+      <main className="schedule-content">
         <ScheduleControl
           selectedCategory={selectedCategory}
           handleCategoryChange={handleCategoryChange}
         />
         <ScheduleTable scheduleData={filteredSchedule} />
-      </div>
+      </main>
       <Footer />
     </>
   );

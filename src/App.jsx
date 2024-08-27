@@ -23,6 +23,7 @@ import "./style/config.css";
 import "./style/home.css";
 import logo_title from "./Components/img/log-club.png";
 import useTitle from './Components/UseTitle';
+import ScrollTop from './Components/ScrollTop';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -60,6 +61,7 @@ export default function App() {
 
   return (
     <Router>
+      <ScrollTop />
       <AnimatedRoutes />
     </Router>
   );
