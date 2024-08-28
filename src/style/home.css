@@ -116,7 +116,7 @@ ul.navigation li {
 ul.navigation li a {
     text-decoration: none;
     display: block;
-    padding: 15px 10px 15px 10px;
+    padding: 15px 10px 10px 10px;
 }
 
 ul.navigation li ul {
@@ -608,13 +608,13 @@ svg.social {
         display: flex;
         flex-direction: column;
         position: relative;
-        right: 30px;
+        top: 20px;
+        right: 10px;
         text-transform: uppercase;
         font-weight: 600;
         justify-content: center;
         gap: 20px;
         font-size: 15px;
-        bottom: 50px;
 
     }
 
@@ -625,10 +625,6 @@ svg.social {
         border: none;
         list-style: none;
         line-height: 20px;
-
-
-
-        /*ширина блока меню*/
     }
 
     ul.navigation li a {
@@ -638,10 +634,7 @@ svg.social {
 
     ul.navigation li ul {
         display: none;
-        /*скрываем вложенные пункты*/
     }
-
-    /*Выпадающее меню*/
 
     ul.navigation li:hover {
         position: relative;
@@ -668,7 +661,7 @@ svg.social {
     .header-contact {
         position: relative;
         gap: 10px;
-        top: 200px;
+        top: 50px;
     }
 
     .active {

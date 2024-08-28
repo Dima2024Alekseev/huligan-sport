@@ -12,23 +12,23 @@
     padding: 0px 20px;
 }
 
+#day {
+    display: none;
+}
+
 .schedule-mounth {
     display: flex;
     align-items: center;
     flex-direction: row;
     border: 1px solid black;
-    padding: 5px 10px;
+    padding: 0px 10px;
     border-radius: 5px;
-
 }
 
 .schedule-mounth select {
-    padding: 5px;
     background: transparent;
     border: none;
-    width: 100%;
     color: black;
-
 }
 
 .schedule-mounth select:focus,
@@ -38,11 +38,6 @@
 
 .schedule-mounth p {
     color: rgba(0, 0, 0, 0.466);
-}
-
-.schedule-mounth select{
-    padding: 10px;
-    
 }
 
 table {
@@ -64,19 +59,33 @@ table td:not(:first-child) {
     border-radius: 5px;
     font-size: 12px;
     font-weight: 600;
-    width: 150px;
-    height: 50px;
+    width: 170px;
+    height: 120px;
     border: 10px solid black;
 }
-
 
 select:focus .schedule {
     outline: none;
 }
 
+@media (max-width: 600px) {
+    #day {
+        display: flex;
+    }
 
-option .schedule {
-    background-color: #000000;
-    color: #000000;
+    .schedule_controler {
+        flex-direction: column;
+    }
 
+    table {
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+
+    table td,
+    table th {
+        padding: 25px 10px;
+        font-size: 15px;
+    }
 }
