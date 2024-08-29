@@ -6,9 +6,13 @@
     padding: 7% 0%;
 }
 
+.personally p{
+    text-align: left;
+}
+
 
 .subscription,
-.personally {
+.personally {   
     display: flex;
     justify-content: space-between;
     flex-direction: column;

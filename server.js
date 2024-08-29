@@ -95,7 +95,7 @@ const checkForNewPosts = async () => {
       return !post.attachments || !post.attachments.some(attachment => attachment.type === 'video');
     });
 
-    const firstFivePosts = filteredPosts.slice(0, 6);
+    const firstFivePosts = filteredPosts.slice(0, 20);
 
     // Запись данных в файл для главной странице в новостном блоке(временное хранилище)
     fs.writeFileSync(FILE_PATH, JSON.stringify(firstFivePosts, null, 2));

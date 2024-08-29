@@ -282,7 +282,7 @@ ul.navigation li ul li:last-child {
 .button-all {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 20px;
 
 }
 
@@ -328,7 +328,6 @@ a {
     width: 36vw;
     height: 5vw;
     border-radius: 5px;
-    margin-top: 15%;
 }
 
 /* ---------------------каталог товаров-------------------------- */

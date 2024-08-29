@@ -54,7 +54,9 @@ class NewsBlock extends Component {
                     <SwiperSlide key={post.id}>
                         <div className="content-news">
                             <img src={post.photoUrls[0]} alt="" style={{ margin: '10px 0' }} />
-                            <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
+                            <div>
+                               <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p> 
+                            </div>
                         </div>
                     </SwiperSlide>
                 ))}

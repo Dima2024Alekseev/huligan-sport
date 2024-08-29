@@ -79,14 +79,16 @@
 .container-news .swiper-slide img,
 .container-victory .swiper-slide img {
     display: block;
-    width: auto;
-    height: 350px;
+    background: rgb(240, 237, 237);
+    border: 1px solid silver;
+    width: 100%;
+    height: 300px;
     object-fit: contain;
     border-radius: 5px;
 }
 
 .content-news p {
-    width: 85%;
+    width: 100%;
     text-align: justify;
 }
 
@@ -115,11 +117,11 @@
     .container-victory .swiper-button-prev,
     .container-victory .swiper-button-next {
         position: absolute;
-        top: var(--swiper-navigation-top-offset, 50%);
+        top: var(--swiper-navigation-top-offset, 25%);
         width: calc(var(--swiper-navigation-size) / 100);
         height: var(--swiper-navigation-size);
         color: black;
-        --swiper-navigation-size: 30px;
+        --swiper-navigation-size: 25px;
     }
 
     .content-news img {
@@ -135,7 +137,7 @@
     }
 
     .content-news p {
-        width: 80%;
+        width: 100%;
         text-align: justify;
     }
 
