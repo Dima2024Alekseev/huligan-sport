@@ -13,7 +13,9 @@ const Posts = () => {
         // Получение данных из API
         axios.get('http://localhost:5000/api/posts')
             .then(response => {
-                setPosts(response.data);
+                // Сортировка данных по убыванию даты или идентификатора
+                const sortedPosts = response.data.sort((a, b) => b.id - a.id);
+                setPosts(sortedPosts);
                 setLoading(false);
             })
             .catch(error => {
