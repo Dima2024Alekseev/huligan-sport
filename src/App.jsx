@@ -16,7 +16,6 @@ import PageContact from "./Pages/Page-Contact";
 import Schedule from "./Pages/Schedule";
 import Store from './Pages/Online-Store';
 import Price from './Pages/Price';
-import Registration from './Pages/Registration-Account';
 import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
 import "./style/config.css";
@@ -47,7 +46,6 @@ const AnimatedRoutes = () => {
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/online-store" element={<Store />} />
           <Route path="/price" element={<Price />} />
-          <Route path="/registration-account" element={<Registration />} />
           <Route path="/authorization-account" element={<Authorization />} />
           <Route path="/waiting-list" element={<Waiting />} />
         </Routes>

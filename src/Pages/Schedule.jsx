@@ -7,20 +7,6 @@ const ScheduleControl = ({ selectedCategory, selectedDay, handleCategoryChange, 
   return (
     <section className="schedule_controler">
       <div className="schedule-mounth">
-        <p>Месяц:</p>
-        <select className="schedule">
-          <option value="option1">Май</option>
-          <option value="option2">Июнь</option>
-        </select>
-      </div>
-      <div className="schedule-mounth">
-        <p>Неделя:</p>
-        <select className="schedule">
-          <option value="option1">Текущие</option>
-          <option value="option2">Прошлое</option>
-        </select>
-      </div>
-      <div className="schedule-mounth">
         <p>Категория:</p>
         <select className="schedule" value={selectedCategory} onChange={handleCategoryChange}>
           <option value="Выберите">Выберите</option>
@@ -62,7 +48,7 @@ const ScheduleTable = ({ scheduleData, selectedDay }) => {
     <table>
       <tbody>
         <tr>
-          <th>Время</th>
+          <th></th>
           {selectedDay === "all" ? days.map(day => <th key={day}>{dayLabels[day]}</th>) : <th>{dayLabels[selectedDay]}</th>}
         </tr>
         {scheduleData.map((row, index) => (

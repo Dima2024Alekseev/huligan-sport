@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 
 const Form = ({ showFields, formTitle, title_button }) => {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
-    birthdate: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -40,15 +38,9 @@ const Form = ({ showFields, formTitle, title_button }) => {
           </label>
         )}
         {showFields.lastname && (
-        <label>
-          <input id="lastname" type="text" placeholder="" required value={formData.lastname} onChange={handleChange} />
-          <span>Фамилия</span>
-        </label>
-        )}
-        {showFields.birthdate && (
-          <label id="indentation">
-            <input id="birthdate" type="date" placeholder="" required value={formData.birthdate} onChange={handleChange} />
-            <span>Дата рождения</span>
+          <label>
+            <input id="lastname" type="text" placeholder="" required value={formData.lastname} onChange={handleChange} />
+            <span>Фамилия</span>
           </label>
         )}
         {showFields.email && (
@@ -96,7 +88,6 @@ const Form = ({ showFields, formTitle, title_button }) => {
           </label>
         )}
         <button type="submit" className="submit">{title_button}</button>
-        <p className="signin">Уже есть аккаунт?<Link to='/authorization-account'> Войти</Link> </p>
       </form>
     </div>
   );

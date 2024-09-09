@@ -98,7 +98,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
                 </a>
               </div>
             </div>
-            <Link to="/registration-account">
+            <Link to="/authorization-account">
               <div className="personal-area">
                 <TbUserSquareRounded className="profile-icon" size={45} color="white" />
               </div>
