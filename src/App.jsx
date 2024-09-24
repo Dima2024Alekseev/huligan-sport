@@ -20,7 +20,7 @@ import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
 import "./style/config.css";
 import "./style/home.css";
-import logo_title from "./Components/img/log-club.png";
+import logo_title from "./img/log-club.png";
 import useTitle from './Components/UseTitle';
 import ScrollTop from './Components/ScrollTop';
 
