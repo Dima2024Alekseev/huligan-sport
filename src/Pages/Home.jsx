@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import NewsBlock from "../Components/News-Block";
 import StoreBlock from "../Components/Store-Block";
 import Contact from "../Components/Contact-Information";
-import Footer from "../Components/Footer";
+import Footer from "../Components/Footer/Footer";
 import postsData from "../data/posts.json"
 
 

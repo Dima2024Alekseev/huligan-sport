@@ -1,9 +1,9 @@
 import React from "react";
-import logo from "./img/footer-logo.png";
+import logo from "../img/footer-logo.png";
 import { Link } from 'react-router-dom';
 import { FaTelegram } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
-
+import "./style.css";
 class Footer extends React.Component {
     render() {
         return (
@@ -81,7 +81,7 @@ class Footer extends React.Component {
                 </div>
                 <div className="generalization">
                     <img className="logo-club" alt="" src={logo} />
-                    <span className="description">©Академия  боевых единоборств ХУЛИГАН, 2024</span>
+                    <span className="description">&#169;Академия  боевых единоборств ХУЛИГАН, 2024</span>
                 </div>
             </footer>
         )

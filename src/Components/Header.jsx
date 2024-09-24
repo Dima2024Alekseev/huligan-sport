@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import logo from "./img/header-icon.png";
+import logo from "../img/header-icon.png";
 import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
 import { TbUserSquareRounded } from "react-icons/tb";
 import { FaTelegram } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
-import video from "./video/club_2.mp4"
+import video from "../video/club_2.mp4";
 
 const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, showBlock }) => {
   useTitle(title, icon, innerTitle, linkText);

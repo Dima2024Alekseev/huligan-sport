@@ -51,7 +51,7 @@ const AnimatedRoutes = () => {
         </Routes>
       </CSSTransition>
     </TransitionGroup>
-  );
+  ); 
 };
 
 export default function App() {

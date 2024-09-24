@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { TbUserSquareRounded } from "react-icons/tb";
-import logo from "./img/header-icon.png";
+import logo from "../img/header-icon.png";
 
 const MobileMenu = ({ nav, setNav }) => {
     return (

@@ -2,7 +2,7 @@ import React from "react";
 import "../style/press-center.css"
 import Header from "../Components/Header";
 import Post from "../Components/Post"
-import Footer from "../Components/Footer";
+import Footer from "../Components/Footer/Footer";
 
 
 const Press = () => {

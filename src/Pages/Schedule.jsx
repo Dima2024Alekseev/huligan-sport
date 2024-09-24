@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+import Footer from "../Components/Footer/Footer";
 import "../style/schedule.css";
 
 const ScheduleControl = ({ selectedCategory, selectedDay, handleCategoryChange, handleDayChange }) => {

@@ -1,9 +1,9 @@
 import React from "react";
 import "../style/about.css";
 import Header from "../Components/Header";
-import photo_founder from "../Components/img/founder.jpg";
-import coach from "../Components/img/head-coach.jpg";
-import Footer from "../Components/Footer";
+import photo_founder from "../img/founder.jpg";
+import coach from "../img/head-coach.jpg";
+import Footer from "../Components/Footer/Footer";
 
 
 const About = () => {
