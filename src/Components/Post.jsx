@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ContentLoader from './Skeleton';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Pagination from './Pagination/Pagination';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(5);
     const navigate = useNavigate();
+    const mainRef = useRef(null);
 
     useEffect(() => {
         // Получение данных из API
@@ -33,6 +37,17 @@ const Posts = () => {
         navigate('/home');
     };
 
+    // Логика для получения текущих элементов
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = posts.slice(indexOfFirstItem, indexOfLastItem);
+
+    // Функция для изменения текущей страницы и прокрутки до элемента <main>
+    const paginate = pageNumber => {
+        setCurrentPage(pageNumber);
+        mainRef.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <div>
             {loading ? (
@@ -47,15 +62,24 @@ const Posts = () => {
                     </div>
                 </div>
             ) : (
-                posts.map(post => (
-                    <div className='news' key={post.id}>
-                        <h3>{post.text}</h3>
-                        {/* <p>{new Date(post.date * 1000).toLocaleString()}</p> */}
-                        {post.photoUrls && (
-                            <img src={post.photoUrls[0]} alt='' />
-                        )}
-                    </div>
-                ))
+                <>
+                    <main ref={mainRef}>
+                        {currentItems.map(post => (
+                            <div className='news' key={post.id}>
+                                <pre>{post.text}</pre>
+                                {/* <p>{new Date(post.date * 1000).toLocaleString()}</p> */}
+                                {post.photoUrls && (
+                                    <img src={post.photoUrls[0]} alt='' />
+                                )}
+                            </div>
+                        ))}
+                    </main>
+                    <Pagination
+                        itemsPerPage={itemsPerPage}
+                        totalItems={posts.length}
+                        paginate={paginate}
+                    />
+                </>
             )}
         </div>
     );

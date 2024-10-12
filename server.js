@@ -11,7 +11,7 @@ const app = express();
 const PORT = 5000;
 const myCache = new NodeCache({ stdTTL: 300 }); // Кэширование данных на 5 минут
 
-const ACCESS_TOKEN = 'vk1.a.JRi3rpmUhtiZ8X3cPmNGdiwy3C7xhbHSI76u110imU2VsgD99A-C1bkAtC5Xs1V9-KAn-armltwY4qcc8crO-5YXZIKwBpskmG9kjV7iBLMRwXC_lRCTH9tToNVo81AdDgPC839c3W6pZKvh1MIF_Uff-G88i_TISVdZbDHzRa-FKpgoWx6v2G1o4SWXS0nhI7UHFyXyX0K8rFkaCNh4JA';
+const ACCESS_TOKEN = 'vk1.a.zJMxju3C3MfCdyJ7Vy0FZA8E_BIjcm7nmdbFdxtqCh0Xdk_k7QqXYOzWMsD1kpeMq6sH7byBTowFKPBfIzlA6jzNIEBBWxXgh1VHmHYHVMlFDdYlBUHeG--1ZNA-RbMAB_c2vdHgj6f3GnMeal3-dt6nBznrs2hfOlrZteLT-pFGlcnEqLnjSkQUb6Zo6LT0MDSbMxiSSncX4DE6kfj08w';
 const GROUP_ID = '216523190';
 const FILE_PATH = path.join(__dirname, 'src', 'data', 'posts.json'); // Путь к файлу для сохранения постов
 const db = 'mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/news?retryWrites=true&w=majority&appName=Cluster0';

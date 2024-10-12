@@ -1,9 +1,8 @@
 import React from "react";
 import "../style/press-center.css"
 import Header from "../Components/Header";
-import Post from "../Components/Post"
+import Posts from "../Components/Post";
 import Footer from "../Components/Footer/Footer";
-
 
 const Press = () => {
     return (
@@ -15,9 +14,7 @@ const Press = () => {
                 linkText="Пресс-центр"
                 showGradient={true}
             />
-            <main>
-            <Post/>
-            </main>
+            <Posts />
             <Footer />
         </>
     );
