@@ -17,7 +17,7 @@ const MobileMenu = ({ nav, setNav }) => {
                     <div onClick={() => setNav(!nav)} className="mobile_btn">
                         {nav ? <AiOutlineClose color="white" size={40} /> : <AiOutlineMenu color="white" size={40} />}
                     </div>
-                    <Link to= '/registration-account'>
+                    <Link to= '/authorization-account'>
                     <div className="mobile-profile">
                         <TbUserSquareRounded color="white" size={40}/>
                     </div>

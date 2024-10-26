@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from "../img/header-icon.png";
 import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
-import { TbUserSquareRounded } from "react-icons/tb";
+import { TbUserSquareRounded, TbLogout } from "react-icons/tb";
 import { FaTelegram } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
@@ -13,6 +13,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
   useTitle(title, icon, innerTitle, linkText);
 
   const [nav, setNav] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
 
   useEffect(() => {
     if (showGradient) {
@@ -56,6 +57,12 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
     };
   }, [nav]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('isAuthenticated');
+    setIsAuthenticated(false);
+  };
+
   return (
     <div id={showGradient ? "inner" : ""}>
       <header id={showVideo ? "video-container" : ""}>
@@ -98,11 +105,17 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
                 </a>
               </div>
             </div>
-            <Link to="/authorization-account">
-              <div className="personal-area">
-                <TbUserSquareRounded className="profile-icon" size={45} color="white" />
+            {isAuthenticated ? (
+              <div className="personal-area" onClick={handleLogout}>
+                <TbLogout className="profile-icon" size={45} color="white" />
               </div>
-            </Link>
+            ) : (
+              <Link to="/authorization-account">
+                <div className="personal-area">
+                  <TbUserSquareRounded className="profile-icon" size={45} color="white" />
+                </div>
+              </Link>
+            )}
           </div>
           <MobileMenu nav={nav} setNav={setNav} />
         </div>

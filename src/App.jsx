@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Home from "./Pages/Home";
@@ -26,32 +26,35 @@ import ScrollTop from './Components/ScrollTop';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const nodeRef = useRef(null);
 
   return (
     <TransitionGroup>
-      <CSSTransition key={location.pathname} classNames="fade" timeout={150}>
-        <Routes location={location}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/boxing" element={<Boxing />} />
-          <Route path="/grappling" element={<Grappling />} />
-          <Route path="/hand-to-hand-combat" element={<Hand />} />
-          <Route path="/karate" element={<Karate />} />
-          <Route path="/kickboxing" element={<Kickboxing />} />
-          <Route path="/mma" element={<Mma />} />
-          <Route path="/womens-self-defense" element={<Women />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/press-center" element={<Press />} />
-          <Route path="/contact" element={<PageContact />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/online-store" element={<Store />} />
-          <Route path="/price" element={<Price />} />
-          <Route path="/authorization-account" element={<Authorization />} />
-          <Route path="/waiting-list" element={<Waiting />} />
-        </Routes>
+      <CSSTransition key={location.pathname} nodeRef={nodeRef} classNames="fade" timeout={150}>
+        <div ref={nodeRef}>
+          <Routes location={location}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/boxing" element={<Boxing />} />
+            <Route path="/grappling" element={<Grappling />} />
+            <Route path="/hand-to-hand-combat" element={<Hand />} />
+            <Route path="/karate" element={<Karate />} />
+            <Route path="/kickboxing" element={<Kickboxing />} />
+            <Route path="/mma" element={<Mma />} />
+            <Route path="/womens-self-defense" element={<Women />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/press-center" element={<Press />} />
+            <Route path="/contact" element={<PageContact />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/online-store" element={<Store />} />
+            <Route path="/price" element={<Price />} />
+            <Route path="/authorization-account" element={<Authorization />} />
+            <Route path="/waiting-list" element={<Waiting />} />
+          </Routes>
+        </div>
       </CSSTransition>
     </TransitionGroup>
-  ); 
+  );
 };
 
 export default function App() {

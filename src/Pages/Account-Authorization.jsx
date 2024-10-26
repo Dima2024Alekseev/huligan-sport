@@ -14,7 +14,8 @@ const Authorization = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/admin/login', formData);
       const { token } = response.data;
-      localStorage.setItem('token', token); // Сохранение токена в localStorage
+      localStorage.setItem('token', token);// Сохранение токена в localStorage
+      localStorage.setItem('isAuthenticated', 'true');
       navigate('/home'); // Перенаправление на главную страницу
     } catch (error) {
       setError(error.response?.data?.error || 'Произошла ошибка при авторизации');
