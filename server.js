@@ -5,24 +5,67 @@ const NodeCache = require('node-cache');
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
-const Post = require('./src/models/Post');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config();
 
 const app = express();
 const PORT = 5000;
 const myCache = new NodeCache({ stdTTL: 300 }); // Кэширование данных на 5 минут
 
-const ACCESS_TOKEN = 'vk1.a.zJMxju3C3MfCdyJ7Vy0FZA8E_BIjcm7nmdbFdxtqCh0Xdk_k7QqXYOzWMsD1kpeMq6sH7byBTowFKPBfIzlA6jzNIEBBWxXgh1VHmHYHVMlFDdYlBUHeG--1ZNA-RbMAB_c2vdHgj6f3GnMeal3-dt6nBznrs2hfOlrZteLT-pFGlcnEqLnjSkQUb6Zo6LT0MDSbMxiSSncX4DE6kfj08w';
-const GROUP_ID = '216523190';
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+const GROUP_ID = process.env.GROUP_ID;
 const FILE_PATH = path.join(__dirname, 'src', 'data', 'posts.json'); // Путь к файлу для сохранения постов
-const db = 'mongodb+srv://user:qaz123@cluster0.gc2mk.mongodb.net/news?retryWrites=true&w=majority&appName=Cluster0';
+const db = process.env.MONGO_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
+const ADMIN_LOGIN = process.env.ADMIN_LOGIN;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 // Подключение к базе данных MongoDB
 mongoose
   .connect(db)
-  .then(() => console.log('Соединенние с БД установленно'))
+  .then(async () => {
+    console.log('Соединенние с БД установленно');
+
+    // Проверка наличия администратора в базе данных
+    const adminExists = await Admin.findOne({ login: ADMIN_LOGIN });
+    if (!adminExists) {
+      const newAdmin = new Admin({
+        login: ADMIN_LOGIN,
+        password: ADMIN_PASSWORD // Пароль будет хеширован перед сохранением
+      });
+      await newAdmin.save();
+      console.log('Администратор создан');
+    }
+  })
   .catch((error) => console.log(error));
 
 app.use(cors());
+app.use(express.json());
+
+// Модель для постов
+const postSchema = new mongoose.Schema({
+  id: Number,
+  text: String,
+  photoUrls: [String]
+});
+const Post = mongoose.model('Post', postSchema);
+
+// Модель для администратора
+const adminSchema = new mongoose.Schema({
+  login: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
+});
+
+adminSchema.pre('save', async function(next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+  next();
+});
+
+const Admin = mongoose.model('Admin', adminSchema);
 
 // Фильтр для удаления ссылок вида [id... из текста
 const removeLinksFromText = (text) => {
@@ -108,6 +151,29 @@ const checkForNewPosts = async () => {
 
 // Запуск периодической проверки новых новостей каждые 30 секунд
 setInterval(checkForNewPosts, 30000);
+
+// Маршрут для авторизации администратора
+app.post('/api/admin/login', async (req, res) => {
+  const { login, password } = req.body;
+
+  try {
+    const admin = await Admin.findOne({ login });
+    if (!admin) {
+      return res.status(401).json({ error: 'Неверный login или пароль' });
+    }
+
+    const isMatch = await bcrypt.compare(password, admin.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Неверный login или пароль' });
+    }
+
+    const token = jwt.sign({ id: admin._id }, JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token });
+  } catch (error) {
+    console.error('Ошибка при авторизации:', error);
+    res.status(500).json({ error: 'Ошибка при авторизации' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

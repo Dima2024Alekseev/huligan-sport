@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-
-const Form = ({ showFields, formTitle, title_button }) => {
+const Form = ({ showFields, formTitle, title_button, onSubmit }) => {
   const [formData, setFormData] = useState({
+    login: '',
+    password: '',
     name: '',
     lastname: '',
     email: '',
-    password: '',
     confirmPassword: '',
     phone: '',
     age: '',
@@ -23,14 +23,30 @@ const Form = ({ showFields, formTitle, title_button }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Обработка отправки формы
-    console.log(formData);
+    if (onSubmit) {
+      onSubmit(formData);
+    } else {
+      // Обработка отправки формы
+      console.log(formData);
+    }
   };
 
   return (
     <div className="content-registration">
       <form onSubmit={handleSubmit}>
         <p className="form-title">{formTitle}</p>
+        {showFields.login && (
+          <label id="indentation">
+            <input id="login" type="text" placeholder="" required value={formData.login} onChange={handleChange} />
+            <span>Логин</span>
+          </label>
+        )}
+        {showFields.password && (
+          <label id="indentation">
+            <input id="password" type="password" placeholder="" required value={formData.password} onChange={handleChange} />
+            <span>Пароль</span>
+          </label>
+        )}
         {showFields.name && (
           <label>
             <input id="name" type="text" placeholder="" required value={formData.name} onChange={handleChange} />
@@ -47,12 +63,6 @@ const Form = ({ showFields, formTitle, title_button }) => {
           <label id="indentation">
             <input id="email" type="email" placeholder="" required value={formData.email} onChange={handleChange} />
             <span>Email</span>
-          </label>
-        )}
-        {showFields.password && (
-          <label id="indentation">
-            <input id="password" type="password" placeholder="" required value={formData.password} onChange={handleChange} />
-            <span>Пароль</span>
           </label>
         )}
         {showFields.confirmPassword && (
