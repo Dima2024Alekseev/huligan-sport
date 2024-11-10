@@ -1,3 +1,4 @@
+require('events').EventEmitter.defaultMaxListeners = 20;
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
@@ -159,12 +160,12 @@ app.post('/api/admin/login', async (req, res) => {
   try {
     const admin = await Admin.findOne({ login });
     if (!admin) {
-      return res.status(401).json({ error: 'Неверный login или пароль' });
+      return res.status(401).json({ error: '' });
     }
 
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
-      return res.status(401).json({ error: 'Неверный login или пароль' });
+      return res.status(401).json({ error: '' });
     }
 
     const token = jwt.sign({ id: admin._id }, JWT_SECRET, { expiresIn: '1h' });

@@ -70,11 +70,11 @@ class Footer extends React.Component {
                             </div>
                         </Link>
                         <div className="icons">
-                            <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
-                                <FaVk size={24} fill="rgba(193, 193, 193, 0.628)" />
+                            <a target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
+                                <FaVk className="footer_icons" size={24} fill="rgba(193, 193, 193, 0.628)" />
                             </a>
-                            <a className="icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
-                                <FaTelegram size={24} fill="rgba(193, 193, 193, 0.628)" />
+                            <a  target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
+                                <FaTelegram className="footer_icons" size={24} fill="rgba(193, 193, 193, 0.628)" />
                             </a>
                         </div>
                     </div>

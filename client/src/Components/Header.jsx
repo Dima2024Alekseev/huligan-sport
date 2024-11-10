@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import logo from "../img/header-icon.png";
 import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
@@ -58,9 +60,24 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
   }, [nav]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('isAuthenticated');
-    setIsAuthenticated(false);
+    confirmAlert({
+      title: 'Выход из учетной записи',
+      message: 'Вы точно хотите выйти из учетной записи?',
+      buttons: [
+        {
+          label: 'Да',
+          onClick: () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('isAuthenticated');
+            setIsAuthenticated(false);
+          }
+        },
+        {
+          label: 'Нет',
+          onClick: () => {}
+        }
+      ]
+    });
   };
 
   return (

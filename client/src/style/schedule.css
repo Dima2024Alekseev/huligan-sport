@@ -29,6 +29,7 @@
     background: transparent;
     border: none;
     color: black;
+    cursor: pointer;
 }
 
 .schedule-mounth select:focus,

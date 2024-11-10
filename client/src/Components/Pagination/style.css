@@ -4,13 +4,13 @@ nav {
     justify-content: center;
 }
 
-.pagination{
+.pagination {
     list-style-type: none;
     display: flex;
     gap: 10px;
 }
 
-li button{
+li button {
     padding: 15px 20px;
     color: white;
     background: red;
@@ -18,4 +18,9 @@ li button{
     border: none;
     border-radius: 5px;
     margin: 10px 0px;
+    cursor: pointer;
+}
+
+li button.active {
+    background: black;
 }

@@ -23,6 +23,7 @@ import "./style/home.css";
 import logo_title from "./img/log-club.png";
 import useTitle from './Components/UseTitle';
 import ScrollTop from './Components/ScrollTop';
+import { NotificationProvider } from './Components/NotificationContext'; // Импортируем провайдер уведомлений
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -61,9 +62,11 @@ export default function App() {
   useTitle("Хулиган. Академия боевых единоборств", logo_title);
 
   return (
-    <Router>
-      <ScrollTop />
-      <AnimatedRoutes />
-    </Router>
+    <NotificationProvider>
+      <Router>
+        <ScrollTop />
+        <AnimatedRoutes />
+      </Router>
+    </NotificationProvider>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/press-center.css"
+import "../style/press-center.css";
 import Header from "../Components/Header";
 import Posts from "../Components/Post";
 import Footer from "../Components/Footer/Footer";
@@ -14,7 +14,9 @@ const Press = () => {
                 linkText="Пресс-центр"
                 showGradient={true}
             />
-            <Posts />
+            <div className="news-container">
+                <Posts />
+            </div>
             <Footer />
         </>
     );

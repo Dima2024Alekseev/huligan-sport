@@ -48,21 +48,18 @@ footer {
     align-items: center;
     width: 25px;
     height: 25px;
-    transition: all 0.5s ease;
     gap: 10px;
     justify-content: center;
 }
 
-.icons_1:hover {
+.footer_icons{
+    transition: all 0.5s ease;
+}
+
+.footer_icons:hover{
     fill: #e3070e;
 }
 
-.icons_1 {
-    fill: rgba(255, 255, 255, 0.619);
-    text-decoration: none;
-    margin-right: 10px;
-    transition: all 0.5s ease;
-}
 
 svg.social {
     width: 2vw;

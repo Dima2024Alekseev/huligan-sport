@@ -8,7 +8,7 @@ const ScheduleControl = ({ selectedCategory, selectedDay, handleCategoryChange, 
     <section className="schedule_controler">
       <div className="schedule-mounth">
         <p>Категория:</p>
-        <select className="schedule" value={selectedCategory} onChange={handleCategoryChange}>
+        <select className="schedule"  value={selectedCategory} onChange={handleCategoryChange}>
           <option value="Выберите">Выберите</option>
           <option value="Дети соревновательная группа">Дети соревновательная группа</option>
           <option value="Дети средняя группа">Дети средняя группа</option>
