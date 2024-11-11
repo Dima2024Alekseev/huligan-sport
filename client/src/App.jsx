@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Home from "./Pages/Home";
 import About from "./Pages/About";
@@ -18,6 +18,7 @@ import Store from './Pages/Online-Store';
 import Price from './Pages/Price';
 import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
+import ScheduleEditor from './Pages/ScheduleEditor';
 import "./style/config.css";
 import "./style/home.css";
 import logo_title from "./img/log-club.png";
@@ -28,6 +29,20 @@ import { NotificationProvider } from './Components/NotificationContext'; // Им
 const AnimatedRoutes = () => {
   const location = useLocation();
   const nodeRef = useRef(null);
+
+  const isAuthenticated = () => {
+    const token = localStorage.getItem('token');
+    return token !== null;
+  };
+
+  const isAdmin = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      return decodedToken.role === 'admin';
+    }
+    return false;
+  };
 
   return (
     <TransitionGroup>
@@ -51,6 +66,10 @@ const AnimatedRoutes = () => {
             <Route path="/price" element={<Price />} />
             <Route path="/authorization-account" element={<Authorization />} />
             <Route path="/waiting-list" element={<Waiting />} />
+            <Route
+              path="/schedule-editor"
+              element={isAuthenticated() && isAdmin() ? <ScheduleEditor /> : <Navigate to="/authorization-account" />}
+            />
           </Routes>
         </div>
       </CSSTransition>

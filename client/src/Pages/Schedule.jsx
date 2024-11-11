@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
 import "../style/schedule.css";
@@ -8,7 +9,7 @@ const ScheduleControl = ({ selectedCategory, selectedDay, handleCategoryChange, 
     <section className="schedule_controler">
       <div className="schedule-mounth">
         <p>Категория:</p>
-        <select className="schedule"  value={selectedCategory} onChange={handleCategoryChange}>
+        <select className="schedule" value={selectedCategory} onChange={handleCategoryChange}>
           <option value="Выберите">Выберите</option>
           <option value="Дети соревновательная группа">Дети соревновательная группа</option>
           <option value="Дети средняя группа">Дети средняя группа</option>
@@ -65,6 +66,20 @@ const ScheduleTable = ({ scheduleData, selectedDay }) => {
 const Schedule = () => {
   const [selectedCategory, setSelectedCategory] = useState("Выберите");
   const [selectedDay, setSelectedDay] = useState("all");
+  const [scheduleData, setScheduleData] = useState([]);
+
+  useEffect(() => {
+    const fetchSchedule = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/schedule');
+        setScheduleData(response.data);
+      } catch (error) {
+        console.error('Ошибка при получении расписания:', error);
+      }
+    };
+
+    fetchSchedule();
+  }, []);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -73,13 +88,6 @@ const Schedule = () => {
   const handleDayChange = (event) => {
     setSelectedDay(event.target.value);
   };
-
-  const scheduleData = [
-    { time: "17:00", pn: "Дети соревновательная группа", vt: "", sr: "Дети соревновательная группа", ct: "", pt: "Дети соревновательная группа", sb: "" },
-    { time: "18:00", pn: "", vt: "Дети младшая группа", sr: "", ct: "Дети младшая группа", pt: "", sb: "Дети средняя группа / Дети младшая группа" },
-    { time: "19:00", pn: "ММА взрослые", vt: "Дети средняя группа", sr: "ММА взрослые", ct: "Дети средняя группа", pt: "ММА взрослые", sb: "" },
-    { time: "19:30", pn: "", vt: "Женская группа", sr: "", ct: "Женская группа", pt: "", sb: "" },
-  ];
 
   const filteredSchedule = scheduleData.filter(row => {
     if (selectedCategory !== "Выберите" && !Object.values(row).join(" ").includes(selectedCategory)) {

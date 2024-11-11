@@ -39,6 +39,22 @@ mongoose
       await newAdmin.save();
       console.log('Администратор создан');
     }
+
+    // Добавление текущего расписания в базу данных
+    const initialSchedule = [
+      { time: "17:00", pn: "Дети соревновательная группа", vt: "", sr: "Дети соревновательная группа", ct: "", pt: "Дети соревновательная группа", sb: "" },
+      { time: "18:00", pn: "", vt: "Дети младшая группа", sr: "", ct: "Дети младшая группа", pt: "", sb: "Дети средняя группа / Дети младшая группа" },
+      { time: "19:00", pn: "ММА взрослые", vt: "Дети средняя группа", sr: "ММА взрослые", ct: "Дети средняя группа", pt: "ММА взрослые", sb: "" },
+      { time: "19:30", pn: "", vt: "Женская группа", sr: "", ct: "Женская группа", pt: "", sb: "" },
+    ];
+
+    try {
+      await Schedule.deleteMany({}); // Удаление всех записей
+      await Schedule.insertMany(initialSchedule); // Вставка новых записей
+      console.log('Расписание инициализировано');
+    } catch (error) {
+      console.error('Ошибка при инициализации расписания:', error);
+    }
   })
   .catch((error) => console.log(error));
 
@@ -67,6 +83,18 @@ adminSchema.pre('save', async function(next) {
 });
 
 const Admin = mongoose.model('Admin', adminSchema);
+
+// Модель для расписания
+const scheduleSchema = new mongoose.Schema({
+  time: String,
+  pn: String,
+  vt: String,
+  sr: String,
+  ct: String,
+  pt: String,
+  sb: String
+});
+const Schedule = mongoose.model('Schedule', scheduleSchema);
 
 // Фильтр для удаления ссылок вида [id... из текста
 const removeLinksFromText = (text) => {
@@ -153,6 +181,30 @@ const checkForNewPosts = async () => {
 // Запуск периодической проверки новых новостей каждые 30 секунд
 setInterval(checkForNewPosts, 30000);
 
+// Middleware для проверки токена и роли
+const authMiddleware = (req, res, next) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+    return res.status(401).json({ error: 'Токен не предоставлен' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: 'Недействительный токен' });
+  }
+};
+
+const adminMiddleware = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Доступ запрещен' });
+  }
+  next();
+};
+
 // Маршрут для авторизации администратора
 app.post('/api/admin/login', async (req, res) => {
   const { login, password } = req.body;
@@ -168,11 +220,36 @@ app.post('/api/admin/login', async (req, res) => {
       return res.status(401).json({ error: '' });
     }
 
-    const token = jwt.sign({ id: admin._id }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: admin._id, role: 'admin' }, JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     console.error('Ошибка при авторизации:', error);
     res.status(500).json({ error: 'Ошибка при авторизации' });
+  }
+});
+
+// Маршрут для получения расписания
+app.get('/api/schedule', async (req, res) => {
+  try {
+    const schedule = await Schedule.find({});
+    res.json(schedule);
+  } catch (error) {
+    console.error('Ошибка при получении расписания:', error);
+    res.status(500).json({ error: 'Ошибка при получении расписания' });
+  }
+});
+
+// Маршрут для обновления расписания
+app.put('/api/schedule', authMiddleware, adminMiddleware, async (req, res) => {
+  const { schedule } = req.body;
+
+  try {
+    await Schedule.deleteMany({}); // Удаление всех записей
+    await Schedule.insertMany(schedule); // Вставка новых записей
+    res.json({ message: 'Расписание обновлено' });
+  } catch (error) {
+    console.error('Ошибка при обновлении расписания:', error);
+    res.status(500).json({ error: 'Ошибка при обновлении расписания' });
   }
 });
 
