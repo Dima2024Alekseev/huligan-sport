@@ -41,19 +41,19 @@
     color: rgba(0, 0, 0, 0.466);
 }
 
-table {
+.shedules {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 30px;
 }
 
-table td,
-table th {
+.shedules td,
+.shedules th {
     padding: 20px;
 }
 
-table td:not(:first-child) {
+.shedules td:not(:first-child) {
     background: linear-gradient(130deg, #000000 30%, rgba(125, 186, 232, 0) 100%),
         url(https://rcc-sport.ru/local/templates/main/img/bg-red.png) top right, #121212;
     color: white;
@@ -78,14 +78,14 @@ select:focus .schedule {
         flex-direction: column;
     }
 
-    table {
+    .shedules {
         width: 100%;
         overflow-x: auto;
         display: block;
     }
 
-    table td,
-    table th {
+    .shedules td,
+    .shedules th {
         padding: 25px 10px;
         font-size: 15px;
     }

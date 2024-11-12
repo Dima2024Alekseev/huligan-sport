@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Header from "../Components/Header";
-import Footer from "../Components/Footer/Footer";
-import "../style/schedule.css";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer/Footer";
+import "./schedule.css";
 
 const ScheduleControl = ({ selectedCategory, selectedDay, handleCategoryChange, handleDayChange }) => {
   return (
@@ -46,7 +46,7 @@ const ScheduleTable = ({ scheduleData, selectedDay }) => {
   };
 
   return (
-    <table>
+    <table className="shedules">
       <tbody>
         <tr>
           <th></th>

@@ -27,7 +27,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 mongoose
   .connect(db)
   .then(async () => {
-    console.log('Соединенние с БД установленно');
+    console.log('Соединение с БД установлено');
 
     // Проверка наличия администратора в базе данных
     const adminExists = await Admin.findOne({ login: ADMIN_LOGIN });
@@ -95,6 +95,30 @@ const scheduleSchema = new mongoose.Schema({
   sb: String
 });
 const Schedule = mongoose.model('Schedule', scheduleSchema);
+
+// Модель для пользователей
+const userSchema = new mongoose.Schema({
+  login: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: { type: String, default: 'user' }
+});
+
+userSchema.pre('save', async function(next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+  next();
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Модель для журнала посещаемости
+const attendanceSchema = new mongoose.Schema({
+  date: String,
+  studentName: String,
+  attendance: Boolean
+});
+const Attendance = mongoose.model('Attendance', attendanceSchema);
 
 // Фильтр для удаления ссылок вида [id... из текста
 const removeLinksFromText = (text) => {
@@ -250,6 +274,82 @@ app.put('/api/schedule', authMiddleware, adminMiddleware, async (req, res) => {
   } catch (error) {
     console.error('Ошибка при обновлении расписания:', error);
     res.status(500).json({ error: 'Ошибка при обновлении расписания' });
+  }
+});
+
+// Маршрут для получения пользователей
+app.get('/api/users', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json(users);
+  } catch (error) {
+    console.error('Ошибка при получении пользователей:', error);
+    res.status(500).json({ error: 'Ошибка при получении пользователей' });
+  }
+});
+
+// Маршрут для получения статистики
+app.get('/api/statistics', authMiddleware, adminMiddleware, async (req, res) => {
+  try {
+    const userCount = await User.countDocuments({});
+    const postCount = await Post.countDocuments({});
+    const scheduleCount = await Schedule.countDocuments({});
+    res.json({ userCount, postCount, scheduleCount });
+  } catch (error) {
+    console.error('Ошибка при получении статистики:', error);
+    res.status(500).json({ error: 'Ошибка при получении статистики' });
+  }
+});
+
+// Маршрут для получения данных посещаемости
+app.get('/api/attendance', async (req, res) => {
+  try {
+    const attendanceData = await Attendance.find({});
+    res.json(attendanceData);
+  } catch (error) {
+    console.error('Ошибка при получении данных посещаемости:', error);
+    res.status(500).json({ error: 'Ошибка при получении данных посещаемости' });
+  }
+});
+
+// Маршрут для обновления данных посещаемости
+app.put('/api/attendance', authMiddleware, adminMiddleware, async (req, res) => {
+  const { attendance } = req.body;
+
+  try {
+    await Attendance.deleteMany({}); // Удаление всех записей
+    await Attendance.insertMany(attendance); // Вставка новых записей
+    res.json({ message: 'Журнал посещаемости обновлен' });
+  } catch (error) {
+    console.error('Ошибка при обновлении журнала посещаемости:', error);
+    res.status(500).json({ error: 'Ошибка при обновлении журнала посещаемости' });
+  }
+});
+
+// Маршрут для добавления записи в журнал посещаемости
+app.post('/api/attendance', authMiddleware, adminMiddleware, async (req, res) => {
+  const { date, studentName, attendance } = req.body;
+
+  try {
+    const newEntry = new Attendance({ date, studentName, attendance });
+    await newEntry.save();
+    res.json({ message: 'Запись добавлена' });
+  } catch (error) {
+    console.error('Ошибка при добавлении записи:', error);
+    res.status(500).json({ error: 'Ошибка при добавлении записи' });
+  }
+});
+
+// Маршрут для удаления записи из журнала посещаемости
+app.delete('/api/attendance/:id', authMiddleware, adminMiddleware, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Attendance.findByIdAndDelete(id);
+    res.json({ message: 'Запись удалена' });
+  } catch (error) {
+    console.error('Ошибка при удалении записи:', error);
+    res.status(500).json({ error: 'Ошибка при удалении записи' });
   }
 });
 

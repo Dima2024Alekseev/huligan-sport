@@ -20,7 +20,7 @@ const Authorization = () => {
       localStorage.setItem('token', token); // Сохранение токена в localStorage
       localStorage.setItem('isAuthenticated', 'true');
       showNotification('Успешный вход!', 'success'); // Отображение уведомления
-      navigate('/home'); // Перенаправление на главную страницу
+      navigate('/admin-dashboard'); // Перенаправление на главную страницу
     } catch (error) {
       setError(error.response?.data?.error || '');
       showNotification('Ошибка авторизации', 'error'); // Отображение уведомления об ошибке

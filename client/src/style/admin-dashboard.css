@@ -1,0 +1,38 @@
+.admin-dashboard-content {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard-section {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard-section h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.admin-dashboard-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e3070e;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-dashboard-link:hover {
+    background-color: #e3070e;
+    color: white;
+    text-decoration: none;
+}

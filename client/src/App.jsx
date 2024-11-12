@@ -13,12 +13,14 @@ import Women from './Pages/Directions/Womens-Self-Defense';
 import Events from "./Pages/Events";
 import Press from './Pages/Press-Center';
 import PageContact from "./Pages/Page-Contact";
-import Schedule from "./Pages/Schedule";
+import Schedule from "./Pages/Schedules/Schedule";
 import Store from './Pages/Online-Store';
 import Price from './Pages/Price';
 import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
 import ScheduleEditor from './Pages/ScheduleEditor';
+import AdminDashboard from './Pages/AdminDashboard';
+import AttendanceJournal from './Pages/AttendanceJournal';
 import "./style/config.css";
 import "./style/home.css";
 import logo_title from "./img/log-club.png";
@@ -69,6 +71,13 @@ const AnimatedRoutes = () => {
             <Route
               path="/schedule-editor"
               element={isAuthenticated() && isAdmin() ? <ScheduleEditor /> : <Navigate to="/authorization-account" />}
+            />
+            <Route
+              path="/admin-dashboard"
+              element={isAuthenticated() && isAdmin() ? <AdminDashboard /> : <Navigate to="/authorization-account" />}
+            />
+            <Route
+              path="/attendance-journal" element={<AttendanceJournal />}
             />
           </Routes>
         </div>

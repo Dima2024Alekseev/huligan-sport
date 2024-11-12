@@ -1,4 +1,3 @@
-// Pages/ScheduleEditor.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from "../Components/Header";
@@ -26,9 +25,9 @@ const ScheduleEditor = () => {
     fetchSchedule();
   }, []);
 
-  const handleChange = (index, day, value) => {
+  const handleChange = (index, field, value) => {
     const newSchedule = [...scheduleData];
-    newSchedule[index][day] = value;
+    newSchedule[index][field] = value;
     setScheduleData(newSchedule);
   };
 
@@ -48,7 +47,12 @@ const ScheduleEditor = () => {
 
   return (
     <>
-      <Header title='Редактирование расписания' />
+      <Header
+        title='Редактирование расписания'
+        showBlock={true}
+        innerTitle="Редактирование расписания"
+        linkText="Редактирование расписания"
+        showGradient={true} />
       <main className="schedule-editor-content">
         <table>
           <tbody>
@@ -63,7 +67,7 @@ const ScheduleEditor = () => {
             </tr>
             {scheduleData.map((row, index) => (
               <tr key={index}>
-                <td><strong>{row.time}</strong></td>
+                <td><input value={row.time} onChange={(e) => handleChange(index, 'time', e.target.value)} /></td>
                 <td><input value={row.pn} onChange={(e) => handleChange(index, 'pn', e.target.value)} /></td>
                 <td><input value={row.vt} onChange={(e) => handleChange(index, 'vt', e.target.value)} /></td>
                 <td><input value={row.sr} onChange={(e) => handleChange(index, 'sr', e.target.value)} /></td>
