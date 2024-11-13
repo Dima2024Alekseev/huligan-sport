@@ -75,7 +75,7 @@ const adminSchema = new mongoose.Schema({
   password: { type: String, required: true }
 });
 
-adminSchema.pre('save', async function(next) {
+adminSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
@@ -103,7 +103,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: 'user' }
 });
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 10);
   }
@@ -114,9 +114,14 @@ const User = mongoose.model('User', userSchema);
 
 // Модель для журнала посещаемости
 const attendanceSchema = new mongoose.Schema({
-  date: String,
   studentName: String,
-  attendance: Boolean
+  group: String,
+  month: Number,
+  attendance: {
+    type: Map,
+    of: Boolean
+  },
+  days: [Number] // Добавьте это поле
 });
 const Attendance = mongoose.model('Attendance', attendanceSchema);
 
@@ -301,10 +306,20 @@ app.get('/api/statistics', authMiddleware, adminMiddleware, async (req, res) => 
   }
 });
 
-// Маршрут для получения данных посещаемости
+// Маршрут для получения данных посещаемости с фильтрацией по месяцу и группе
 app.get('/api/attendance', async (req, res) => {
+  const { month, group } = req.query;
+
   try {
-    const attendanceData = await Attendance.find({});
+    let filter = {};
+    if (group) {
+      filter.group = group;
+    }
+    if (month) {
+      filter.month = parseInt(month, 10);
+    }
+
+    const attendanceData = await Attendance.find(filter);
     res.json(attendanceData);
   } catch (error) {
     console.error('Ошибка при получении данных посещаемости:', error);
@@ -317,8 +332,14 @@ app.put('/api/attendance', authMiddleware, adminMiddleware, async (req, res) => 
   const { attendance } = req.body;
 
   try {
-    await Attendance.deleteMany({}); // Удаление всех записей
-    await Attendance.insertMany(attendance); // Вставка новых записей
+    for (const entry of attendance) {
+      const existingEntry = await Attendance.findOne({ studentName: entry.studentName, group: entry.group, month: entry.month });
+      if (existingEntry) {
+        await Attendance.updateOne({ _id: existingEntry._id }, { $set: entry });
+      } else {
+        await Attendance.create(entry);
+      }
+    }
     res.json({ message: 'Журнал посещаемости обновлен' });
   } catch (error) {
     console.error('Ошибка при обновлении журнала посещаемости:', error);
@@ -328,10 +349,10 @@ app.put('/api/attendance', authMiddleware, adminMiddleware, async (req, res) => 
 
 // Маршрут для добавления записи в журнал посещаемости
 app.post('/api/attendance', authMiddleware, adminMiddleware, async (req, res) => {
-  const { date, studentName, attendance } = req.body;
+  const { studentName, group, month, attendance, days } = req.body;
 
   try {
-    const newEntry = new Attendance({ date, studentName, attendance });
+    const newEntry = new Attendance({ studentName, group, month, attendance, days });
     await newEntry.save();
     res.json({ message: 'Запись добавлена' });
   } catch (error) {
