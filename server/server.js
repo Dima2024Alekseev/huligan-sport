@@ -366,6 +366,10 @@ app.delete('/api/attendance/:id', authMiddleware, adminMiddleware, async (req, r
   const { id } = req.params;
 
   try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Неверный формат _id' });
+    }
+
     await Attendance.findByIdAndDelete(id);
     res.json({ message: 'Запись удалена' });
   } catch (error) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { confirmAlert } from 'react-confirm-alert'; 
+import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import logo from "../img/header-icon.png";
 import Navbar from "./Navbar";
@@ -11,7 +11,7 @@ import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
 import video from "../video/club_2.mp4";
 
-const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, showBlock }) => {
+const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, showBlock, onLogout }) => {
   useTitle(title, icon, innerTitle, linkText);
 
   const [nav, setNav] = useState(false);
@@ -70,6 +70,9 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
             localStorage.removeItem('token');
             localStorage.removeItem('isAuthenticated');
             setIsAuthenticated(false);
+            if (onLogout) {
+              onLogout();
+            }
           }
         },
         {

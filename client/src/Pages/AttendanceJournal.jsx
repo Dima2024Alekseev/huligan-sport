@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
@@ -13,20 +13,22 @@ const AttendanceJournal = () => {
   const [daysToDisplay, setDaysToDisplay] = useState([]); // Начальные числа месяца
   const [newDay, setNewDay] = useState('');
 
+  const fetchAttendanceData = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/attendance', {
+        params: { group: selectedGroup, month: selectedMonth }
+      });
+      setAttendanceData(response.data);
+      const days = response.data.flatMap(entry => entry.days);
+      setDaysToDisplay([...new Set(days)].sort((a, b) => a - b)); // Удаление дубликатов и сортировка
+      console.log('Загруженные данные:', response.data);
+    } catch (error) {
+      console.error('Ошибка при получении данных посещаемости:', error);
+    }
+  }, [selectedGroup, selectedMonth]);
+
   useEffect(() => {
-    const fetchAttendanceData = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/api/attendance', {
-          params: { group: selectedGroup, month: selectedMonth }
-        });
-        setAttendanceData(response.data);
-        const days = response.data.flatMap(entry => entry.days);
-        setDaysToDisplay([...new Set(days)].sort((a, b) => a - b)); // Удаление дубликатов и сортировка
-        console.log('Загруженные данные:', response.data);
-      } catch (error) {
-        console.error('Ошибка при получении данных посещаемости:', error);
-      }
-    };
+    fetchAttendanceData();
 
     const checkAdmin = () => {
       const token = localStorage.getItem('token');
@@ -36,9 +38,8 @@ const AttendanceJournal = () => {
       }
     };
 
-    fetchAttendanceData();
     checkAdmin();
-  }, [selectedGroup, selectedMonth]);
+  }, [selectedGroup, selectedMonth, fetchAttendanceData]);
 
   const handleChange = (index, field, value) => {
     const newAttendanceData = [...attendanceData];
@@ -83,9 +84,10 @@ const AttendanceJournal = () => {
           'Authorization': token
         }
       });
-      setAttendanceData([...attendanceData, newEntryWithMonth]);
       setNewEntry({ studentName: '', group: 'group1', month: new Date().getMonth() + 1, attendance: {}, days: [] });
       alert('Запись добавлена');
+      // Обновление данных после добавления новой записи
+      fetchAttendanceData();
     } catch (error) {
       console.error('Ошибка при добавлении записи:', error);
     }
@@ -107,10 +109,13 @@ const AttendanceJournal = () => {
   };
 
   const handleAddDay = () => {
-    if (newDay && !daysToDisplay.includes(parseInt(newDay, 10))) {
-      setDaysToDisplay([...daysToDisplay, parseInt(newDay, 10)].sort((a, b) => a - b));
+    const day = parseInt(newDay, 10);
+    if (day && day >= 1 && day <= 31 && !daysToDisplay.includes(day)) {
+      setDaysToDisplay([...daysToDisplay, day].sort((a, b) => a - b));
       setNewDay('');
-      console.log('Добавлен новый день:', newDay);
+      console.log('Добавлен новый день:', day);
+    } else {
+      alert('Пожалуйста, введите число от 1 до 31.');
     }
   };
 
@@ -135,10 +140,10 @@ const AttendanceJournal = () => {
         <tbody>
           {attendanceData.map((entry, index) => (
             <tr key={entry._id}>
-              <td>{index + 1}</td>
+              <td className='element-center'>{index + 1}</td>
               <td>{isAdmin ? <input value={entry.studentName} onChange={(e) => handleChange(index, 'studentName', e.target.value)} /> : entry.studentName}</td>
               {daysToDisplay.map((day) => (
-                <td key={day}>
+                <td key={day} className='element-center'>
                   {isAdmin ? (
                     <input
                       type="checkbox"
@@ -151,7 +156,7 @@ const AttendanceJournal = () => {
                 </td>
               ))}
               {isAdmin && (
-                <td>
+                <td className='element-center'>
                   <button onClick={() => handleDeleteEntry(entry._id)}>Удалить</button>
                 </td>
               )}
@@ -162,6 +167,26 @@ const AttendanceJournal = () => {
     );
   };
 
+  const getMonthName = (month) => {
+    const months = [
+      'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+      'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+    ];
+    return months[month - 1];
+  };
+
+  const getMonthNameGenitive = (month) => {
+    const monthsGenitive = [
+      'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+    ];
+    return monthsGenitive[month - 1];
+  };
+
+  const handleLogout = () => {
+    setIsAdmin(false);
+  };
+
   return (
     <>
       <Header
@@ -170,70 +195,23 @@ const AttendanceJournal = () => {
         innerTitle="Журнал посещаемости"
         linkText="Журнал посещаемости"
         showGradient={true}
+        onLogout={handleLogout}
       />
       <main className="attendance-journal-content">
         <section className="attendance-journal-section">
-          <h2>Журнал посещаемости</h2>
-          <div>
-            <label>Выберите группу: </label>
-            <select value={selectedGroup} onChange={(e) => setSelectedGroup(e.target.value)}>
-              <option value="group1">Группа 1</option>
-              <option value="group2">Группа 2</option>
-              <option value="group3">Группа 3</option>
-            </select>
-          </div>
-          <div>
-            <label>Выберите месяц: </label>
-            <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
-              <option value="1">Январь</option>
-              <option value="2">Февраль</option>
-              <option value="3">Март</option>
-              <option value="4">Апрель</option>
-              <option value="5">Май</option>
-              <option value="6">Июнь</option>
-              <option value="7">Июль</option>
-              <option value="8">Август</option>
-              <option value="9">Сентябрь</option>
-              <option value="10">Октябрь</option>
-              <option value="11">Ноябрь</option>
-              <option value="12">Декабрь</option>
-            </select>
-          </div>
-          {isAdmin && (
-            <div>
-              <h3>Управление столбцами</h3>
-              <input
-                type="number"
-                placeholder="Добавить число"
-                value={newDay}
-                onChange={(e) => setNewDay(e.target.value)}
-              />
-              <button onClick={handleAddDay}>Добавить</button>
-              <ul>
-                {daysToDisplay.map((day) => (
-                  <li key={day}>
-                    {day} <button onClick={() => handleRemoveDay(day)}>Удалить</button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {renderAttendanceTable()}
-          {isAdmin && (
-            <div className="attendance-journal-add-entry">
-              <h3>Добавить запись</h3>
-              <input
-                type="text"
-                placeholder="Имя студента"
-                value={newEntry.studentName}
-                onChange={(e) => setNewEntry({ ...newEntry, studentName: e.target.value })}
-              />
-              <select value={newEntry.group} onChange={(e) => setNewEntry({ ...newEntry, group: e.target.value })}>
+          <h1>Журнал посещаемости</h1>
+          <div className='group-and-month'>
+            <div className='group'>
+              <label>Выберите группу: </label>
+              <select value={selectedGroup} onChange={(e) => setSelectedGroup(e.target.value)}>
                 <option value="group1">Группа 1</option>
                 <option value="group2">Группа 2</option>
                 <option value="group3">Группа 3</option>
               </select>
-              <select value={newEntry.month} onChange={(e) => setNewEntry({ ...newEntry, month: e.target.value })}>
+            </div>
+            <div className='month'>
+              <label>Выберите месяц: </label>
+              <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
                 <option value="1">Январь</option>
                 <option value="2">Февраль</option>
                 <option value="3">Март</option>
@@ -247,7 +225,64 @@ const AttendanceJournal = () => {
                 <option value="11">Ноябрь</option>
                 <option value="12">Декабрь</option>
               </select>
-              <button onClick={handleAddEntry}>Добавить</button>
+            </div>
+          </div>
+          <h1 className="current-month">{getMonthName(selectedMonth)}</h1>
+          {renderAttendanceTable()}
+          {isAdmin && (
+            <div className="attendance-journal-add-entry">
+              <h3>Добавить запись</h3>
+              <input
+                type="text"
+                placeholder="Имя студента"
+                value={newEntry.studentName}
+                onChange={(e) => setNewEntry({ ...newEntry, studentName: e.target.value })}
+              />
+              <div className='create-student-group-month'>
+                <div>
+                  <select value={newEntry.group} onChange={(e) => setNewEntry({ ...newEntry, group: e.target.value })}>
+                    <option value="group1">Группа 1</option>
+                    <option value="group2">Группа 2</option>
+                    <option value="group3">Группа 3</option>
+                  </select>
+                </div>
+                <div>
+                  <select value={newEntry.month} onChange={(e) => setNewEntry({ ...newEntry, month: e.target.value })}>
+                    <option value="1">Январь</option>
+                    <option value="2">Февраль</option>
+                    <option value="3">Март</option>
+                    <option value="4">Апрель</option>
+                    <option value="5">Май</option>
+                    <option value="6">Июнь</option>
+                    <option value="7">Июль</option>
+                    <option value="8">Август</option>
+                    <option value="9">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <button className='create' onClick={handleAddEntry}>Добавить</button>
+                <h3>Добавить дни</h3>
+                <input
+                  type="number"
+                  placeholder="Добавить число"
+                  value={newDay}
+                  onChange={(e) => setNewDay(e.target.value)}
+                  min="1"
+                  max="31"
+                />
+                <button className='create-days' onClick={handleAddDay}>Добавить</button>
+                <ul className="days-list">
+                  {daysToDisplay.map((day) => (
+                    <li key={day}>
+                      {day} {getMonthNameGenitive(selectedMonth)} <button onClick={() => handleRemoveDay(day)}>Удалить</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           )}
           {isAdmin && (

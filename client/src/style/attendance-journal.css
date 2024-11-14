@@ -1,6 +1,5 @@
 .attendance-journal-content {
   padding: 40px;
-  max-width: 1200px;
   margin: 0 auto;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -25,6 +24,8 @@
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .attendance-journal-section th,
@@ -71,6 +72,10 @@
   margin-top: 20px;
 }
 
+.attendance-journal-add-entry select {
+  width: 100%;
+}
+
 .attendance-journal-add-entry h3 {
   margin-bottom: 10px;
 }
@@ -87,4 +92,81 @@
 .attendance-journal-save-all button {
   padding: 10px 20px;
   font-size: 16px;
+}
+
+.element-center {
+  text-align: center;
+}
+
+.group,
+.month {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.group select,
+.month select {
+  width: 100%;
+  padding: 10px 30px 10px 10px;
+}
+
+.group-and-month {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.group label,
+.month label {
+  white-space: nowrap;
+}
+
+.current-month {
+  text-align: right;
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.create-student-group-month {
+  display: flex;
+  gap: 10px;
+}
+
+.create-student-group-month div select {
+  width: 100%;
+  padding: 10px 30px 10px 10px;
+}
+
+.create {
+  margin: 20px 0px;
+}
+.create-days{
+  margin: 10px 0px;
+}
+
+.days-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.days-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(33.333% - 10px);
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.days-list button {
+  margin-left: auto;
 }
