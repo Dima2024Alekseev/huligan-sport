@@ -1,4 +1,3 @@
-require('events').EventEmitter.defaultMaxListeners = 20;
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
@@ -124,6 +123,12 @@ const attendanceSchema = new mongoose.Schema({
   days: [Number] // Добавьте это поле
 });
 const Attendance = mongoose.model('Attendance', attendanceSchema);
+
+// Модель для групп
+const groupSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true }
+});
+const Group = mongoose.model('Group', groupSchema);
 
 // Фильтр для удаления ссылок вида [id... из текста
 const removeLinksFromText = (text) => {
@@ -333,7 +338,7 @@ app.put('/api/attendance', authMiddleware, adminMiddleware, async (req, res) => 
 
   try {
     for (const entry of attendance) {
-      const existingEntry = await Attendance.findOne({ studentName: entry.studentName, group: entry.group, month: entry.month });
+      const existingEntry = await Attendance.findOne({ _id: entry._id });
       if (existingEntry) {
         await Attendance.updateOne({ _id: existingEntry._id }, { $set: entry });
       } else {
@@ -375,6 +380,86 @@ app.delete('/api/attendance/:id', authMiddleware, adminMiddleware, async (req, r
   } catch (error) {
     console.error('Ошибка при удалении записи:', error);
     res.status(500).json({ error: 'Ошибка при удалении записи' });
+  }
+});
+
+// Маршрут для получения групп
+app.get('/api/groups', async (req, res) => {
+  try {
+    const groups = await Group.find({});
+    res.json(groups.map(group => group.name));
+  } catch (error) {
+    console.error('Ошибка при получении групп:', error);
+    res.status(500).json({ error: 'Ошибка при получении групп' });
+  }
+});
+
+// Маршрут для добавления группы
+app.post('/api/groups', authMiddleware, adminMiddleware, async (req, res) => {
+  const { name } = req.body;
+
+  try {
+    const newGroup = new Group({ name });
+    await newGroup.save();
+    res.json({ message: 'Группа добавлена' });
+  } catch (error) {
+    console.error('Ошибка при добавлении группы:', error);
+    res.status(500).json({ error: 'Ошибка при добавлении группы' });
+  }
+});
+
+// Маршрут для удаления группы
+app.delete('/api/groups/:name', authMiddleware, adminMiddleware, async (req, res) => {
+  const { name } = req.params;
+
+  try {
+    await Group.findOneAndDelete({ name });
+    res.json({ message: 'Группа удалена' });
+  } catch (error) {
+    console.error('Ошибка при удалении группы:', error);
+    res.status(500).json({ error: 'Ошибка при удалении группы' });
+  }
+});
+
+// Маршрут для обновления группы
+app.put('/api/groups/:name', authMiddleware, adminMiddleware, async (req, res) => {
+  const { name } = req.params;
+  const { newName } = req.body;
+
+  try {
+    await Group.findOneAndUpdate({ name }, { name: newName });
+    await Attendance.updateMany({ group: name }, { $set: { group: newName } });
+    res.json({ message: 'Группа обновлена' });
+  } catch (error) {
+    console.error('Ошибка при обновлении группы:', error);
+    res.status(500).json({ error: 'Ошибка при обновлении группы' });
+  }
+});
+
+// Маршрут для копирования данных посещаемости на следующий месяц
+app.post('/api/attendance/copy', authMiddleware, adminMiddleware, async (req, res) => {
+  const { group, month } = req.body;
+
+  try {
+    const currentMonth = parseInt(month, 10);
+    const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
+
+    const currentAttendance = await Attendance.find({ group, month: currentMonth });
+
+    const nextAttendance = currentAttendance.map(entry => ({
+      ...entry.toObject(),
+      _id: new mongoose.Types.ObjectId(), // Создание нового _id для новой записи
+      month: nextMonth,
+      attendance: {}, // Очистка данных посещаемости
+      days: [] // Очистка дней
+    }));
+
+    await Attendance.insertMany(nextAttendance);
+
+    res.json({ message: 'Данные посещаемости скопированы на следующий месяц' });
+  } catch (error) {
+    console.error('Ошибка при копировании данных посещаемости:', error);
+    res.status(500).json({ error: 'Ошибка при копировании данных посещаемости' });
   }
 });
 

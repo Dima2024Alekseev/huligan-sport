@@ -85,7 +85,7 @@
 }
 
 .attendance-journal-save-all {
-  margin-top: 20px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -168,5 +168,37 @@
 }
 
 .days-list button {
+  margin-left: auto;
+}
+
+.attendance-journal-add-group{
+  margin-top: 20px;
+  
+}
+
+.attendance-journal-add-group h3{
+  margin-bottom: 20px;
+}
+
+.groups-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.groups-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(33.333% - 10px);
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.groups-list button {
   margin-left: auto;
 }

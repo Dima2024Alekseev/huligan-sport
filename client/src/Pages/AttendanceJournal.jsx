@@ -7,11 +7,14 @@ import "../style/attendance-journal.css"; // Импорт CSS стилей
 const AttendanceJournal = () => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [newEntry, setNewEntry] = useState({ studentName: '', group: 'group1', month: new Date().getMonth() + 1, attendance: {}, days: [] });
-  const [selectedGroup, setSelectedGroup] = useState('group1');
+  const [newEntry, setNewEntry] = useState({ studentName: '', group: '', month: new Date().getMonth() + 1, attendance: {}, days: [] });
+  const [selectedGroup, setSelectedGroup] = useState('');
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1); // Текущий месяц по умолчанию
   const [daysToDisplay, setDaysToDisplay] = useState([]); // Начальные числа месяца
   const [newDay, setNewDay] = useState('');
+  const [groups, setGroups] = useState([]); // Список групп
+  const [newGroup, setNewGroup] = useState(''); // Новая группа
+  const [editingGroup, setEditingGroup] = useState(null); // Группа, которую редактируем
 
   const fetchAttendanceData = useCallback(async () => {
     try {
@@ -27,8 +30,22 @@ const AttendanceJournal = () => {
     }
   }, [selectedGroup, selectedMonth]);
 
+  const fetchGroups = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/groups');
+      setGroups(response.data);
+      if (response.data.length > 0) {
+        setSelectedGroup(response.data[0]);
+        setNewEntry(prevEntry => ({ ...prevEntry, group: response.data[0] })); // Устанавливаем группу для новой записи
+        console.log('Первая группа:', response.data[0]);
+      }
+    } catch (error) {
+      console.error('Ошибка при получении групп:', error);
+    }
+  }, []);
+
   useEffect(() => {
-    fetchAttendanceData();
+    fetchGroups();
 
     const checkAdmin = () => {
       const token = localStorage.getItem('token');
@@ -39,6 +56,12 @@ const AttendanceJournal = () => {
     };
 
     checkAdmin();
+  }, [fetchGroups]);
+
+  useEffect(() => {
+    if (selectedGroup) {
+      fetchAttendanceData();
+    }
   }, [selectedGroup, selectedMonth, fetchAttendanceData]);
 
   const handleChange = (index, field, value) => {
@@ -79,17 +102,20 @@ const AttendanceJournal = () => {
         month: parseInt(newEntry.month, 10),
         days: daysToDisplay // Добавьте дни к новой записи
       };
-      await axios.post('http://localhost:5000/api/attendance', newEntryWithMonth, {
+      console.log('Новая запись:', newEntryWithMonth);
+      const response = await axios.post('http://localhost:5000/api/attendance', newEntryWithMonth, {
         headers: {
           'Authorization': token
         }
       });
-      setNewEntry({ studentName: '', group: 'group1', month: new Date().getMonth() + 1, attendance: {}, days: [] });
+      console.log('Ответ сервера:', response.data);
+      setNewEntry({ studentName: '', group: selectedGroup, month: new Date().getMonth() + 1, attendance: {}, days: [] });
       alert('Запись добавлена');
       // Обновление данных после добавления новой записи
       fetchAttendanceData();
     } catch (error) {
       console.error('Ошибка при добавлении записи:', error);
+      alert('Ошибка при добавлении записи: ' + error.message);
     }
   };
 
@@ -122,6 +148,73 @@ const AttendanceJournal = () => {
   const handleRemoveDay = (day) => {
     setDaysToDisplay(daysToDisplay.filter(d => d !== day).sort((a, b) => a - b));
     console.log('Удален день:', day);
+  };
+
+  const handleAddGroup = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/groups', { name: newGroup }, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      setNewGroup('');
+      fetchGroups();
+      alert('Группа добавлена');
+    } catch (error) {
+      console.error('Ошибка при добавлении группы:', error);
+    }
+  };
+
+  const handleDeleteGroup = async (group) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:5000/api/groups/${group}`, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      fetchGroups();
+      alert('Группа удалена');
+    } catch (error) {
+      console.error('Ошибка при удалении группы:', error);
+    }
+  };
+
+  const handleEditGroup = (group) => {
+    setEditingGroup(group);
+    setNewGroup(group);
+  };
+
+  const handleUpdateGroup = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.put(`http://localhost:5000/api/groups/${editingGroup}`, { newName: newGroup }, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      setEditingGroup(null);
+      setNewGroup('');
+      fetchGroups(); // Обновление списка групп после обновления группы
+      alert('Группа обновлена');
+    } catch (error) {
+      console.error('Ошибка при обновлении группы:', error);
+    }
+  };
+
+  const handleCopyAttendance = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/attendance/copy', { group: selectedGroup, month: selectedMonth }, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      alert('Данные посещаемости скопированы на следующий месяц');
+    } catch (error) {
+      console.error('Ошибка при копировании данных посещаемости:', error);
+    }
   };
 
   const renderAttendanceTable = () => {
@@ -203,10 +296,15 @@ const AttendanceJournal = () => {
           <div className='group-and-month'>
             <div className='group'>
               <label>Выберите группу: </label>
-              <select value={selectedGroup} onChange={(e) => setSelectedGroup(e.target.value)}>
-                <option value="group1">Группа 1</option>
-                <option value="group2">Группа 2</option>
-                <option value="group3">Группа 3</option>
+              <select value={selectedGroup} onChange={(e) => {
+                const selectedGroup = e.target.value;
+                setSelectedGroup(selectedGroup);
+                setNewEntry(prevEntry => ({ ...prevEntry, group: selectedGroup })); // Устанавливаем группу для новой записи
+                console.log('Выбрана группа:', selectedGroup);
+              }}>
+                {groups.map((group) => (
+                  <option key={group} value={group}>{group}</option>
+                ))}
               </select>
             </div>
             <div className='month'>
@@ -241,9 +339,9 @@ const AttendanceJournal = () => {
               <div className='create-student-group-month'>
                 <div>
                   <select value={newEntry.group} onChange={(e) => setNewEntry({ ...newEntry, group: e.target.value })}>
-                    <option value="group1">Группа 1</option>
-                    <option value="group2">Группа 2</option>
-                    <option value="group3">Группа 3</option>
+                    {groups.map((group) => (
+                      <option key={group} value={group}>{group}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -286,8 +384,32 @@ const AttendanceJournal = () => {
             </div>
           )}
           {isAdmin && (
+            <div className="attendance-journal-add-group">
+              <h3>Добавить группу</h3>
+              <input
+                type="text"
+                placeholder="Название группы"
+                value={newGroup}
+                onChange={(e) => setNewGroup(e.target.value)}
+              />
+              <button className='create-group create' onClick={editingGroup ? handleUpdateGroup : handleAddGroup}>
+                {editingGroup ? 'Обновить' : 'Добавить'}
+              </button>
+              <ul className="groups-list">
+                {groups.map((group) => (
+                  <li key={group}>
+                    {group}
+                    <button onClick={() => handleEditGroup(group)}>Редактировать</button>
+                    <button onClick={() => handleDeleteGroup(group)}>Удалить</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {isAdmin && (
             <div className="attendance-journal-save-all">
               <button onClick={handleSave}>Сохранить все изменения</button>
+              <button onClick={handleCopyAttendance}>Копировать данные на следующий месяц</button>
             </div>
           )}
         </section>
