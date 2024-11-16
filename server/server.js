@@ -392,6 +392,9 @@ app.post('/api/attendance/copy', authMiddleware, adminMiddleware, async (req, re
     const currentMonth = parseInt(month, 10);
     const nextMonth = currentMonth === 12 ? 1 : currentMonth + 1;
 
+    // Удаление всех записей из нового месяца
+    await Attendance.deleteMany({ month: nextMonth });
+
     const currentAttendance = await Attendance.find({ month: currentMonth });
 
     const nextAttendance = currentAttendance.map(entry => ({
@@ -402,6 +405,7 @@ app.post('/api/attendance/copy', authMiddleware, adminMiddleware, async (req, re
       days: [] // Очистка дней
     }));
 
+    // Вставка новых записей
     await Attendance.insertMany(nextAttendance);
 
     res.json({ message: 'Данные посещаемости скопированы на следующий месяц' });
@@ -410,6 +414,7 @@ app.post('/api/attendance/copy', authMiddleware, adminMiddleware, async (req, re
     res.status(500).json({ error: 'Ошибка при копировании данных посещаемости' });
   }
 });
+
 
 // Маршрут для получения всех групп
 app.get('/api/groups', async (req, res) => {
