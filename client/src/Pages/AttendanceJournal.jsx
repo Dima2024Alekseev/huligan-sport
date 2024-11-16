@@ -3,41 +3,42 @@ import axios from 'axios';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
 import "../style/attendance-journal.css"; // Импорт CSS стилей
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AttendanceJournal = () => {
   const [attendanceData, setAttendanceData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [newEntry, setNewEntry] = useState({ studentName: '', group: '', month: new Date().getMonth() + 1, attendance: {}, days: [] });
-  const [selectedGroup, setSelectedGroup] = useState('');
+  const [newEntry, setNewEntry] = useState({ studentName: '', month: new Date().getMonth() + 1, attendance: {}, days: [] });
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1); // Текущий месяц по умолчанию
+  const [selectedGroup, setSelectedGroup] = useState(''); // Текущая группа по умолчанию
   const [daysToDisplay, setDaysToDisplay] = useState([]); // Начальные числа месяца
   const [newDay, setNewDay] = useState('');
   const [groups, setGroups] = useState([]); // Список групп
   const [newGroup, setNewGroup] = useState(''); // Новая группа
-  const [editingGroup, setEditingGroup] = useState(null); // Группа, которую редактируем
+  const [editingGroup, setEditingGroup] = useState(null); // Редактируемая группа
 
   const fetchAttendanceData = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/attendance', {
-        params: { group: selectedGroup, month: selectedMonth }
+        params: { month: selectedMonth, group: selectedGroup }
       });
-      setAttendanceData(response.data);
-      const days = response.data.flatMap(entry => entry.days);
+      const data = response.data;
+      const days = data.flatMap(entry => entry.days);
       setDaysToDisplay([...new Set(days)].sort((a, b) => a - b)); // Удаление дубликатов и сортировка
-      console.log('Загруженные данные:', response.data);
+      setAttendanceData(data.sort((a, b) => a.studentName.localeCompare(b.studentName))); // Сортировка по алфавиту
+      console.log('Загруженные данные:', data);
     } catch (error) {
       console.error('Ошибка при получении данных посещаемости:', error);
     }
-  }, [selectedGroup, selectedMonth]);
+  }, [selectedMonth, selectedGroup]);
 
   const fetchGroups = useCallback(async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/groups');
       setGroups(response.data);
       if (response.data.length > 0) {
-        setSelectedGroup(response.data[0]);
-        setNewEntry(prevEntry => ({ ...prevEntry, group: response.data[0] })); // Устанавливаем группу для новой записи
-        console.log('Первая группа:', response.data[0]);
+        setSelectedGroup(response.data[0]._id); // Устанавливаем первую группу по умолчанию
       }
     } catch (error) {
       console.error('Ошибка при получении групп:', error);
@@ -45,8 +46,6 @@ const AttendanceJournal = () => {
   }, []);
 
   useEffect(() => {
-    fetchGroups();
-
     const checkAdmin = () => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -56,13 +55,14 @@ const AttendanceJournal = () => {
     };
 
     checkAdmin();
+    fetchGroups(); // Сначала загружаем группы
   }, [fetchGroups]);
 
   useEffect(() => {
     if (selectedGroup) {
-      fetchAttendanceData();
+      fetchAttendanceData(); // Загружаем данные посещаемости после установки группы
     }
-  }, [selectedGroup, selectedMonth, fetchAttendanceData]);
+  }, [selectedGroup, fetchAttendanceData]);
 
   const handleChange = (index, field, value) => {
     const newAttendanceData = [...attendanceData];
@@ -72,7 +72,7 @@ const AttendanceJournal = () => {
     } else {
       newAttendanceData[index][field] = value;
     }
-    setAttendanceData(newAttendanceData);
+    setAttendanceData(newAttendanceData.sort((a, b) => a.studentName.localeCompare(b.studentName))); // Сортировка по алфавиту
   };
 
   const handleSave = async () => {
@@ -88,9 +88,10 @@ const AttendanceJournal = () => {
           'Authorization': token
         }
       });
-      alert('Журнал посещаемости обновлен');
+      toast.success('Журнал посещаемости обновлен');
     } catch (error) {
       console.error('Ошибка при обновлении журнала посещаемости:', error);
+      toast.error('Ошибка при обновлении журнала посещаемости');
     }
   };
 
@@ -106,16 +107,17 @@ const AttendanceJournal = () => {
       const response = await axios.post('http://localhost:5000/api/attendance', newEntryWithMonth, {
         headers: {
           'Authorization': token
-        }
+        },
+        params: { group: selectedGroup } // Передаем группу в query параметрах
       });
       console.log('Ответ сервера:', response.data);
-      setNewEntry({ studentName: '', group: selectedGroup, month: new Date().getMonth() + 1, attendance: {}, days: [] });
-      alert('Запись добавлена');
+      setNewEntry({ studentName: '', month: new Date().getMonth() + 1, attendance: {}, days: [] });
+      toast.success('Запись добавлена');
       // Обновление данных после добавления новой записи
       fetchAttendanceData();
     } catch (error) {
       console.error('Ошибка при добавлении записи:', error);
-      alert('Ошибка при добавлении записи: ' + error.message);
+      toast.error('Ошибка при добавлении записи: ' + error.message);
     }
   };
 
@@ -128,9 +130,10 @@ const AttendanceJournal = () => {
         }
       });
       setAttendanceData(attendanceData.filter(entry => entry._id !== id));
-      alert('Запись удалена');
+      toast.success('Запись удалена');
     } catch (error) {
       console.error('Ошибка при удалении записи:', error);
+      toast.error('Ошибка при удалении записи');
     }
   };
 
@@ -141,13 +144,28 @@ const AttendanceJournal = () => {
       setNewDay('');
       console.log('Добавлен новый день:', day);
     } else {
-      alert('Пожалуйста, введите число от 1 до 31.');
+      toast.error('Пожалуйста, введите число от 1 до 31.');
     }
   };
 
   const handleRemoveDay = (day) => {
     setDaysToDisplay(daysToDisplay.filter(d => d !== day).sort((a, b) => a - b));
     console.log('Удален день:', day);
+  };
+
+  const handleCopyAttendance = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:5000/api/attendance/copy', { month: selectedMonth }, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      toast.success('Данные посещаемости скопированы на следующий месяц');
+    } catch (error) {
+      console.error('Ошибка при копировании данных посещаемости:', error);
+      toast.error('Ошибка при копировании данных посещаемости');
+    }
   };
 
   const handleAddGroup = async () => {
@@ -160,60 +178,43 @@ const AttendanceJournal = () => {
       });
       setNewGroup('');
       fetchGroups();
-      alert('Группа добавлена');
+      toast.success('Группа добавлена');
     } catch (error) {
       console.error('Ошибка при добавлении группы:', error);
+      toast.error('Ошибка при добавлении группы');
     }
   };
 
-  const handleDeleteGroup = async (group) => {
+  const handleUpdateGroup = async (id, name) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/groups/${group}`, {
+      await axios.put(`http://localhost:5000/api/groups/${id}`, { name }, {
         headers: {
           'Authorization': token
         }
       });
       fetchGroups();
-      alert('Группа удалена');
-    } catch (error) {
-      console.error('Ошибка при удалении группы:', error);
-    }
-  };
-
-  const handleEditGroup = (group) => {
-    setEditingGroup(group);
-    setNewGroup(group);
-  };
-
-  const handleUpdateGroup = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/groups/${editingGroup}`, { newName: newGroup }, {
-        headers: {
-          'Authorization': token
-        }
-      });
-      setEditingGroup(null);
-      setNewGroup('');
-      fetchGroups(); // Обновление списка групп после обновления группы
-      alert('Группа обновлена');
+      toast.success('Группа обновлена');
+      setEditingGroup(null); // Сброс состояния редактирования
     } catch (error) {
       console.error('Ошибка при обновлении группы:', error);
+      toast.error('Ошибка при обновлении группы');
     }
   };
 
-  const handleCopyAttendance = async () => {
+  const handleDeleteGroup = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/attendance/copy', { group: selectedGroup, month: selectedMonth }, {
+      await axios.delete(`http://localhost:5000/api/groups/${id}`, {
         headers: {
           'Authorization': token
         }
       });
-      alert('Данные посещаемости скопированы на следующий месяц');
+      fetchGroups();
+      toast.success('Группа удалена');
     } catch (error) {
-      console.error('Ошибка при копировании данных посещаемости:', error);
+      console.error('Ошибка при удалении группы:', error);
+      toast.error('Ошибка при удалении группы');
     }
   };
 
@@ -293,17 +294,12 @@ const AttendanceJournal = () => {
       <main className="attendance-journal-content">
         <section className="attendance-journal-section">
           <h1>Журнал посещаемости</h1>
-          <div className='group-and-month'>
+          <div className='month-and-group'>
             <div className='group'>
               <label>Выберите группу: </label>
-              <select value={selectedGroup} onChange={(e) => {
-                const selectedGroup = e.target.value;
-                setSelectedGroup(selectedGroup);
-                setNewEntry(prevEntry => ({ ...prevEntry, group: selectedGroup })); // Устанавливаем группу для новой записи
-                console.log('Выбрана группа:', selectedGroup);
-              }}>
-                {groups.map((group) => (
-                  <option key={group} value={group}>{group}</option>
+              <select value={selectedGroup} onChange={(e) => setSelectedGroup(e.target.value)}>
+                {groups.map(group => (
+                  <option key={group._id} value={group._id}>{group.name}</option>
                 ))}
               </select>
             </div>
@@ -330,49 +326,52 @@ const AttendanceJournal = () => {
           {isAdmin && (
             <div className="attendance-journal-add-entry">
               <h3>Добавить запись</h3>
-              <input
-                type="text"
-                placeholder="Имя студента"
-                value={newEntry.studentName}
-                onChange={(e) => setNewEntry({ ...newEntry, studentName: e.target.value })}
-              />
-              <div className='create-student-group-month'>
+              <div className='create-an-entry'>
                 <div>
-                  <select value={newEntry.group} onChange={(e) => setNewEntry({ ...newEntry, group: e.target.value })}>
-                    {groups.map((group) => (
-                      <option key={group} value={group}>{group}</option>
-                    ))}
-                  </select>
+                  <input
+                    type="text"
+                    placeholder="ФИО"
+                    value={newEntry.studentName}
+                    onChange={(e) => setNewEntry({ ...newEntry, studentName: e.target.value })}
+                  />
+                </div>
+                <div className='create-student-group-month'>
+                  <div>
+                    <select value={newEntry.month} onChange={(e) => setNewEntry({ ...newEntry, month: e.target.value })}>
+                      <option value="1">Январь</option>
+                      <option value="2">Февраль</option>
+                      <option value="3">Март</option>
+                      <option value="4">Апрель</option>
+                      <option value="5">Май</option>
+                      <option value="6">Июнь</option>
+                      <option value="7">Июль</option>
+                      <option value="8">Август</option>
+                      <option value="9">Сентябрь</option>
+                      <option value="10">Октябрь</option>
+                      <option value="11">Ноябрь</option>
+                      <option value="12">Декабрь</option>
+                    </select>
+                  </div>
                 </div>
                 <div>
-                  <select value={newEntry.month} onChange={(e) => setNewEntry({ ...newEntry, month: e.target.value })}>
-                    <option value="1">Январь</option>
-                    <option value="2">Февраль</option>
-                    <option value="3">Март</option>
-                    <option value="4">Апрель</option>
-                    <option value="5">Май</option>
-                    <option value="6">Июнь</option>
-                    <option value="7">Июль</option>
-                    <option value="8">Август</option>
-                    <option value="9">Сентябрь</option>
-                    <option value="10">Октябрь</option>
-                    <option value="11">Ноябрь</option>
-                    <option value="12">Декабрь</option>
-                  </select>
+                  <button className='create' onClick={handleAddEntry}>Добавить</button>
                 </div>
               </div>
               <div>
-                <button className='create' onClick={handleAddEntry}>Добавить</button>
                 <h3>Добавить дни</h3>
-                <input
-                  type="number"
-                  placeholder="Добавить число"
-                  value={newDay}
-                  onChange={(e) => setNewDay(e.target.value)}
-                  min="1"
-                  max="31"
-                />
-                <button className='create-days' onClick={handleAddDay}>Добавить</button>
+                <div className='create-a-day'>
+                  <input
+                    type="number"
+                    placeholder="Добавить число"
+                    value={newDay}
+                    onChange={(e) => setNewDay(e.target.value)}
+                    min="1"
+                    max="31"
+                  />
+                  <div>
+                    <button className='create-days' onClick={handleAddDay}>Добавить</button>
+                  </div>
+                </div>
                 <ul className="days-list">
                   {daysToDisplay.map((day) => (
                     <li key={day}>
@@ -384,23 +383,37 @@ const AttendanceJournal = () => {
             </div>
           )}
           {isAdmin && (
-            <div className="attendance-journal-add-group">
-              <h3>Добавить группу</h3>
-              <input
-                type="text"
-                placeholder="Название группы"
-                value={newGroup}
-                onChange={(e) => setNewGroup(e.target.value)}
-              />
-              <button className='create-group create' onClick={editingGroup ? handleUpdateGroup : handleAddGroup}>
-                {editingGroup ? 'Обновить' : 'Добавить'}
-              </button>
+            <div className="attendance-journal-manage-groups">
+              <h3>Управление группами</h3>
+              <div className='create-a-group'>
+                <input
+                  type="text"
+                  placeholder="Новая группа"
+                  value={newGroup}
+                  onChange={(e) => setNewGroup(e.target.value)}
+                />
+                <div>
+                  <button onClick={handleAddGroup}>Добавить группу</button>
+                </div>
+              </div>
               <ul className="groups-list">
-                {groups.map((group) => (
-                  <li key={group}>
-                    {group}
-                    <button onClick={() => handleEditGroup(group)}>Редактировать</button>
-                    <button onClick={() => handleDeleteGroup(group)}>Удалить</button>
+                {groups.map(group => (
+                  <li key={group._id}>
+                    {editingGroup === group._id ? (
+                      <input
+                        type="text"
+                        value={group.name}
+                        onChange={(e) => setGroups(groups.map(g => g._id === group._id ? { ...g, name: e.target.value } : g))}
+                      />
+                    ) : (
+                      group.name
+                    )}
+                    {editingGroup === group._id ? (
+                      <button onClick={() => handleUpdateGroup(group._id, group.name)}>Сохранить</button>
+                    ) : (
+                      <button onClick={() => setEditingGroup(group._id)}>Редактировать</button>
+                    )}
+                    <button onClick={() => handleDeleteGroup(group._id)}>Удалить</button>
                   </li>
                 ))}
               </ul>
@@ -415,6 +428,18 @@ const AttendanceJournal = () => {
         </section>
       </main>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
