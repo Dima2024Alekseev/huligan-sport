@@ -516,7 +516,7 @@ address,
         padding: 7%;
     }
 
-    
+
 
     .generalization {
         padding: 30px 0px;
@@ -564,11 +564,12 @@ address,
 
 
     /* -------------------навигация--------------- */
-    nav{
+    nav {
         position: relative;
         right: 5%;
         bottom: 5%;
     }
+
     ul {
         display: grid;
         color: white;

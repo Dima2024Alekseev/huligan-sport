@@ -23,7 +23,6 @@ const AdminDashboard = () => {
                     <h2>Журнал посещаемости</h2>
                     <Link to="/attendance-journal" className="admin-dashboard-link">Редактировать журнал</Link>
                 </section>
-
             </main>
             <Footer />
         </>

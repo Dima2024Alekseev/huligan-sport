@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../style/admin-schedule.css"; // Импорт CSS стилей
 
 const ScheduleEditor = () => {
@@ -39,7 +41,7 @@ const ScheduleEditor = () => {
           'Authorization': token
         }
       });
-      alert('Расписание обновлено');
+      toast.success('Расписание обновлено');
     } catch (error) {
       console.error('Ошибка при обновлении расписания:', error);
     }
@@ -81,6 +83,17 @@ const ScheduleEditor = () => {
         <button onClick={handleSave}>Сохранить</button>
       </main>
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" />
     </>
   );
 };

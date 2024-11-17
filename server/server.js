@@ -8,7 +8,9 @@ const postRoutes = require('./routes/postRoutes');
 const scheduleRoutes = require('./routes/scheduleRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const groupRoutes = require('./routes/groupRoutes');
+const { EventEmitter } = require('events');
 
+EventEmitter.defaultMaxListeners = 15;
 
 connectDB();
 

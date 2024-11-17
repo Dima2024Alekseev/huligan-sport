@@ -9,10 +9,7 @@ const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(db);
     console.log('Соединение с БД установлено');
 
     const adminExists = await Admin.findOne({ login: ADMIN_LOGIN });

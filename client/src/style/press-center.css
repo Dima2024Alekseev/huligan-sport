@@ -60,9 +60,12 @@ body {
 
 /* Стили для текста новостей */
 .news-text {
-    white-space: pre-wrap; /* Позволяет переносить текст */
-    word-wrap: break-word; /* Переносит длинные слова */
-    overflow-wrap: break-word; /* Переносит длинные слова */
+    white-space: pre-wrap;
+    /* Позволяет переносить текст */
+    word-wrap: break-word;
+    /* Переносит длинные слова */
+    overflow-wrap: break-word;
+    /* Переносит длинные слова */
     font-family: Arial, sans-serif;
     font-size: 1em;
     line-height: 1.5;
@@ -121,4 +124,3 @@ body {
     margin: 0;
     font-size: 1em;
 }
-

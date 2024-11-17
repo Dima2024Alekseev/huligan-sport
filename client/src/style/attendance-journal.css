@@ -81,22 +81,23 @@
   gap: 10px;
 }
 
-.create-a-day{
+.create-a-day {
   margin: 10px 0px;
 }
 
 .create-a-day input,
-.create-a-group input{
+.create-a-group input {
   width: 15%;
 }
 
-.attendance-journal-manage-groups{
+.attendance-journal-manage-groups {
   margin-top: 20px;
 }
 
-.create-a-group{
+.create-a-group {
   margin: 20px 0px;
 }
+
 .attendance-journal-add-entry select {
   width: 100%;
 }
