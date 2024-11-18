@@ -17,7 +17,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: '' });
     }
 
-    const token = jwt.sign({ id: admin._id, role: 'admin' }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: admin._id, role: 'admin' }, JWT_SECRET, { expiresIn: '30d' });
     res.json({ token });
   } catch (error) {
     console.error('Ошибка при авторизации:', error);

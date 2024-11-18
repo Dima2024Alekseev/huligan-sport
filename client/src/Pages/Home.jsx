@@ -4,8 +4,8 @@ import NewsBlock from "../Components/News-Block";
 import StoreBlock from "../Components/Store-Block";
 import Contact from "../Components/Contact-Information";
 import Footer from "../Components/Footer/Footer";
-import postsData from "../data/posts.json"
-
+import postsData from "../data/posts.json";
+import home_page_video from "../video/club_2.mp4";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -23,7 +23,8 @@ const Home = () => {
     return (
         <>
             <Header
-                showVideo={true}
+                showVideoHomePages={true}
+                videoSrc={home_page_video}
                 title="Хулиган. Академия боевых единоборств"
             />
             <main>

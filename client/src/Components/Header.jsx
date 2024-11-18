@@ -9,9 +9,8 @@ import { TbUserSquareRounded, TbLogout } from "react-icons/tb";
 import { FaTelegram } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
-import video from "../video/club_2.mp4";
 
-const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, showBlock, onLogout }) => {
+const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGradient, showBlock, videoBackgroundDirections, videoSrc, onLogout }) => {
   useTitle(title, icon, innerTitle, linkText);
 
   const [nav, setNav] = useState(false);
@@ -33,7 +32,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
           direction = 0.5;
         }
 
-        inner.style.background = `linear-gradient(${angle}deg, #000000 50%, rgba(125, 186, 232, 0) 100%), url(https://rcc-sport.ru/local/templates/main/img/bg-red.png) top right, #121212`;
+        inner.style.background = `linear-gradient(${angle}deg, rgb(0, 0, 0) 50%, rgba(125, 186, 232, 0) 100%), url("https://rcc-sport.ru/local/templates/main/img/bg-red.png") right top, rgb(18, 18, 18)`;
         requestAnimationFrame(updateGradient);
       }
 
@@ -77,26 +76,46 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
         },
         {
           label: 'Нет',
-          onClick: () => {}
+          onClick: () => { }
         }
       ]
     });
   };
 
   return (
-    <div id={showGradient ? "inner" : ""}>
-      <header id={showVideo ? "video-container" : ""}>
-        {showVideo && (
+    <div id={showGradient ? "inner" : ""} style={videoBackgroundDirections ? {
+      position: 'relative',
+      zIndex: 2
+    } : {}}>
+      {videoBackgroundDirections && (
+        <div>
+          <video className="background-video" autoPlay loop muted style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transform: 'translate(-50%, -50%)',
+            zIndex: -2
+          }}>
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          <div className="overlay"></div>
+        </div>
+      )}
+      <header id={showVideoHomePages ? "video-container" : ""}>
+        {showVideoHomePages && (
           <video className="background-video" autoPlay loop muted>
-            <source src={video} type="video/mp4" />
+            <source src={videoSrc} type="video/mp4" />
           </video>
         )}
-        {showVideo && <div className="overlay"></div>}
+        {showVideoHomePages && <div className="overlay"></div>}
         <div>
           <div className={nav ? ["header-flex", "active"].join(' ') : ["header-flex"]}>
             <Link to="/home">
               <div>
-                <img className="logo-header" alt="" src={logo}/>
+                <img className="logo-header" alt="" src={logo} />
               </div>
             </Link>
             <Navbar />
@@ -118,7 +137,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideo, showGradient, sh
               </Link>
               <div className="header-icons">
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
-                   <FaVk className="social-network" size={24} />
+                  <FaVk className="social-network" size={24} />
                 </a>
                 <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
                   <FaTelegram className="social-network" size={24} />
