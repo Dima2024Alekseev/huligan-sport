@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer/Footer";
-import mmaVideo from "../../video/mma.MOV";
+import mmaVideo from "../../video/mma.mp4";
 
 const Mma = () => {
     return (

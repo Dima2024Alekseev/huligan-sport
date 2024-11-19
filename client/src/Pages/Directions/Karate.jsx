@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer/Footer";
-import karate_video from "../../video/karate.MOV";
+import karate_video from "../../video/karate.mp4";
 
 const Karate = () => {
     return (
