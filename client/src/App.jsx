@@ -15,12 +15,13 @@ import Press from './Pages/Press-Center';
 import PageContact from "./Pages/Page-Contact";
 import Schedule from "./Pages/Schedules/Schedule";
 import Store from './Pages/Online-Store';
-import Price from './Pages/Price';
 import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
 import ScheduleEditor from './Pages/ScheduleEditor';
 import AdminDashboard from './Pages/AdminDashboard';
 import AttendanceJournal from './Pages/AttendanceJournal';
+import AdminPrice from "./Pages/AdminPrice";
+import Price from "./Pages/Price";
 import "./style/config.css";
 import "./style/home.css";
 import logo_title from "./img/log-club.png";
@@ -78,6 +79,10 @@ const AnimatedRoutes = () => {
             />
             <Route
               path="/attendance-journal" element={<AttendanceJournal />}
+            />
+            <Route
+              path="/admin-price"
+              element={isAuthenticated() && isAdmin() ? <AdminPrice /> : <Navigate to="/authorization-account" />}
             />
           </Routes>
         </div>

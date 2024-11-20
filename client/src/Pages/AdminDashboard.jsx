@@ -16,12 +16,16 @@ const AdminDashboard = () => {
             />
             <main className="admin-dashboard-content">
                 <section className="admin-dashboard-section">
-                    <h2>Редактирование расписания</h2>
+                    <h2>Расписание занятий</h2>
                     <Link to="/schedule-editor" className="admin-dashboard-link">Редактировать расписание</Link>
                 </section>
                 <section className="admin-dashboard-section">
                     <h2>Журнал посещаемости</h2>
                     <Link to="/attendance-journal" className="admin-dashboard-link">Редактировать журнал</Link>
+                </section>
+                <section className="admin-dashboard-section">
+                    <h2>Прайс-лист</h2>
+                    <Link to="/admin-price" className="admin-dashboard-link">Редактировать прайс-лист</Link>
                 </section>
             </main>
             <Footer />
