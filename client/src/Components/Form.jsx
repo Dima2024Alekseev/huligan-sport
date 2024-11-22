@@ -1,91 +1,158 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import InputMask from 'react-input-mask';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Form = ({ showFields, formTitle, title_button, onSubmit }) => {
   const [formData, setFormData] = useState({
-    login: '',
-    password: '',
     name: '',
     lastname: '',
-    email: '',
-    confirmPassword: '',
     phone: '',
     age: '',
     direction: '',
+    login: '',
+    password: '',
   });
+
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (showFields.phone) {
+      setFormData((prevData) => ({
+        ...prevData,
+        phone: '+7',
+      }));
+    }
+  }, [showFields.phone]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+
+    // Проверка на ввод цифр для полей "Имя" и "Фамилия"
+    if (id === 'name' || id === 'lastname') {
+      if (!/^[а-яА-ЯёЁa-zA-Z]*$/.test(value)) {
+        return;
+      }
+      // Проверка на ввод более 30 символов для полей "Имя" и "Фамилия"
+      if (value.length > 30) {
+        return;
+      }
+    }
+
+    // Проверка на ввод более двух цифр для поля "Возраст"
+    if (id === 'age' && value.length > 2) {
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
+
+    // Удаляем ошибки при изменении значения поля
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [id]: '',
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (showFields.age && (isNaN(formData.age) || formData.age < 6 || formData.age > 60)) {
+      toast.error('Возраст должен быть числом от 6 до 60');
+      newErrors.age = 'Возраст должен быть числом от 6 до 60';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
-    } else {
-      // Обработка отправки формы
-      console.log(formData);
+    if (validateForm()) {
+      if (onSubmit) {
+        await onSubmit(formData);
+      } else {
+        console.error('Функция onSubmit не передана');
+      }
     }
   };
 
   return (
     <div className="content-registration">
+      <ToastContainer />
       <form onSubmit={handleSubmit}>
         <p className="form-title">{formTitle}</p>
-        {showFields.login && (
-          <label id="indentation">
-            <input id="login" type="text" placeholder="" required value={formData.login} onChange={handleChange} />
-            <span>Логин</span>
-          </label>
-        )}
-        {showFields.password && (
-          <label id="indentation">
-            <input id="password" type="password" placeholder="" required value={formData.password} onChange={handleChange} />
-            <span>Пароль</span>
-          </label>
-        )}
         {showFields.name && (
           <label>
-            <input id="name" type="text" placeholder="" required value={formData.name} onChange={handleChange} />
+            <input
+              id="name"
+              type="text"
+              placeholder=""
+              required
+              value={formData.name}
+              onChange={handleChange}
+            />
             <span>Имя</span>
           </label>
         )}
         {showFields.lastname && (
           <label>
-            <input id="lastname" type="text" placeholder="" required value={formData.lastname} onChange={handleChange} />
+            <input
+              id="lastname"
+              type="text"
+              placeholder=""
+              required
+              value={formData.lastname}
+              onChange={handleChange}
+            />
             <span>Фамилия</span>
-          </label>
-        )}
-        {showFields.email && (
-          <label id="indentation">
-            <input id="email" type="email" placeholder="" required value={formData.email} onChange={handleChange} />
-            <span>Email</span>
-          </label>
-        )}
-        {showFields.confirmPassword && (
-          <label id="indentation">
-            <input id="confirmPassword" type="password" placeholder="" required value={formData.confirmPassword} onChange={handleChange} />
-            <span>Потвердите пароль</span>
           </label>
         )}
         {showFields.phone && (
           <label id="indentation">
-            <input id="phone" type="tel" placeholder="" required value={formData.phone} onChange={handleChange} />
+            <InputMask
+              mask="+7 999 999-99-99"
+              value={formData.phone}
+              onChange={(e) => handleChange({ target: { id: 'phone', value: e.target.value } })}
+              onFocus={(e) => {
+                if (e.target.value === '') {
+                  setFormData((prevData) => ({
+                    ...prevData,
+                    phone: '+7',
+                  }));
+                }
+              }}
+            >
+              {(inputProps) => <input {...inputProps} id="phone" type="tel" placeholder="+7" required />}
+            </InputMask>
             <span>Телефон</span>
+            {errors.phone && <p className="error">{errors.phone}</p>}
           </label>
         )}
         {showFields.age && (
           <label id="indentation">
-            <input id="age" type="text" placeholder="" required value={formData.age} onChange={handleChange} />
+            <input
+              id="age"
+              type="number"
+              placeholder=""
+              required
+              value={formData.age}
+              onChange={handleChange}
+            />
             <span>Возраст</span>
+            {errors.age && <p className="error">{errors.age}</p>}
           </label>
         )}
         {showFields.direction && (
           <label id="indentation">
-            <select id="direction" required value={formData.direction} onChange={handleChange}>
+            <select
+              id="direction"
+              required
+              value={formData.direction}
+              onChange={handleChange}
+            >
               <option value="" disabled>Выберите направление</option>
               <option value="Мма">Мма</option>
               <option value="Грэпплинг">Грэпплинг</option>
@@ -97,6 +164,35 @@ const Form = ({ showFields, formTitle, title_button, onSubmit }) => {
             </select>
           </label>
         )}
+        {showFields.login && (
+          <label>
+            <input
+              id="login"
+              type="text"
+              placeholder=""
+              required
+              value={formData.login}
+              onChange={handleChange}
+            />
+            <span>Логин</span>
+          </label>
+        )}
+        {showFields.password && (
+          <label>
+            <input
+              id="password"
+              type="password"
+              placeholder=""
+              required
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <span>Пароль</span>
+          </label>
+        )}
+        <div className="recaptcha-container">
+          <div className="g-recaptcha" data-sitekey="6Lfd6oUqAAAAAOT9w-_IdiorSD5JSvoqBgh4OBu4"></div>
+        </div>
         <button type="submit" className="submit">{title_button}</button>
       </form>
     </div>

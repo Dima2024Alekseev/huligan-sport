@@ -9,6 +9,7 @@ const scheduleRoutes = require('./routes/scheduleRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const priceRoutes = require('./routes/priceRoutes');
+const applicationRoutes = require('./routes/applicationRoutes');
 const { EventEmitter } = require('events');
 
 EventEmitter.defaultMaxListeners = 15;
@@ -24,6 +25,8 @@ app.use('/api/schedule', scheduleRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/prices', priceRoutes);
+app.use('/api/applications', applicationRoutes);
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
 });
