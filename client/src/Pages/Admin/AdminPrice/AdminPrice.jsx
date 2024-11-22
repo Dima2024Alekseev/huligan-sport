@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Header from "../Components/Header";
-import Footer from "../Components/Footer/Footer";
-import "../style/adminprice.css";
+import Header from "../../../Components/Header";
+import Footer from "../../../Components/Footer/Footer";
+import "./adminprice.css";
 
 const AdminPrice = () => {
     const [priceData, setPriceData] = useState([]);

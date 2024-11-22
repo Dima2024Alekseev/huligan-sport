@@ -3,7 +3,7 @@ import InputMask from 'react-input-mask';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Form = ({ showFields, formTitle, title_button, onSubmit }) => {
+const Form = ({ showFields, formTitle, title_button, onSubmit, recaptchaSiteKey }) => {
   const [formData, setFormData] = useState({
     name: '',
     lastname: '',
@@ -190,9 +190,11 @@ const Form = ({ showFields, formTitle, title_button, onSubmit }) => {
             <span>Пароль</span>
           </label>
         )}
-        <div className="recaptcha-container">
-          <div className="g-recaptcha" data-sitekey="6Lfd6oUqAAAAAOT9w-_IdiorSD5JSvoqBgh4OBu4"></div>
-        </div>
+        {recaptchaSiteKey && (
+          <div className="recaptcha-container">
+            <div className="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
+          </div>
+        )}
         <button type="submit" className="submit">{title_button}</button>
       </form>
     </div>

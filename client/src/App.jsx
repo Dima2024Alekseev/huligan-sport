@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Home from "./Pages/Home";
-import About from "./Pages/About";
+import Home from "./Pages/Home/Home";
+import About from "./Pages/About/About";
 import Boxing from './Pages/Directions/Boxing';
 import Grappling from './Pages/Directions/Grappling';
 import Hand from './Pages/Directions/Hand-To-Hand-Combat';
@@ -10,24 +10,23 @@ import Karate from './Pages/Directions/Karate';
 import Kickboxing from './Pages/Directions/Kickboxing';
 import Mma from './Pages/Directions/MMA';
 import Women from './Pages/Directions/Womens-Self-Defense';
-import Events from "./Pages/Events";
-import Press from './Pages/Press-Center';
-import PageContact from "./Pages/Page-Contact";
+import Events from "./Pages/Events/Events";
+import Press from './Pages/Press-Center/Press-Center';
+import PageContact from "./Pages/Page-Contact/Page-Contact";
 import Schedule from "./Pages/Schedules/Schedule";
-import Store from './Pages/Online-Store';
+import Store from './Pages/Online-Store/Online-Store';
 import Authorization from './Pages/Account-Authorization';
 import Waiting from './Pages/Waiting-List';
-import ScheduleEditor from './Pages/ScheduleEditor';
-import AdminDashboard from './Pages/AdminDashboard';
+import ScheduleEditor from './Pages/Admin/AdminSchedule/ScheduleEditor';
+import AdminDashboard from './Pages/Admin/AdminDashboard/AdminDashboard';
 import AttendanceJournal from './Pages/AttendanceJournal';
-import AdminPrice from "./Pages/AdminPrice";
-import Price from "./Pages/Price";
+import AdminPrice from "./Pages/Admin/AdminPrice/AdminPrice";
+import Price from "./Pages/Price/Price";
 import "./style/config.css";
-import "./style/home.css";
 import logo_title from "./img/log-club.png";
 import useTitle from './Components/UseTitle';
 import ScrollTop from './Components/ScrollTop';
-import { NotificationProvider } from './Components/NotificationContext'; // Импортируем провайдер уведомлений
+import { NotificationProvider } from './Components/NotificationContext';
 
 const AnimatedRoutes = () => {
   const location = useLocation();

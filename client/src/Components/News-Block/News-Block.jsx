@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import '../style/news-slider.css';
+import './news-slider.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 class NewsBlock extends Component {

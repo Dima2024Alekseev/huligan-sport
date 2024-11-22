@@ -65,6 +65,7 @@ const Waiting = () => {
           formTitle='Форма заполнения заявки'
           title_button='Отправить заявку'
           onSubmit={handleSubmit}
+          recaptchaSiteKey="6Lfd6oUqAAAAAOT9w-_IdiorSD5JSvoqBgh4OBu4"
         />
       </main>
       <Footer />

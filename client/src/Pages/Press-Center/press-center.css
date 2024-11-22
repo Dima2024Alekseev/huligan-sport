@@ -1,23 +1,5 @@
-/* Общие стили для страницы */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Стили для заголовка */
-.header {
-    background: linear-gradient(to right, #007BFF, #0056b3);
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 2.5em;
 }
 
 /* Стили для контейнера новостей */
@@ -58,14 +40,10 @@ body {
     border-radius: 5px;
 }
 
-/* Стили для текста новостей */
 .news-text {
     white-space: pre-wrap;
-    /* Позволяет переносить текст */
     word-wrap: break-word;
-    /* Переносит длинные слова */
     overflow-wrap: break-word;
-    /* Переносит длинные слова */
     font-family: Arial, sans-serif;
     font-size: 1em;
     line-height: 1.5;
@@ -109,18 +87,4 @@ body {
 
 .error button:hover {
     background: rgb(214, 8, 8);
-}
-
-/* Стили для футера */
-.footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
-}
-
-.footer p {
-    margin: 0;
-    font-size: 1em;
 }

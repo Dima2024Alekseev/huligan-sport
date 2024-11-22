@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import "../style/online-store.css";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer/Footer";
-import item from "../img/item1.jpg";
-import item_2 from "../img/item2.jpg";
-import item_3 from "../img/item3.jpg";
-import item_4 from "../img/item4.jpg";
-import item_5 from "../img/item5.jpg";
-import Modal from "../Components/Modal Window/Modal";
+import "./online-store.css";
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer/Footer";
+import item from "../../img/item1.jpg";
+import item_2 from "../../img/item2.jpg";
+import item_3 from "../../img/item3.jpg";
+import item_4 from "../../img/item4.jpg";
+import item_5 from "../../img/item5.jpg";
+import Modal from "../../Components/Modal Window/Modal";
 
 const Store = () => {
     const [modalActive, setModalActive] = useState(false);

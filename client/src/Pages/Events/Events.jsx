@@ -1,7 +1,7 @@
 import React from "react";
-import "../style/events.css"
-import Header from "../Components/Header";
-import Footer from "../Components/Footer/Footer";
+import "./events.css"
+import Header from "../../Components/Header";
+import Footer from "../../Components/Footer/Footer";
 
 
 const Events = () => {

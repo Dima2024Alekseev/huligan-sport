@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header from "../Components/Header";
-import Footer from "../Components/Footer/Footer";
+import Header from "../../../Components/Header";
+import Footer from "../../../Components/Footer/Footer";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../style/admin-schedule.css"; // Импорт CSS стилей
+import "./admin-schedule.css";
 
 const ScheduleEditor = () => {
   const [scheduleData, setScheduleData] = useState([]);
