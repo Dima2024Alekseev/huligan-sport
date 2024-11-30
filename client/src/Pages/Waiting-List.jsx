@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from "../Components/Header";
 import Form from "../Components/Form";
 import Footer from "../Components/Footer/Footer";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, Toaster } from 'react-hot-toast';
 import "../style/profile.css";
 
 const Waiting = () => {
@@ -57,7 +56,7 @@ const Waiting = () => {
 
   return (
     <div id="inner">
-      <ToastContainer />
+      <Toaster position="bottom-right" />
       <Header title='Лист ожидания' />
       <main>
         <Form

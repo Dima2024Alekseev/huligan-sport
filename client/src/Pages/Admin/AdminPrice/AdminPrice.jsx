@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Header from "../../../Components/Header";
 import Footer from "../../../Components/Footer/Footer";
+import { toast, Toaster } from 'react-hot-toast';
 import "./adminprice.css";
 
 const AdminPrice = () => {
@@ -21,6 +22,7 @@ const AdminPrice = () => {
                 setPriceData(response.data);
             } catch (error) {
                 console.error('Ошибка при получении цен:', error);
+                toast.error('Ошибка при получении цен');
             }
         };
 
@@ -49,8 +51,10 @@ const AdminPrice = () => {
                 duration: '',
                 description: ''
             });
+            toast.success('Прайс-лист успешно добавлен');
         } catch (error) {
             console.error('Ошибка при добавлении данных:', error);
+            toast.error('Ошибка при добавлении данных');
         }
     };
 
@@ -62,8 +66,10 @@ const AdminPrice = () => {
             const updatedPriceData = [...priceData];
             updatedPriceData[index] = response.data.price;
             setPriceData(updatedPriceData);
+            toast.success('Прайс-лист успешно обновлен');
         } catch (error) {
             console.error('Ошибка при обновлении данных:', error);
+            toast.error('Ошибка при обновлении данных');
         }
     };
 
@@ -74,8 +80,10 @@ const AdminPrice = () => {
             // Обновляем данные после удаления записи
             const updatedPriceData = await axios.get('http://localhost:5000/api/prices');
             setPriceData(updatedPriceData.data);
+            toast.success('Прайс-лист успешно удален');
         } catch (error) {
             console.error('Ошибка при удалении данных:', error);
+            toast.error('Ошибка при удалении данных');
         }
     };
 
@@ -88,6 +96,7 @@ const AdminPrice = () => {
 
     return (
         <>
+            <Toaster position="bottom-right" />
             <Header
                 showGradient={true}
                 title='Изменение прайс-листа'

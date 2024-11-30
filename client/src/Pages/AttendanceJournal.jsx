@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
-import "../style/attendance-journal.css"; // Импорт CSS стилей
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "../style/attendance-journal.css";
+import { useNotification } from '../Components/NotificationContext';
 
 const AttendanceJournal = () => {
+  const { showNotification } = useNotification();
   const [attendanceData, setAttendanceData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [newEntry, setNewEntry] = useState({ studentName: '', month: new Date().getMonth() + 1, attendance: {}, days: [] });
@@ -30,8 +30,9 @@ const AttendanceJournal = () => {
       console.log('Загруженные данные:', data);
     } catch (error) {
       console.error('Ошибка при получении данных посещаемости:', error);
+      showNotification('Ошибка при получении данных посещаемости', 'error');
     }
-  }, [selectedMonth, selectedGroup]);
+  }, [selectedMonth, selectedGroup, showNotification]);
 
   const fetchGroups = useCallback(async () => {
     try {
@@ -42,8 +43,9 @@ const AttendanceJournal = () => {
       }
     } catch (error) {
       console.error('Ошибка при получении групп:', error);
+      showNotification('Ошибка при получении групп', 'error');
     }
-  }, []);
+  }, [showNotification]);
 
   useEffect(() => {
     const checkAdmin = () => {
@@ -88,10 +90,10 @@ const AttendanceJournal = () => {
           'Authorization': token
         }
       });
-      toast.success('Журнал посещаемости обновлен');
+      showNotification('Журнал посещаемости обновлен', 'success');
     } catch (error) {
       console.error('Ошибка при обновлении журнала посещаемости:', error);
-      toast.error('Ошибка при обновлении журнала посещаемости');
+      showNotification('Ошибка при обновлении журнала посещаемости', 'error');
     }
   };
 
@@ -112,12 +114,12 @@ const AttendanceJournal = () => {
       });
       console.log('Ответ сервера:', response.data);
       setNewEntry({ studentName: '', month: new Date().getMonth() + 1, attendance: {}, days: [] });
-      toast.success('Запись добавлена');
+      showNotification('Запись добавлена', 'success');
       // Обновление данных после добавления новой записи
       fetchAttendanceData();
     } catch (error) {
       console.error('Ошибка при добавлении записи:', error);
-      toast.error('Ошибка при добавлении записи: ' + error.message);
+      showNotification('Ошибка при добавлении записи: ' + error.message, 'error');
     }
   };
 
@@ -130,10 +132,10 @@ const AttendanceJournal = () => {
         }
       });
       setAttendanceData(attendanceData.filter(entry => entry._id !== id));
-      toast.success('Запись удалена');
+      showNotification('Запись удалена', 'success');
     } catch (error) {
       console.error('Ошибка при удалении записи:', error);
-      toast.error('Ошибка при удалении записи');
+      showNotification('Ошибка при удалении записи', 'error');
     }
   };
 
@@ -144,7 +146,7 @@ const AttendanceJournal = () => {
       setNewDay('');
       console.log('Добавлен новый день:', day);
     } else {
-      toast.error('Пожалуйста, введите число от 1 до 31.');
+      showNotification('Пожалуйста, введите число от 1 до 31.', 'error');
     }
   };
 
@@ -161,10 +163,10 @@ const AttendanceJournal = () => {
           'Authorization': token
         }
       });
-      toast.success('Данные посещаемости скопированы на следующий месяц');
+      showNotification('Данные посещаемости скопированы на следующий месяц', 'success');
     } catch (error) {
       console.error('Ошибка при копировании данных посещаемости:', error);
-      toast.error('Ошибка при копировании данных посещаемости');
+      showNotification('Ошибка при копировании данных посещаемости', 'error');
     }
   };
 
@@ -178,10 +180,10 @@ const AttendanceJournal = () => {
       });
       setNewGroup('');
       fetchGroups();
-      toast.success('Группа добавлена');
+      showNotification('Группа добавлена', 'success');
     } catch (error) {
       console.error('Ошибка при добавлении группы:', error);
-      toast.error('Ошибка при добавлении группы');
+      showNotification('Ошибка при добавлении группы', 'error');
     }
   };
 
@@ -194,11 +196,11 @@ const AttendanceJournal = () => {
         }
       });
       fetchGroups();
-      toast.success('Группа обновлена');
+      showNotification('Группа обновлена', 'success');
       setEditingGroup(null); // Сброс состояния редактирования
     } catch (error) {
       console.error('Ошибка при обновлении группы:', error);
-      toast.error('Ошибка при обновлении группы');
+      showNotification('Ошибка при обновлении группы', 'error');
     }
   };
 
@@ -211,10 +213,10 @@ const AttendanceJournal = () => {
         }
       });
       fetchGroups();
-      toast.success('Группа удалена');
+      showNotification('Группа удалена', 'success');
     } catch (error) {
       console.error('Ошибка при удалении группы:', error);
-      toast.error('Ошибка при удалении группы');
+      showNotification('Ошибка при удалении группы', 'error');
     }
   };
 
@@ -428,18 +430,6 @@ const AttendanceJournal = () => {
         </section>
       </main>
       <Footer />
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </>
   );
 };

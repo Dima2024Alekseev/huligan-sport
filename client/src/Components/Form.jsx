@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, Toaster } from 'react-hot-toast';
 
 const Form = ({ showFields, formTitle, title_button, onSubmit, recaptchaSiteKey }) => {
   const [formData, setFormData] = useState({
@@ -58,10 +57,8 @@ const Form = ({ showFields, formTitle, title_button, onSubmit, recaptchaSiteKey 
 
   const validateForm = () => {
     const newErrors = {};
-
     if (showFields.age && (isNaN(formData.age) || formData.age < 6 || formData.age > 60)) {
       toast.error('Возраст должен быть числом от 6 до 60');
-      newErrors.age = 'Возраст должен быть числом от 6 до 60';
     }
 
     setErrors(newErrors);
@@ -81,7 +78,7 @@ const Form = ({ showFields, formTitle, title_button, onSubmit, recaptchaSiteKey 
 
   return (
     <div className="content-registration">
-      <ToastContainer />
+      <Toaster position="bottom-right" />
       <form onSubmit={handleSubmit}>
         <p className="form-title">{formTitle}</p>
         {showFields.name && (

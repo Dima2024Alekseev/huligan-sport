@@ -26,8 +26,8 @@ const Posts = () => {
                 // Фильтрация постов, исключающая посты с видео и оставляющая только посты с фотографиями и текстом
                 const filteredPosts = sortedPosts.filter(post => {
                     return post.photoUrls && post.photoUrls.length > 0 &&
-                           post.text &&
-                           (!post.attachments || !post.attachments.some(attachment => attachment.type === 'video'));
+                        post.text &&
+                        (!post.attachments || !post.attachments.some(attachment => attachment.type === 'video'));
                 });
 
                 setPosts(filteredPosts);
@@ -83,15 +83,17 @@ const Posts = () => {
                     <main ref={mainRef}>
                         {currentItems.map(post => (
                             <div className='news' key={post.id}>
-                                <pre className='news-text'>{post.text}</pre>
-                                {/* <p>{new Date(post.date * 1000).toLocaleString()}</p> */}
+                                <div className='news-text-container'>
+                                    <pre className='news-text'>{post.text}</pre>
+                                </div>
                                 {post.photoUrls && (
-                                    <img
-                                        src={post.photoUrls[0]}
-                                        alt=''
-                                        onClick={() => openModal(post.photoUrls[0])}
-                                        style={{ cursor: 'pointer' }}
-                                    />
+                                    <div className='news-image-container'>
+                                        <img
+                                            src={post.photoUrls[0]}
+                                            alt=''
+                                            onClick={() => openModal(post.photoUrls[0])}
+                                        />
+                                    </div>
                                 )}
                             </div>
                         ))}

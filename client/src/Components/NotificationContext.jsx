@@ -1,7 +1,5 @@
-// context/NotificationContext.js
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { createContext, useContext } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
 
 const NotificationContext = createContext();
 
@@ -10,31 +8,20 @@ export const useNotification = () => {
 };
 
 export const NotificationProvider = ({ children }) => {
-  const [notification, setNotification] = useState(null);
-
-  useEffect(() => {
-    if (notification) {
-      toast[notification.type](notification.message, {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      setNotification(null); // Сброс состояния после отображения уведомления
-    }
-  }, [notification]);
-
   const showNotification = (message, type) => {
-    setNotification({ message, type });
+    if (type === 'success') {
+      toast.success(message);
+    } else if (type === 'error') {
+      toast.error(message);
+    } else {
+      toast(message);
+    }
   };
 
   return (
     <NotificationContext.Provider value={{ showNotification }}>
       {children}
-      <ToastContainer />
+      <Toaster position="bottom-right" />
     </NotificationContext.Provider>
   );
 };
