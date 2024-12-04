@@ -102,5 +102,3 @@ export default function App() {
     </NotificationProvider>
   );
 }
-
-//Основное приложение
