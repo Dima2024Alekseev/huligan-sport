@@ -21,6 +21,7 @@ import ScheduleEditor from './Pages/Admin/AdminSchedule/ScheduleEditor';
 import AdminDashboard from './Pages/Admin/AdminDashboard/AdminDashboard';
 import AttendanceJournal from './Pages/AttendanceJournal';
 import AdminPrice from "./Pages/Admin/AdminPrice/AdminPrice";
+import EditProduct from './Pages/Admin/AdminProduct/EditProduct';
 import Price from "./Pages/Price/Price";
 import "./style/config.css";
 import logo_title from "./img/log-club.png";
@@ -82,6 +83,10 @@ const AnimatedRoutes = () => {
             <Route
               path="/admin-price"
               element={isAuthenticated() && isAdmin() ? <AdminPrice /> : <Navigate to="/authorization-account" />}
+            />
+            <Route
+              path="/admin-products"
+              element={isAuthenticated() && isAdmin() ? <EditProduct /> : <Navigate to="/authorization-account" />}
             />
           </Routes>
         </div>

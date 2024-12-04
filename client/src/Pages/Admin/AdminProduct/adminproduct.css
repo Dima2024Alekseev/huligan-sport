@@ -1,0 +1,128 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    flex: 1 1 200px; /* Ensure consistent width */
+}
+
+.product-image-container {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    margin-bottom: 10px;
+    overflow: hidden; /* Ensure the overlay stays within the container */
+}
+
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+    transition: opacity 0.3s; /* Smooth transition for the image */
+}
+
+.product-item:not(.editing) .product-image-container:hover .product-image {
+    opacity: 1; /* Keep the image opacity at 1 if not editing */
+}
+
+.product-item:not(.editing) .product-image-container:hover .overlay-product {
+    opacity: 0; /* Hide the overlay if not editing */
+}
+
+.product-item.editing .product-image-container:hover .product-image {
+    opacity: 0.5; /* Darken the image on hover if editing */
+}
+
+.product-item.editing .product-image-container:hover .overlay-product {
+    opacity: 1; /* Show the overlay on hover if editing */
+}
+
+.overlay-product {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hide the overlay by default */
+    transition: opacity 0.3s; /* Smooth transition for the overlay */
+    border-radius: 5px 5px 0 0;
+    z-index: 1; /* Ensure the overlay is above the image */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.click-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Ensure the click overlay is above the image and overlay */
+    cursor: pointer;
+}
+
+.product-info {
+    flex: 1; /* Allow the info section to grow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.product-price {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.order-button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: auto; /* Push the button to the bottom */
+}
+
+.product-info input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
