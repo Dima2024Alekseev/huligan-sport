@@ -85,7 +85,7 @@ const EditorProduct = () => {
                             </div>
                             {editingProductId === product._id && (
                                 <div
-                                    className="click-overlay-product"
+                                    className="click-overlay"
                                     onClick={() => document.getElementById(`fileInput-${product._id}`).click()}
                                 ></div>
                             )}
