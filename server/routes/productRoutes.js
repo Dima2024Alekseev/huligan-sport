@@ -60,4 +60,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// Маршрут для удаления продукта
+router.delete('/:id', productController.deleteProduct);
+
+// Маршрут для создания нового продукта
+router.post('/', (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            console.error('Ошибка при загрузке файла:', err);
+            return res.status(500).json({ message: err.message });
+        }
+        productController.createProduct(req, res);
+    });
+});
+
 module.exports = router;

@@ -46,19 +46,25 @@ const Store = () => {
                 innerTitle="Интернет-магазин"
                 linkText="Интернет-магазин"
             />
-            <main className="content-item">
+            <main className="store-grid">
                 {products.map(product => (
-                    <section key={product._id}>
-                        <div className="item-name-price">
+                    <div key={product._id} className="store-card">
+                        <div className="store-image-wrapper" onClick={() => openModal(`http://localhost:5000${product.image}`)}>
                             <img
-                                onClick={() => openModal(`http://localhost:5000${product.image}`)}
                                 src={`http://localhost:5000${product.image}`}
                                 alt={product.text}
+                                className="store-image"
                             />
-                            <p>{product.text}<br />{product.price} ₽</p>
-                            <button onClick={OrderClick}>Заказать</button>
+                            <div className="store-image-overlay">
+                                <span>Увеличить</span>
+                            </div>
                         </div>
-                    </section>
+                        <div className="store-details">
+                            <p className="store-name">{product.text}</p>
+                            <p className="store-price">{product.price} ₽</p>
+                            <button className="store-order-button" onClick={OrderClick}>Заказать</button>
+                        </div>
+                    </div>
                 ))}
             </main>
             <Footer />
