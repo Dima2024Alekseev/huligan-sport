@@ -1,7 +1,5 @@
-// Pages/Account-Authorization.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useNotification } from '../Components/NotificationContext'; // Импортируем контекст уведомлений
 import "../style/profile.css";
 import Header from "../Components/Header";
@@ -10,7 +8,6 @@ import Footer from "../Components/Footer/Footer";
 
 const Authorization = () => {
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const { showNotification } = useNotification(); // Используем контекст уведомлений
 
   const handleSubmit = async (formData) => {
@@ -20,7 +17,7 @@ const Authorization = () => {
       localStorage.setItem('token', token); // Сохранение токена в localStorage
       localStorage.setItem('isAuthenticated', 'true');
       showNotification('Успешный вход!', 'success'); // Отображение уведомления
-      navigate('/admin-dashboard'); // Перенаправление на главную страницу
+      window.open('/admin-dashboard', '_blank'); // Открытие новой вкладки
     } catch (error) {
       setError(error.response?.data?.error || '');
       showNotification('Ошибка авторизации', 'error'); // Отображение уведомления об ошибке

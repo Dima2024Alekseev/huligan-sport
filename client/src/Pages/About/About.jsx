@@ -5,9 +5,7 @@ import photo_founder from "../../img/founder.jpg";
 import coach from "../../img/head-coach.jpg";
 import Footer from "../../Components/Footer/Footer";
 
-
 const About = () => {
-
     return (
         <>
             <Header

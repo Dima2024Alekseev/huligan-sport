@@ -1,4 +1,5 @@
 import React from "react";
+import "./NavigationStyles.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -7,7 +8,7 @@ const Navbar = () => {
             <ul className="navigation">
                 <li className="first-li"><Link to="/home">Академия</Link>
                     <ul>
-                        <li><Link to="/about">об Академии</Link></li>
+                        <li><Link to="/about">Об Академии</Link></li>
                         <li><Link to="/contact">Контакты</Link></li>
                     </ul>
                 </li>
@@ -23,12 +24,14 @@ const Navbar = () => {
                     </ul>
                 </li>
                 <li><Link to="/schedule">Расписание</Link></li>
+                <li><Link to="/attendance-journal" style={{textAlign: 'center'}}>Журнал посещаемости</Link></li>
                 <li><Link to="/events">События</Link></li>
                 <li><Link to="/press-center">Пресс-центр</Link></li>
-                <li className="last-li"><Link to="/online-store">Интернет-магазин</Link></li>
+                <li><Link to="/online-store">Интернет-магазин</Link></li>
+                <li className="last-li"><Link to="/price">Цены</Link></li>
             </ul>
         </nav>
-    )
-}
+    );
+};
 
 export default Navbar;

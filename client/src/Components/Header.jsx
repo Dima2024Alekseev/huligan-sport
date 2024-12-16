@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import logo from "../img/header-icon.png";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 import MobileMenu from "./MobileMenu";
 import { TbUserSquareRounded, TbLogout } from "react-icons/tb";
 import { FaTelegram } from "react-icons/fa";
@@ -19,7 +19,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
   useEffect(() => {
     if (showGradient) {
       const inner = document.getElementById('inner');
-      let angle = 0;
+      let angle = 50;
       let direction = 1; // 1 для увеличения, -1 для уменьшения
 
       function updateGradient() {
@@ -32,7 +32,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
           direction = 0.5;
         }
 
-        inner.style.background = `linear-gradient(${angle}deg, rgb(0, 0, 0) 50%, rgba(125, 186, 232, 0) 100%), url("https://rcc-sport.ru/local/templates/main/img/bg-red.png") right top, rgb(18, 18, 18)`;
+        inner.style.background = `linear-gradient(${angle}deg, rgb(0, 0, 0) 50%, rgba(125, 186, 232, 0) 100%), url('https://img.freepik.com/premium-vector/black-red-geometric-abstract-background_1027691-512.jpg?w=360') right top, rgb(18, 18, 18)`;
         requestAnimationFrame(updateGradient);
       }
 
@@ -119,11 +119,6 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
               </div>
             </Link>
             <Navbar />
-            <Link to="/price">
-              <div className="price_button">
-                <p>Цены</p>
-              </div>
-            </Link>
             <div className="header-contact">
               <a href="tel:+79994451203" id="list-header">
                 <div>
@@ -132,7 +127,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
               </a>
               <Link to="/waiting-list" id="list-header">
                 <div>
-                  <p>Лист ожидания</p>
+                  <p>Записаться в клуб</p>
                 </div>
               </Link>
               <div className="header-icons">

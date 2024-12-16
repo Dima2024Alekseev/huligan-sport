@@ -57,8 +57,8 @@ const Form = ({ showFields, formTitle, title_button, onSubmit, recaptchaSiteKey 
 
   const validateForm = () => {
     const newErrors = {};
-    if (showFields.age && (isNaN(formData.age) || formData.age < 6 || formData.age > 60)) {
-      toast.error('Возраст должен быть числом от 6 до 60');
+    if (showFields.age && (isNaN(formData.age) || formData.age < 3 || formData.age > 60)) {
+      toast.error('Возраст должен быть числом от 3 до 60');
     }
 
     setErrors(newErrors);

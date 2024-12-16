@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import "./style/config.css";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Home from "./Pages/Home/Home";
@@ -23,7 +24,6 @@ import AttendanceJournal from './Pages/AttendanceJournal';
 import AdminPrice from "./Pages/Admin/AdminPrice/AdminPrice";
 import EditProduct from './Pages/Admin/AdminProduct/EditProduct';
 import Price from "./Pages/Price/Price";
-import "./style/config.css";
 import logo_title from "./img/log-club.png";
 import useTitle from './Components/UseTitle';
 import ScrollTop from './Components/ScrollTop';

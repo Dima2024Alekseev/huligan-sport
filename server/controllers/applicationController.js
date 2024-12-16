@@ -21,8 +21,8 @@ const submitApplication = async (req, res) => {
     }
 
     // Проверка возраста
-    if (age < 6 || age > 60) {
-      return res.status(400).send('Возраст должен быть в диапазоне от 6 до 60 лет');
+    if (age < 3 || age > 60) {
+      return res.status(400).send('Возраст должен быть в диапазоне от 3 до 60 лет');
     }
 
     // Проверка наличия заявки

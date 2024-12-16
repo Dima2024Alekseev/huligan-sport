@@ -22,7 +22,7 @@
     border-radius: 5px;
     padding: 30px;
     font-size: 20px;
-    background: linear-gradient(130deg, #000000 30%, rgba(125, 186, 232, 0) 100%), url(https://rcc-sport.ru/local/templates/main/img/bg-red.png) top right, #121212;
+    background: linear-gradient(130deg, #000000 30%, rgba(125, 186, 232, 0) 100%), url('../../img/black-red.png') top right, #121212;
 }
 
 #head-price {
