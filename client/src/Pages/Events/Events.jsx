@@ -1,8 +1,8 @@
 import React from "react";
-import "./events.css"
+import "./events.css";
 import Header from "../../Components/Header";
+import Posts from "../../Components/Post";
 import Footer from "../../Components/Footer/Footer";
-
 
 const Events = () => {
     return (
@@ -14,6 +14,7 @@ const Events = () => {
                 innerTitle="События Академии"
                 linkText="События"
             />
+            <Posts filterTag="#афиша" />
             <Footer />
         </>
     );

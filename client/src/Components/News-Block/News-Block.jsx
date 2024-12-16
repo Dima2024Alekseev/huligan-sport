@@ -20,10 +20,13 @@ class NewsBlock extends Component {
     };
 
     truncateText = (text, maxLength) => {
-        if (text.length <= maxLength) {
-            return text;
+        // Remove the hashtag #наши победы
+        const cleanedText = text.replace(/#нашипобеды|#афиша/g, '').trim();
+
+        if (cleanedText.length <= maxLength) {
+            return cleanedText;
         }
-        return text.slice(0, maxLength) + '... <a href="/press-center"><strong>Читать далее</strong></a>';
+        return cleanedText.slice(0, maxLength) + '... <a href="/press-center"><strong>Читать далее</strong></a>';
     };
 
     renderSwiper = (posts) => {
@@ -55,7 +58,7 @@ class NewsBlock extends Component {
                         <div className="content-news">
                             <img src={post.photoUrls[0]} alt="" style={{ margin: '10px 0' }} />
                             <div>
-                               <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p> 
+                               <p dangerouslySetInnerHTML={{ __html: this.truncateText(post.text, 190) }}></p>
                             </div>
                         </div>
                     </SwiperSlide>
@@ -70,8 +73,12 @@ class NewsBlock extends Component {
         // Фильтрация постов
         const filteredPosts = posts.filter(post =>
             post.photoUrls &&
-            post.photoUrls.length > 0 &&
-            !post.text.toLowerCase().includes('расписание')
+            post.photoUrls.length > 0
+        );
+
+        // Фильтрация постов по хэштегу #наши победы
+        const victoryPosts = filteredPosts.filter(post =>
+            post.text && post.text.includes('#нашипобеды')
         );
 
         return (
@@ -102,7 +109,7 @@ class NewsBlock extends Component {
                     )}
                     {this.state.activeButton === 'victory' && (
                         <div className="container-victory">
-                            {this.renderSwiper(filteredPosts)}
+                            {this.renderSwiper(victoryPosts)}
                         </div>
                     )}
                     <div className="button-all">
