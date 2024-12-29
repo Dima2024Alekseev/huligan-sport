@@ -3,7 +3,7 @@ import Header from "../Components/Header";
 import Form from "../Components/Form";
 import Footer from "../Components/Footer/Footer";
 import { toast, Toaster } from 'react-hot-toast';
-import "../style/profile.css";
+import "../styles/profile.css";
 
 const Waiting = () => {
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
@@ -21,7 +21,7 @@ const Waiting = () => {
     };
   }, []);
 
-  const handleSubmit = async (formData) => {
+  const handleSubmit = async (formData, resetForm) => {
     if (!recaptchaLoaded) {
       toast.error('reCAPTCHA еще не загружена. Пожалуйста, подождите.');
       return;
@@ -43,6 +43,7 @@ const Waiting = () => {
       });
       if (response.ok) {
         toast.success('Заявка успешно отправлена');
+        resetForm(); // Сброс формы
       } else {
         const errorMessage = await response.text();
         toast.error(`Ошибка при отправке заявки: ${errorMessage}`);

@@ -69,11 +69,23 @@ const Form = ({ showFields, formTitle, title_button, onSubmit, recaptchaSiteKey 
     e.preventDefault();
     if (validateForm()) {
       if (onSubmit) {
-        await onSubmit(formData);
+        await onSubmit(formData, resetForm);
       } else {
         console.error('Функция onSubmit не передана');
       }
     }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      lastname: '',
+      phone: '+7',
+      age: '',
+      direction: '',
+      login: '',
+      password: '',
+    });
   };
 
   return (

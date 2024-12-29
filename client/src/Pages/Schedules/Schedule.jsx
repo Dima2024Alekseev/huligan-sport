@@ -34,7 +34,7 @@ const ScheduleControl = ({ selectedCategory, selectedDay, handleCategoryChange, 
   );
 };
 
-const ScheduleTable = ({ scheduleData, selectedDay }) => {
+const ScheduleTable = ({ scheduleData, selectedDay, selectedCategory }) => {
   const days = ["pn", "vt", "sr", "ct", "pt", "sb"];
   const dayLabels = {
     pn: "ПН",
@@ -45,6 +45,12 @@ const ScheduleTable = ({ scheduleData, selectedDay }) => {
     sb: "СБ"
   };
 
+  const isRowEmpty = (row) => {
+    return days.every(day => !row[day] || (selectedCategory !== "Выберите" && !row[day].includes(selectedCategory)));
+  };
+
+  const filteredScheduleData = scheduleData.filter(row => !isRowEmpty(row));
+
   return (
     <table className="shedules">
       <tbody>
@@ -52,10 +58,18 @@ const ScheduleTable = ({ scheduleData, selectedDay }) => {
           <th></th>
           {selectedDay === "all" ? days.map(day => <th key={day}>{dayLabels[day]}</th>) : <th>{dayLabels[selectedDay]}</th>}
         </tr>
-        {scheduleData.map((row, index) => (
+        {filteredScheduleData.map((row, index) => (
           <tr key={index}>
             <td><strong>{row.time}</strong></td>
-            {selectedDay === "all" ? days.map(day => <td key={day}>{row[day]}</td>) : <td>{row[selectedDay]}</td>}
+            {selectedDay === "all" ? days.map(day => (
+              <td key={day}>
+                {selectedCategory === "Выберите" ? row[day] : (row[day] && row[day].includes(selectedCategory) ? row[day] : '')}
+              </td>
+            )) : (
+              <td>
+                {selectedCategory === "Выберите" ? row[selectedDay] : (row[selectedDay] && row[selectedDay].includes(selectedCategory) ? row[selectedDay] : '')}
+              </td>
+            )}
           </tr>
         ))}
       </tbody>
@@ -89,13 +103,6 @@ const Schedule = () => {
     setSelectedDay(event.target.value);
   };
 
-  const filteredSchedule = scheduleData.filter(row => {
-    if (selectedCategory !== "Выберите" && !Object.values(row).join(" ").includes(selectedCategory)) {
-      return false;
-    }
-    return true;
-  });
-
   return (
     <>
       <Header
@@ -112,7 +119,7 @@ const Schedule = () => {
           handleCategoryChange={handleCategoryChange}
           handleDayChange={handleDayChange}
         />
-        <ScheduleTable scheduleData={filteredSchedule} selectedDay={selectedDay} />
+        <ScheduleTable scheduleData={scheduleData} selectedDay={selectedDay} selectedCategory={selectedCategory} />
       </main>
       <Footer />
     </>

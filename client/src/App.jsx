@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import "./style/config.css";
+import "./styles/config.css";
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Home from "./Pages/Home/Home";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import logo from "../img/header-icon.png";
@@ -15,6 +15,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
 
   const [nav, setNav] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
+  const location = useLocation();
 
   useEffect(() => {
     if (showGradient) {
@@ -139,11 +140,19 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
                 </a>
               </div>
             </div>
-            {isAuthenticated ? (
+            {isAuthenticated && location.pathname === '/admin-dashboard' && (
               <div className="personal-area" onClick={handleLogout}>
                 <TbLogout className="profile-icon" size={45} color="white" />
               </div>
-            ) : (
+            )}
+            {isAuthenticated && location.pathname !== '/admin-dashboard' && (
+              <Link to="/admin-dashboard">
+                <div className="personal-area">
+                  <TbUserSquareRounded className="profile-icon" size={45} color="white" />
+                </div>
+              </Link>
+            )}
+            {!isAuthenticated && (
               <Link to="/authorization-account">
                 <div className="personal-area">
                   <TbUserSquareRounded className="profile-icon" size={45} color="white" />

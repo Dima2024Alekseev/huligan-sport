@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
-import "../style/attendance-journal.css";
+import "../styles/attendance-journal.css";
 import { useNotification } from '../Components/NotificationContext';
 
 const AttendanceJournal = () => {
