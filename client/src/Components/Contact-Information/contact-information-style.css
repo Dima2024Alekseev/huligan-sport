@@ -5,8 +5,8 @@
   }
   
   .contact-circle {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: black;
     border-radius: 50%;
     display: flex;
@@ -26,8 +26,8 @@
   
   .contact-icon {
     color: white;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
   
   .contact-icon.animate {
