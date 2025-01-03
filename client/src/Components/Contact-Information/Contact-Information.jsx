@@ -40,7 +40,7 @@ const Contact = () => {
           className={`contact-circle ${isOpen ? "open" : ""}`}
           onClick={toggleContactInfo}
         >
-          <MdContactSupport className={`contact-icon ${isAnimating ? "" : "animate"}`} />
+          <MdContactSupport className={`contact-icon ${!isOpen ? "animate" : ""}`} />
         </div>
       )}
       <div className={`contact ${isOpen || !isMobile ? "fade-in" : "fade-out"}`}>
