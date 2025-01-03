@@ -31,7 +31,7 @@
   }
   
   .contact-icon.animate {
-    animation: shake-pause 7s infinite; /* Анимация будет повторяться бесконечно */
+    animation: shake-pause 13s infinite; /* Анимация будет повторяться бесконечно */
   }
   
   @keyframes shake-pause {
@@ -61,16 +61,19 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none; /* Добавляем это, чтобы блок не блокировал взаимодействие с картой */
   }
   
   .contact.fade-in {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto; /* Возвращаем взаимодействие, когда блок виден */
   }
   
   .contact.fade-out {
     opacity: 0;
     transform: translateY(20px);
+    pointer-events: none; /* Убираем взаимодействие, когда блок скрыт */
   }
   
   @keyframes fadeIn {
