@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import ContentLoader from './Skeleton';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,8 @@ const Posts = ({ filterTag }) => {
     const navigate = useNavigate();
     const mainRef = useRef(null);
 
-    useEffect(() => {
+    const fetchPosts = useCallback(() => {
+        setLoading(true);
         axios.get('http://localhost:5000/api/posts')
             .then(response => {
                 const sortedPosts = response.data.sort((a, b) => b.id - a.id);
@@ -39,6 +40,10 @@ const Posts = ({ filterTag }) => {
                 setLoading(false);
             });
     }, [filterTag]);
+
+    useEffect(() => {
+        fetchPosts();
+    }, [fetchPosts, currentPage]);
 
     const handleReload = () => {
         window.location.reload();
@@ -69,12 +74,13 @@ const Posts = ({ filterTag }) => {
             ) : error ? (
                 <div className='error'>
                     <h2>Произошла ошибка</h2>
-                    <h3>Попробуйте снова или зайдите позже</h3>
+                    <p>Пожалуйста, попробуйте снова или перейдите на главную страницу.</p>
                     <div className='position-error-button'>
                         <button onClick={handleGoHome}>На главную</button>
                         <button onClick={handleReload}>Попробовать снова</button>
                     </div>
                 </div>
+
             ) : (
                 <>
                     <main ref={mainRef}>

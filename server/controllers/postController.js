@@ -1,11 +1,9 @@
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
-const NodeCache = require('node-cache');
 const Post = require('../models/Post');
 const { ACCESS_TOKEN, GROUP_ID } = process.env;
 const FILE_PATH = path.join(__dirname, '..', '..', 'client', 'src', 'data', 'posts.json');
-const myCache = new NodeCache({ stdTTL: 300 });
 
 const removeLinksFromText = (text) => {
   if (!text) return text;
@@ -14,13 +12,6 @@ const removeLinksFromText = (text) => {
 
 exports.getPosts = async (req, res) => {
   try {
-    const cacheKey = 'vk_posts';
-    const cachedData = myCache.get(cacheKey);
-
-    if (cachedData) {
-      return res.json(cachedData);
-    }
-
     const posts = await Post.find({});
     const postsJSON = posts.map(post => post.toObject());
 
@@ -28,7 +19,6 @@ exports.getPosts = async (req, res) => {
       return post.photoUrls && post.photoUrls.length > 0 && post.text && !/\[club\d+\|/.test(post.text);
     });
 
-    myCache.set(cacheKey, filteredPosts);
     res.json(filteredPosts);
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
@@ -75,8 +65,6 @@ const checkForNewPosts = async () => {
     const firstFivePosts = filteredPosts.slice(0, 5);
 
     fs.writeFileSync(FILE_PATH, JSON.stringify(firstFivePosts, null, 2));
-
-    myCache.set('vk_posts', postsWithPhotos);
   } catch (error) {
     console.error('Ошибка при получении данных:', error);
   }

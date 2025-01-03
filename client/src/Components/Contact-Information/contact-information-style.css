@@ -1,17 +1,57 @@
 .contact-information {
     width: 100%;
     height: 500px;
+    position: relative;
+}
+
+.contact-circle {
+    width: 40px;
+    height: 40px;
+    background: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.3s;
+}
+
+.contact-circle.open {
+    transform: scale(1.2);
+}
+
+.contact-icon {
+    color: white;
+    width: 20px;
+    height: 20px;
 }
 
 .contact {
     width: 30%;
     background: black;
     color: white;
-    position: relative;
+    position: absolute;
     left: 2%;
-    bottom: 80%;
+    bottom: 80px;
     z-index: 2;
     border-radius: 5px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.contact.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact.fade-out {
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .info-contact {
@@ -36,7 +76,6 @@
     margin-top: 10px;
 }
 
-
 address,
 .mon-schedule,
 .sun-schedule {
@@ -44,13 +83,49 @@ address,
     font-size: 15px;
 }
 
-@media(min-width:320px) and (max-width:1200px) {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@media (min-width: 320px) and (max-width: 1200px) {
     .info-contact {
         padding: 7%;
     }
 
     .contact {
         width: 80%;
+        bottom: 100px;
     }
 
+}
+
+@media (min-width: 1201px) {
+    .contact-circle {
+        display: none;
+    }
+
+    .contact {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

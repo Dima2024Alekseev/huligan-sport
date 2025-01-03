@@ -1,28 +1,38 @@
-import React from "react"
-import ContentLoader from "react-content-loader"
+import React from "react";
+import ContentLoader from "react-content-loader";
 
-const MyLoader = (props) => (
-    <ContentLoader
-        speed={2}
-        width={850}
-        height={500}
-        viewBox="0 0 1000 600"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-        {...props}
-    >
-        <rect x="20" y="65" rx="5" ry="5" width="500" height="500" />
-        <rect x="550" y="100" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="135" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="170" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="205" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="240" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="275" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="310" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="345" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="380" rx="2" ry="2" width="540" height="15" />
-        <rect x="550" y="415" rx="2" ry="2" width="540" height="15" />
-    </ContentLoader>
-)
+const PostLoader = (props) => (
+  <ContentLoader
+    speed={2}
+    width={1200} // Ширина карточки
+    height={250} // Высота карточки
+    viewBox="0 0 1200 250"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
+    {...props}
+  >
+    {/* Изображение */}
+    <rect x="10" y="10" rx="5" ry="5" width="350" height="250" />
 
-export default MyLoader
+    {/* Текст */}
+    <rect x="380" y="20" rx="5" ry="5" width="750" height="20" />
+    <rect x="380" y="50" rx="5" ry="5" width="750" height="20" />
+    <rect x="380" y="80" rx="5" ry="5" width="750" height="20" />
+    <rect x="380" y="110" rx="5" ry="5" width="750" height="20" />
+    <rect x="380" y="140" rx="5" ry="5" width="750" height="20" />
+    <rect x="380" y="170" rx="5" ry="5" width="750" height="20" />
+    <rect x="380" y="200" rx="5" ry="5" width="750" height="20" />
+  </ContentLoader>
+);
+
+const PostsLoader = (props) => (
+  <div>
+    <PostLoader />
+    <PostLoader />
+    <PostLoader />
+    <PostLoader />
+    <PostLoader />
+  </div>
+);
+
+export default PostsLoader;

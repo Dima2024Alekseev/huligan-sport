@@ -6,7 +6,7 @@ import Footer from "../../Components/Footer/Footer";
 
 const Press = () => {
     return (
-        <>
+        <div id="root">
             <Header
                 title="Пресс-центр"
                 showBlock={true}
@@ -18,7 +18,7 @@ const Press = () => {
                 <Posts />
             </div>
             <Footer />
-        </>
+        </div>
     );
 };
 

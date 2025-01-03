@@ -14,7 +14,9 @@ const Events = () => {
                 innerTitle="События Академии"
                 linkText="События"
             />
-            <Posts filterTag="#афиша" />
+            <main className="events-container">
+                <Posts filterTag="#афиша" />
+            </main>
             <Footer />
         </>
     );
