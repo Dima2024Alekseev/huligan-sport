@@ -100,14 +100,9 @@ ul.navigation li ul li:last-child {
 }
 
 @media(min-width:320px) and (max-width:1200px) {
-    nav {
-        position: relative;
-        right: 5%;
-        bottom: 5%;
-    }
-
     ul {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         color: white;
         font-weight: 600;
     }
@@ -122,6 +117,17 @@ ul.navigation li ul li:last-child {
 
     ul.navigation li:hover>ul {
         display: block;
+        background: white;
+        color: black;
+        border-radius: 5px;
+    }
+
+    ul.navigation li:hover>ul {
+        display: block;
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        
     }
 
     ul {
@@ -140,7 +146,6 @@ ul.navigation li ul li:last-child {
     ul.navigation li a {
         text-decoration: none;
         display: block;
-        padding: 15px 10px 10px 10px;
     }
 
     ul.navigation li ul {
@@ -152,12 +157,7 @@ ul.navigation li ul li:last-child {
         z-index: 1;
     }
 
-    ul.navigation li:hover>ul {
-        display: block;
-        position: absolute;
-        top: -10px;
-        left: 100%;
-    }
+
 
     ul.navigation li ul li {
         line-height: 2;

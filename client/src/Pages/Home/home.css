@@ -169,7 +169,7 @@ header .logo-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         position: fixed;
         left: -120%;
         right: 0;
@@ -192,7 +192,7 @@ header .logo-header {
     .header-contact {
         position: relative;
         gap: 5px;
-        top: 20%;
+        top: 10%;
     }
 
     .active {
