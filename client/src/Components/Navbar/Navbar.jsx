@@ -24,7 +24,7 @@ const Navbar = () => {
                     </ul>
                 </li>
                 <li><Link to="/schedule">Расписание</Link></li>
-                <li><Link to="/attendance-journal" style={{textAlign: 'center'}}>Журнал посещаемости</Link></li>
+                <li><Link to="/attendance-journal">Журнал посещаемости</Link></li>
                 <li><Link to="/events">События</Link></li>
                 <li><Link to="/press-center">Пресс-центр</Link></li>
                 <li><Link to="/online-store">Интернет-магазин</Link></li>
