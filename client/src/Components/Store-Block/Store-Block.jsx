@@ -24,6 +24,8 @@ const StoreBlock = () => {
         fetchItems();
     }, []);
 
+    const hasEnoughSlides = items.length >= 3;
+
     return (
         <div className="online-store">
             <Swiper
@@ -35,7 +37,7 @@ const StoreBlock = () => {
                         slidesPerView: 3
                     }
                 }}
-                loop={true}
+                loop={hasEnoughSlides} // Включаем режим цикла только если достаточно слайдов
                 pagination={{
                     clickable: true,
                 }}

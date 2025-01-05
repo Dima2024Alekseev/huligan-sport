@@ -1,3 +1,19 @@
+#inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorization-page{
+  min-height: 100vh;
+}
+
+.form-authorization {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .content-registration {
   display: flex;
   justify-content: center;
@@ -66,8 +82,6 @@ form {
   color: #EE0007;
 }
 
-
-
 form label {
   position: relative;
 }
@@ -81,14 +95,11 @@ form label input {
   border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 5px;
   box-sizing: border-box;
-  /* Включить padding и border в общую ширину и высоту */
 }
 
 form label #indentation {
   padding: 15px 10px 15px 10px;
 }
-
-
 
 form label input+span {
   color: rgba(255, 255, 255, 0.5);
@@ -164,17 +175,6 @@ option {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* .recaptcha-container {
-  width: 100%;
-}
-
-.g-recaptcha {
-  transform: scale(0.90);
-  -webkit-transform: scale(0.90);
-  transform-origin: 0 0;
-  -webkit-transform-origin: 0 0;
-} */
-
 @keyframes pulse {
   from {
     transform: scale(0.9);
@@ -206,5 +206,4 @@ option {
   .form label input {
     padding: 20px 10px 15px 10px;
   }
-
 }

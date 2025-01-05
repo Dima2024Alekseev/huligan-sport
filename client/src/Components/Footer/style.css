@@ -52,11 +52,11 @@ footer {
     justify-content: center;
 }
 
-.footer_icons{
+.footer_icons {
     transition: all 0.5s ease;
 }
 
-.footer_icons:hover{
+.footer_icons:hover {
     fill: #e3070e;
 }
 
@@ -89,10 +89,27 @@ svg.social {
     cursor: pointer;
 }
 
-@media(min-width:320px) and (max-width:1200px) {
-
+@media(max-width:768px) {
     .footer-flex {
         display: none;
     }
 
+    .logo-club {
+        width: 18%;
+        height: auto;
+    }
+
+    .generalization {
+        padding: 30px 10px;
+    }
+
+    .description {
+        text-align: center;
+    }
+}
+
+@media(min-width:768px) and (max-width:1200px) {
+    .footer-flex{
+        display:none;
+    }
 }

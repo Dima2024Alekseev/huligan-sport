@@ -93,6 +93,28 @@ header .logo-header {
     border-radius: 5px;
 }
 
+@media(max-width: 768px){
+    .button-style {
+        width: 40vw;
+        height: 12vw;
+        font-size: 3.5vw;
+    }
+
+    header .logo-header {
+        width: 60%;
+        height: auto;
+    }
+}
+
+@media(min-width:768px) and (max-width:1200px){
+    .button-style {
+        width: 200px;
+        height: 50px;
+        font-size: 14px;
+    }
+}
+
+
 @media(min-width:320px) and (max-width:1200px) {
 
     #video-container {
@@ -115,10 +137,7 @@ header .logo-header {
         height: 100%;
     }
 
-    header .logo-header {
-        width: 50%;
-        height: auto;
-    }
+    
 
     .position-mobile-logo-and-menu {
         display: flex;
@@ -208,10 +227,7 @@ header .logo-header {
         font-weight: 700;
     }
 
-    .logo-club {
-        width: 50px;
-        height: auto;
-    }
+    
 
     .news_button {
         margin-top: 30px;
@@ -225,11 +241,6 @@ header .logo-header {
         font-weight: 600;
     }
 
-    .button-style {
-        width: 200px;
-        height: 50px;
-        font-size: 14px;
-    }
 
     .button-all {
         margin: 0;

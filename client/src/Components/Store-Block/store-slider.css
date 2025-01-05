@@ -84,10 +84,9 @@
     background: rgb(255, 255, 255);
 }
 
-
-@media(min-width:320px) and (max-width:1200px) {
+@media(max-width:768px){
     .content-store img {
-        width: 75%;
+        width: 60%;
         height: auto;
         border-radius: 5px;
     }
@@ -95,11 +94,17 @@
     .content-store p {
         background-color: white;
         border-radius: 5px;
-        width: 75%;
+        width: 60%;
         padding: 10px 0px;
-        line-height: 30px;
+        line-height: 1.5;
         text-align: center;
         position: relative;
         bottom: 12px;
     }
+}
+
+@media(min-width:768px) and (max-width:1200px) {
+    
+
+    
 }

@@ -50,8 +50,6 @@
 .button-all {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-
 }
 
 .swiper {
@@ -78,7 +76,7 @@
     top: var(--swiper-pagination-top, auto);
     left: 0;
     width: 100%;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 
 .mySwiper {
@@ -162,6 +160,36 @@
     justify-content: center;
     color: black;
     transition: all 0.3s ease;
+}
+
+@media(max-width: 768px) {
+
+    .button-club,
+    .button-victory {
+        width: 42vw;
+        height: 18vw;
+        font-size: 3.5vw;
+    }
+
+    .news_button {
+        gap: 10px;
+        margin-top: 30px;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 1200px) {
+
+    .button-club,
+    .button-victory {
+        width: 35vw;
+        height: 15vw;
+        font-size: 2.3vw;
+    }
+
+    .news_button {
+        gap: 15px;
+        margin-top: 40px;
+    }
 }
 
 

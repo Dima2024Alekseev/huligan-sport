@@ -113,7 +113,8 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
         )}
         {showVideoHomePages && <div className="overlay"></div>}
         <div>
-          <div className={nav ? ["header-flex", "active"].join(' ') : ["header-flex"]}>
+          <div className={nav ? ["header-flex", "active"].join(" ") : ["header-flex"]}>
+            
             <Link to="/home">
               <div>
                 <img className="logo-header" alt="" src={logo} />

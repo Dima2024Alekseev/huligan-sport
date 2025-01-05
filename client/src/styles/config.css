@@ -15,7 +15,6 @@ html {
 
 #inner {
     max-width: 100%;
-    min-height: auto;
     background: linear-gradient(90deg, #000000 50%, rgba(125, 186, 232, 0) 100%), url('../img/black-red.png') top right, #121212;
     background-position: center;
 }
