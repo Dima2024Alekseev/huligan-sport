@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-.authorization-page{
+.authorization-page {
   min-height: 100vh;
 }
 
@@ -187,7 +187,7 @@ option {
   }
 }
 
-@media(min-width:320px) and (max-width:425px) {
+@media(max-width:768px) {
   .content-registration {
     display: flex;
     justify-content: center;
@@ -195,15 +195,20 @@ option {
   }
 
   form {
-    width: 290px;
-    padding: 25px;
+    width: 100%;
+    height: auto;
+    padding: 50px 30px;
   }
 
   .form-title {
     font-size: 24px;
   }
 
-  .form label input {
-    padding: 20px 10px 15px 10px;
+  form label input {
+    padding: 10px;
+  }
+
+  .submit {
+    padding: 10px;
   }
 }

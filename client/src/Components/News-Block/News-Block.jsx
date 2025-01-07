@@ -30,7 +30,7 @@ class NewsBlock extends Component {
     };
 
     renderSwiper = (posts) => {
-        const hasEnoughSlides = posts.length >= 3;
+        // const hasEnoughSlides = posts.length > 1;
 
         return (
             <Swiper
@@ -54,7 +54,7 @@ class NewsBlock extends Component {
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
                 className="mySwiper"
-                loop={hasEnoughSlides} // Включаем режим цикла только если достаточно слайдов
+                // loop={hasEnoughSlides} // Включаем режим цикла только если достаточно слайдов
             >
                 {posts.map(post => (
                     <SwiperSlide key={post.id}>
