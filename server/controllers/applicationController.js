@@ -1,6 +1,5 @@
 const Application = require('../models/Application');
 const TelegramBot = require('node-telegram-bot-api');
-const fetch = require('node-fetch');
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new TelegramBot(token, { polling: true });
@@ -9,6 +8,9 @@ const submitApplication = async (req, res) => {
   const { name, lastname, phone, age, direction, recaptchaResponse } = req.body;
 
   try {
+    // Динамический импорт node-fetch
+    const fetch = (await import('node-fetch')).default;
+
     // Проверка reCAPTCHA
     const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
     const recaptchaVerification = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${recaptchaSecret}&response=${recaptchaResponse}`, {
