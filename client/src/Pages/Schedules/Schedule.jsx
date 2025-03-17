@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { Helmet } from "react-helmet";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer/Footer";
 import "./schedule.css";
@@ -53,14 +54,16 @@ const ScheduleTable = ({ scheduleData, selectedDay, selectedCategory }) => {
 
   return (
     <table className="shedules">
-      <tbody>
+      <thead>
         <tr>
           <th></th>
           {selectedDay === "all" ? days.map(day => <th key={day}>{dayLabels[day]}</th>) : <th>{dayLabels[selectedDay]}</th>}
         </tr>
+      </thead>
+      <tbody>
         {filteredScheduleData.map((row, index) => (
           <tr key={index}>
-            <td><strong>{row.time}</strong></td>
+            <td className="sticky-column-time"><strong>{row.time}</strong></td>
             {selectedDay === "all" ? days.map(day => (
               <td key={day}>
                 {selectedCategory === "Выберите" ? row[day] : (row[day] && row[day].includes(selectedCategory) ? row[day] : '')}
@@ -105,6 +108,11 @@ const Schedule = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Расписание - Академия боевых единоборств "Хулиган"</title>
+        <meta name="description" content="Узнайте расписание тренировок в Академии боевых единоборств 'Хулиган'." />
+        <meta name="keywords" content="Расписание, Академия боевых единоборств, Хулиган, тренировки, спорт" />
+      </Helmet>
       <Header
         showGradient={true}
         title='Расписание'

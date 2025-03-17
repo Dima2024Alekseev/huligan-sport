@@ -18,6 +18,14 @@
     display: none;
 }
 
+.sticky-column-time{
+    position: sticky;
+    background: white;
+    border: 1px solid #ccc;
+    left: -2px;
+    z-index: 1;
+}
+
 .schedule-mounth {
     display: flex;
     align-items: center;
@@ -104,7 +112,8 @@ select:focus .schedule {
 
     .shedules td,
     .shedules th {
-        padding: 15px 10px;
         font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }

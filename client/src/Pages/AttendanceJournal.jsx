@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { Helmet } from "react-helmet";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer/Footer";
 import "../styles/attendance-journal.css";
@@ -92,8 +93,8 @@ const AttendanceJournal = () => {
       });
       showNotification('Журнал посещаемости обновлен', 'success');
     } catch (error) {
-      console.error('Ошибка при обновлении журнала посещаемости:', error);
-      showNotification('Ошибка при обновлении журнала посещаемости', 'error');
+      console.error('Ваша сессия истекла', error);
+      showNotification('Ваша сессия истекла', 'error');
     }
   };
 
@@ -222,46 +223,60 @@ const AttendanceJournal = () => {
 
   const renderAttendanceTable = () => {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>ФИО</th>
-            {daysToDisplay.map((day) => (
-              <th key={day}>{day}</th>
-            ))}
-            {isAdmin && <th>Действия</th>}
-          </tr>
-        </thead>
-        <tbody>
-          {attendanceData.map((entry, index) => (
-            <tr key={entry._id}>
-              <td className='element-center'>{index + 1}</td>
-              <td>{isAdmin ? <input value={entry.studentName} onChange={(e) => handleChange(index, 'studentName', e.target.value)} /> : entry.studentName}</td>
+      <article className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th className='text-left sticky-column'>ФИО</th>
               {daysToDisplay.map((day) => (
-                <td key={day} className='element-center'>
+                <th key={day} className='element-center'>
+                  {day}
+                </th>
+              ))}
+              {isAdmin && <th>Действия</th>}
+            </tr>
+          </thead>
+          <tbody>
+            {attendanceData.map((entry, index) => (
+              <tr key={entry._id}>
+                <td className='element-center'>{index + 1}</td>
+                <td className='text-left sticky-column'>
                   {isAdmin ? (
                     <input
-                      type="checkbox"
-                      checked={entry.attendance[day] || false}
-                      onChange={(e) => handleChange(index, `attendance.${day}`, e.target.checked)}
+                      value={entry.studentName}
+                      onChange={(e) => handleChange(index, 'studentName', e.target.value)}
                     />
                   ) : (
-                    entry.attendance[day] ? '✔' : ''
+                    entry.studentName
                   )}
                 </td>
-              ))}
-              {isAdmin && (
-                <td className='element-center'>
-                  <button onClick={() => handleDeleteEntry(entry._id)}>Удалить</button>
-                </td>
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                {daysToDisplay.map((day) => (
+                  <td key={day} className='element-center'>
+                    {isAdmin ? (
+                      <input
+                        type="checkbox"
+                        checked={entry.attendance[day] || false}
+                        onChange={(e) => handleChange(index, `attendance.${day}`, e.target.checked)}
+                      />
+                    ) : (
+                      entry.attendance[day] ? '✔' : ''
+                    )}
+                  </td>
+                ))}
+                {isAdmin && (
+                  <td className='element-center'>
+                    <button onClick={() => handleDeleteEntry(entry._id)}>Удалить</button>
+                  </td>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </article>
     );
   };
+  
 
   const getMonthName = (month) => {
     const months = [
@@ -285,8 +300,12 @@ const AttendanceJournal = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Журнал посещаемости - Академия боевых единоборств "Хулиган"</title>
+        <meta name="description" content="Журнал посещаемости студентов Академии боевых единоборств 'Хулиган'." />
+        <meta name="keywords" content="Журнал посещаемости, Академия боевых единоборств, Хулиган, студенты, посещаемость" />
+      </Helmet>
       <Header
-        title='Журнал посещаемости студентов'
         showBlock={true}
         innerTitle="Журнал посещаемости"
         linkText="Журнал посещаемости"

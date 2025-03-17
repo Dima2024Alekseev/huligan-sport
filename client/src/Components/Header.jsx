@@ -9,9 +9,10 @@ import { TbUserSquareRounded, TbLogout } from "react-icons/tb";
 import { FaTelegram } from "react-icons/fa";
 import { FaVk } from "react-icons/fa6";
 import useTitle from './UseTitle';
+import blackRedImage from "../img/black-red.png"; // Импорт изображения
 
-const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGradient, showBlock, videoBackgroundDirections, videoSrc, onLogout }) => {
-  useTitle(title, icon, innerTitle, linkText);
+const Header = ({ icon, innerTitle, linkText, showVideoHomePages, showGradient, showBlock, videoBackgroundDirections, videoSrc, onLogout, homeRoute }) => {
+  useTitle(icon, innerTitle, linkText);
 
   const [nav, setNav] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
@@ -20,29 +21,31 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
   useEffect(() => {
     if (showGradient) {
       const inner = document.getElementById('inner');
-      let angle = 50;
-      let direction = 1; // 1 для увеличения, -1 для уменьшения
+      if (inner) {
+        let angle = 50;
+        let direction = 1; // 1 для увеличения, -1 для уменьшения
 
-      function updateGradient() {
-        angle += direction;
+        function updateGradient() {
+          angle += direction;
 
-        // Изменяем направление, когда угол достигает 150 или 50 градусов
-        if (angle >= 250) {
-          direction = -0.5;
-        } else if (angle <= 50) {
-          direction = 0.5;
+          // Изменяем направление, когда угол достигает 150 или 50 градусов
+          if (angle >= 250) {
+            direction = -0.5;
+          } else if (angle <= 50) {
+            direction = 0.5;
+          }
+
+          inner.style.background = `linear-gradient(${angle}deg, rgb(0, 0, 0) 50%, rgba(125, 186, 232, 0) 100%), url(${blackRedImage}) right top, rgb(18, 18, 18)`;
+          requestAnimationFrame(updateGradient);
         }
 
-        inner.style.background = `linear-gradient(${angle}deg, rgb(0, 0, 0) 50%, rgba(125, 186, 232, 0) 100%), url('https://img.freepik.com/premium-vector/black-red-geometric-abstract-background_1027691-512.jpg?w=360') right top, rgb(18, 18, 18)`;
-        requestAnimationFrame(updateGradient);
+        updateGradient();
+
+        // Очистка анимации при размонтировании компонента
+        return () => {
+          cancelAnimationFrame(updateGradient);
+        };
       }
-
-      updateGradient();
-
-      // Очистка анимации при размонтировании компонента
-      return () => {
-        cancelAnimationFrame(updateGradient);
-      };
     }
   }, [showGradient]);
 
@@ -84,7 +87,7 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
   };
 
   return (
-    <div id={showGradient ? "inner" : ""} style={videoBackgroundDirections ? {
+    <section id={showGradient ? "inner" : ""} style={videoBackgroundDirections ? {
       position: 'relative',
       zIndex: 2
     } : {}}>
@@ -114,10 +117,10 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
         {showVideoHomePages && <div className="overlay"></div>}
         <div>
           <div className={nav ? ["header-flex", "active"].join(" ") : ["header-flex"]}>
-            
-            <Link to="/home">
+
+            <Link to="/" aria-label="Home">
               <div>
-                <img className="logo-header" alt="" src={logo} />
+                <img className="logo-header" alt="Logo" src={logo} />
               </div>
             </Link>
             <Navbar />
@@ -133,28 +136,28 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
                 </div>
               </Link>
               <div className="header-icons">
-                <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk">
+                <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://vk.com/mmakansk" aria-label="VK">
                   <FaVk className="social-network" size={24} />
                 </a>
-                <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk">
+                <a className="header-icons_1" target="_blank" rel="noopener noreferrer" href="https://t.me/mmakansk" aria-label="Telegram">
                   <FaTelegram className="social-network" size={24} />
                 </a>
               </div>
             </div>
             {isAuthenticated && location.pathname === '/admin-dashboard' && (
-              <div className="personal-area" onClick={handleLogout}>
+              <button className="personal-area" onClick={handleLogout} aria-label="Logout">
                 <TbLogout className="profile-icon" size={45} color="white" />
-              </div>
+              </button>
             )}
             {isAuthenticated && location.pathname !== '/admin-dashboard' && (
-              <Link to="/admin-dashboard">
+              <Link to="/admin-dashboard" aria-label="Admin Dashboard">
                 <div className="personal-area">
                   <TbUserSquareRounded className="profile-icon" size={45} color="white" />
                 </div>
               </Link>
             )}
             {!isAuthenticated && (
-              <Link to="/authorization-account">
+              <Link to="/authorization-account" aria-label="Authorization">
                 <div className="personal-area">
                   <TbUserSquareRounded className="profile-icon" size={45} color="white" />
                 </div>
@@ -165,19 +168,19 @@ const Header = ({ title, icon, innerTitle, linkText, showVideoHomePages, showGra
         </div>
       </header>
       {showBlock && <div className="content">
-        <div className="title">
+        <div className="innerTitle">
           <h1>Title Header</h1>
         </div>
-        <div className="links">
+        <nav className="links">
           <div style={{ borderRight: '1px solid white', paddingRight: '10px' }}>
-            <Link to="/home">Главная</Link>
+            <Link to={homeRoute} aria-label="Home">Главная</Link>
           </div>
           <div>
-            <Link to="#" style={{ color: 'white', paddingLeft: '10px' }}></Link>
+            <Link to="#" style={{ color: 'white', paddingLeft: '10px' }} aria-label="Link"></Link>
           </div>
-        </div>
+        </nav>
       </div>}
-    </div>
+    </section>
   );
 };
 

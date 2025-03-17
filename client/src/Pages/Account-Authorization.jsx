@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useNotification } from '../Components/NotificationContext';
+import { Helmet } from "react-helmet";
 import "../styles/profile.css";
 import Header from "../Components/Header";
 import Form from "../Components/Form";
@@ -22,13 +23,18 @@ const Authorization = () => {
       navigate('/admin-dashboard');
     } catch (error) {
       setError(error.response?.data?.error || '');
-      showNotification('Ошибка авторизации', 'error');
+      showNotification('Неверный логин или пароль', 'error');
     }
   };
 
   return (
     <div id="inner" className="authorization-page">
-      <Header title='Авторизация аккаунта' />
+      <Helmet>
+        <title>Авторизация - Академия боевых единоборств "Хулиган"</title>
+        <meta name="description" content="Авторизуйтесь для доступа к административной панели Академии боевых единоборств 'Хулиган'." />
+        <meta name="keywords" content="Авторизация, Академия боевых единоборств, Хулиган, административная панель, вход" />
+      </Helmet>
+      <Header />
       <main className="form-authorization">
         <Form
           showFields={{ login: true, password: true }}
@@ -36,7 +42,6 @@ const Authorization = () => {
           title_button='Войти'
           onSubmit={handleSubmit}
         />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
       </main>
       <Footer />
     </div>

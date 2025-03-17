@@ -1,5 +1,8 @@
 .content_about_us {
-    padding: 5% 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 2%;
     background-color: #f4f4f4;
 }
 
@@ -7,11 +10,11 @@
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    padding: 2% 5%;
+    padding: 2%;
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    
 }
 
 .position-title-photo img {
@@ -48,10 +51,19 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 10% 5%;
+        margin-bottom: 0px;
     }
 
     .position-title-photo img {
-        width: 50%;
+        width: 70%;
         margin-bottom: 20px;
+    }
+
+    .content_about_us {
+        padding: 0;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
     }
 }

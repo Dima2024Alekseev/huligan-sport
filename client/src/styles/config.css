@@ -37,6 +37,7 @@ html {
     color: rgba(255, 255, 255, 0.562);
     margin-top: 10%;
     display: flex;
+    justify-content: flex-start;
     font-size: 14px;
 }
 
@@ -80,4 +81,10 @@ img {
 ::-webkit-scrollbar-thumb {
     background: black;
     height: 350px;
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 12% 5%;
+    }
 }

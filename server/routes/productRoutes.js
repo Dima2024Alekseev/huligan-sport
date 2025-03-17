@@ -4,6 +4,8 @@ const productController = require('../controllers/productController');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const authMiddleware = require('../middlewares/authMiddleware'); // Подключаем middleware
+const adminMiddleware = require('../middlewares/adminMiddleware'); // Подключаем middleware
 
 // Настройка хранилища для Multer
 const storage = multer.diskStorage({
@@ -30,10 +32,9 @@ const storage = multer.diskStorage({
     }
 });
 
-// Настройка Multer с ограничениями и фильтрацией файлов
+// Настройка Multer с фильтрацией файлов
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 1000000 }, // Ограничение размера файла (1MB)
     fileFilter: (req, file, cb) => {
         const filetypes = /jpeg|jpg|png/;
         const mimetype = filetypes.test(file.mimetype);
@@ -50,7 +51,7 @@ const upload = multer({
 router.get('/', productController.getAllProducts);
 
 // Маршрут для обновления продукта
-router.put('/:id', (req, res) => {
+router.put('/:id', authMiddleware, adminMiddleware, (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             console.error('Ошибка при загрузке файла:', err);
@@ -61,10 +62,10 @@ router.put('/:id', (req, res) => {
 });
 
 // Маршрут для удаления продукта
-router.delete('/:id', productController.deleteProduct);
+router.delete('/:id', authMiddleware, adminMiddleware, productController.deleteProduct);
 
 // Маршрут для создания нового продукта
-router.post('/', (req, res) => {
+router.post('/', authMiddleware, adminMiddleware, (req, res) => {
     upload(req, res, (err) => {
         if (err) {
             console.error('Ошибка при загрузке файла:', err);

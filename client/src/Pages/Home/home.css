@@ -73,6 +73,13 @@ header .logo-header {
     display: none;
 }
 
+.personal-area,
+.mobile_btn{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 /* -----------шапка сайта---------- */
 
 .button-style {
@@ -91,6 +98,10 @@ header .logo-header {
     width: 36vw;
     height: 5vw;
     border-radius: 5px;
+}
+
+.button-style:hover{
+    color: white;
 }
 
 @media(max-width: 768px){
@@ -155,6 +166,8 @@ header .logo-header {
         position: relative;
         top: 20px;
         z-index: 10;
+        border: none;
+        background: transparent;
     }
 
     svg.social {
@@ -216,6 +229,7 @@ header .logo-header {
 
     .active {
         left: 0;
+        overflow: hidden;
     }
 
     .generalization {

@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
-import "./styles/config.css";
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { NotificationProvider } from './Components/NotificationContext';
+import ScrollTop from './Components/ScrollTop';
+import useTitle from './Components/UseTitle';
 import Home from "./Pages/Home/Home";
 import About from "./Pages/About/About";
 import Boxing from './Pages/Directions/Boxing';
@@ -24,20 +26,47 @@ import AttendanceJournal from './Pages/AttendanceJournal';
 import AdminPrice from "./Pages/Admin/AdminPrice/AdminPrice";
 import EditProduct from './Pages/Admin/AdminProduct/EditProduct';
 import Price from "./Pages/Price/Price";
+import NotFoundPage from './Pages/NoutFoundPages/NoutFoundPages';
 import logo_title from "./img/log-club.png";
-import useTitle from './Components/UseTitle';
-import ScrollTop from './Components/ScrollTop';
-import { NotificationProvider } from './Components/NotificationContext';
+import axios from 'axios';
+import "./styles/config.css";
 
-const AnimatedRoutes = () => {
+// Перехватчик для обработки ошибок 401
+const setupAxiosInterceptors = (navigate) => {
+  axios.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response && error.response.status === 401) {
+        // Удаляем токены из локального хранилища
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('isAuthenticated');
+
+        // Перенаправляем на страницу авторизации
+        navigate('/authorization-account');
+      }
+      return Promise.reject(error);
+    }
+  );
+};
+
+const AppContent = () => {
   const location = useLocation();
   const nodeRef = useRef(null);
+  const navigate = useNavigate();
 
+  // Инициализация перехватчика Axios
+  useEffect(() => {
+    setupAxiosInterceptors(navigate);
+  }, [navigate]);
+
+  // Проверка авторизации
   const isAuthenticated = () => {
     const token = localStorage.getItem('token');
     return token !== null;
   };
 
+  // Проверка роли администратора
   const isAdmin = () => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -52,7 +81,7 @@ const AnimatedRoutes = () => {
       <CSSTransition timeout={200} key={location.pathname} nodeRef={nodeRef} classNames="fade">
         <div ref={nodeRef}>
           <Routes location={location}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/boxing" element={<Boxing />} />
             <Route path="/grappling" element={<Grappling />} />
             <Route path="/hand-to-hand-combat" element={<Hand />} />
@@ -88,6 +117,7 @@ const AnimatedRoutes = () => {
               path="/admin-products"
               element={isAuthenticated() && isAdmin() ? <EditProduct /> : <Navigate to="/authorization-account" />}
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </CSSTransition>
@@ -96,13 +126,13 @@ const AnimatedRoutes = () => {
 };
 
 export default function App() {
-  useTitle("Хулиган. Академия боевых единоборств", logo_title);
+  useTitle(logo_title);
 
   return (
     <NotificationProvider>
       <Router>
         <ScrollTop />
-        <AnimatedRoutes />
+        <AppContent />
       </Router>
     </NotificationProvider>
   );

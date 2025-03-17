@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 import Header from '../../../Components/Header';
 import Footer from '../../../Components/Footer/Footer';
 import './adminproduct.css';
@@ -15,10 +16,17 @@ const EditorProduct = () => {
     const [newProductPrice, setNewProductPrice] = useState('');
     const [newProductFile, setNewProductFile] = useState(null);
 
+    // Получаем токен из localStorage
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/products');
+                const response = await axios.get('http://localhost:5000/api/products', {
+                    headers: {
+                        'Authorization': token // Добавляем токен в заголовок
+                    }
+                });
                 setProducts(response.data);
             } catch (error) {
                 console.error('Ошибка при получении продуктов:', error);
@@ -27,7 +35,7 @@ const EditorProduct = () => {
         };
 
         fetchProducts();
-    }, []);
+    }, [token]);
 
     const handleEditClick = (productId, name, price) => {
         setEditingProductId(productId);
@@ -46,11 +54,16 @@ const EditorProduct = () => {
 
             await axios.put(`http://localhost:5000/api/products/${productId}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': token // Добавляем токен в заголовок
                 }
             });
 
-            const response = await axios.get('http://localhost:5000/api/products');
+            const response = await axios.get('http://localhost:5000/api/products', {
+                headers: {
+                    'Authorization': token // Добавляем токен в заголовок
+                }
+            });
             setProducts(response.data);
             setEditingProductId(null);
             setSelectedFile(null);
@@ -63,8 +76,17 @@ const EditorProduct = () => {
 
     const handleDeleteClick = async (productId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/products/${productId}`);
-            const response = await axios.get('http://localhost:5000/api/products');
+            await axios.delete(`http://localhost:5000/api/products/${productId}`, {
+                headers: {
+                    'Authorization': token // Добавляем токен в заголовок
+                }
+            });
+
+            const response = await axios.get('http://localhost:5000/api/products', {
+                headers: {
+                    'Authorization': token // Добавляем токен в заголовок
+                }
+            });
             setProducts(response.data);
             toast.success('Продукт успешно удален');
         } catch (error) {
@@ -84,11 +106,16 @@ const EditorProduct = () => {
 
             await axios.post('http://localhost:5000/api/products', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': token // Добавляем токен в заголовок
                 }
             });
 
-            const response = await axios.get('http://localhost:5000/api/products');
+            const response = await axios.get('http://localhost:5000/api/products', {
+                headers: {
+                    'Authorization': token // Добавляем токен в заголовок
+                }
+            });
             setProducts(response.data); // Обновляем список продуктов
             setNewProductName('');
             setNewProductPrice('');
@@ -110,9 +137,13 @@ const EditorProduct = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Изменение интернет-магазина</title>
+                <meta name="description" content="Редактирование интернет-магазина" />
+                <meta name="keywords" content="интернет-магазин, редактирование, продукты" />
+            </Helmet>
             <Header
                 showGradient={true}
-                title='Изменение интернет-магазина'
                 showBlock={true}
                 innerTitle='Редактирование интернет-магазина'
                 linkText='Редактирование интернет-магазина' />
