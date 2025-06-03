@@ -74,7 +74,7 @@ header .logo-header {
 }
 
 .personal-area,
-.mobile_btn{
+.mobile_btn {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -100,11 +100,11 @@ header .logo-header {
     border-radius: 5px;
 }
 
-.button-style:hover{
+.button-style:hover {
     color: white;
 }
 
-@media(max-width: 768px){
+@media(max-width: 768px) {
     .button-style {
         width: 40vw;
         height: 12vw;
@@ -117,7 +117,7 @@ header .logo-header {
     }
 }
 
-@media(min-width:768px) and (max-width:1200px){
+@media(min-width:768px) and (max-width:1200px) {
     .button-style {
         width: 200px;
         height: 50px;
@@ -148,7 +148,7 @@ header .logo-header {
         height: 100%;
     }
 
-    
+
 
     .position-mobile-logo-and-menu {
         display: flex;
@@ -186,7 +186,7 @@ header .logo-header {
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
-        gap: 20px;
+        gap: 15px;
     }
 
     .mobile-header-contact {
@@ -241,7 +241,7 @@ header .logo-header {
         font-weight: 700;
     }
 
-    
+
 
     .news_button {
         margin-top: 30px;

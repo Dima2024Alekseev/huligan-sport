@@ -1,8 +1,8 @@
-const express = require('express');
-const { submitApplication } = require('../controllers/applicationController');
+// const express = require('express');
+// const { submitApplication } = require('../controllers/applicationController');
 
-const router = express.Router();
+// const router = express.Router();
 
-router.post('/submit-application', submitApplication);
+// router.post('/submit-application', submitApplication);
 
-module.exports = router;
+// module.exports = router;

@@ -9,12 +9,13 @@ const scheduleRoutes = require('./routes/scheduleRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const priceRoutes = require('./routes/priceRoutes');
-const applicationRoutes = require('./routes/applicationRoutes');
+const adRoutes = require('./routes/adRoutes');
+// const applicationRoutes = require('./routes/applicationRoutes');
 const productRoutes = require('./routes/productRoutes');
-const { EventEmitter } = require('events');
+// const { EventEmitter } = require('events');
 const path = require('path');
 
-EventEmitter.defaultMaxListeners = 15;
+// EventEmitter.defaultMaxListeners = 15;
 
 connectDB();
 
@@ -28,8 +29,9 @@ app.use('/api/schedule', scheduleRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/prices', priceRoutes);
-app.use('/api/applications', applicationRoutes);
+// app.use('/api/applications', applicationRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/admin', adRoutes);
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

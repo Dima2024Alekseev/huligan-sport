@@ -34,21 +34,27 @@ const UserPrice = () => {
         innerTitle='Абонемент'
         linkText='Цены'
       />
-      <main className="training">
-        {priceData.map((price, index) => (
-          <article key={index} className="subscription">
-            <section id="head-price">
-              <h1>{price.price} ₽</h1>
-              <h4>{price.category}</h4>
-            </section>
-            <section id="month-price">
-              <h4>{price.duration}</h4>
-            </section>
-            <section>
-              <p>{price.description}</p>
-            </section>
-          </article>
-        ))}
+      <main className="price-container">
+        <div className="price-grid">
+          {priceData.map((price, index) => (
+            <div key={index} className="price-card">
+              <div className="price-title-wrapper">
+                <div className="price-category">{price.category}</div>
+                {price.duration && (
+                  <div className="price-duration">{price.duration}</div>
+                )}
+              </div>
+
+              <div className="price-amount">{price.price} ₽</div>
+
+              <div className="price-description">
+                {price.description.split('\n').map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
       <Footer />
     </>

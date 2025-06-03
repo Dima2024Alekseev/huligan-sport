@@ -18,7 +18,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Неверный логин или пароль' });
     }
 
-    const token = jwt.sign({ id: admin._id, role: 'admin' }, JWT_SECRET, { expiresIn: '1m' });
+    const token = jwt.sign({ id: admin._id, role: 'admin' }, JWT_SECRET, { expiresIn: '60m' });
     const refreshToken = jwt.sign({ id: admin._id, role: 'admin' }, JWT_REFRESH_SECRET, { expiresIn: '7d' });
 
     // Удаление старых refresh токенов для этого администратора
@@ -57,7 +57,7 @@ exports.refreshToken = async (req, res) => {
     }
 
     const decoded = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
-    const token = jwt.sign({ id: decoded.id, role: decoded.role }, JWT_SECRET, { expiresIn: '1m' });
+    const token = jwt.sign({ id: decoded.id, role: decoded.role }, JWT_SECRET, { expiresIn: '60m' });
 
     // Удаление старого refresh токена и создание нового
     await RefreshToken.findByIdAndDelete(refreshTokenDoc._id);
