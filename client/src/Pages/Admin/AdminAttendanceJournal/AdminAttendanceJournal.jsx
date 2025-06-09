@@ -57,6 +57,8 @@ const AdminAttendanceJournal = () => {
     } catch (error) {
       console.error('Ошибка при получении данных посещаемости:', error);
       showNotification('Ошибка при получении данных посещаемости', 'error');
+      setAttendanceData([]);
+      setDaysToDisplay([]);
     }
   }, [selectedMonth, selectedGroup, showNotification]);
 
@@ -262,39 +264,47 @@ const AdminAttendanceJournal = () => {
             </tr>
           </thead>
           <tbody>
-            {attendanceData.map((entry, index) => (
-              <tr key={entry._id} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
-                <td className="serial-number">{index + 1}</td>
-                <td className="student-name">
-                  <input
-                    type="text"
-                    value={entry.studentName}
-                    onChange={(e) => handleChange(index, 'studentName', e.target.value)}
-                    className="name-input"
-                  />
-                </td>
-                {daysToDisplay.map((day) => (
-                  <td key={day} className="attendance-cell">
-                    <label className="attendance-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={entry.attendance[day] || false}
-                        onChange={(e) => handleChange(index, `attendance.${day}`, e.target.checked)}
-                      />
-                      <span className="checkmark"></span>
-                    </label>
+            {attendanceData.length > 0 ? (
+              attendanceData.map((entry, index) => (
+                <tr key={entry._id} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
+                  <td className="serial-number">{index + 1}</td>
+                  <td className="student-name">
+                    <input
+                      type="text"
+                      value={entry.studentName}
+                      onChange={(e) => handleChange(index, 'studentName', e.target.value)}
+                      className="name-input"
+                    />
                   </td>
-                ))}
-                <td className="actions">
-                  <button 
-                    onClick={() => handleDeleteEntry(entry._id)}
-                    className="delete-button"
-                  >
-                    <FaTrash className="button-icon" /> Удалить
-                  </button>
+                  {daysToDisplay.map((day) => (
+                    <td key={day} className="attendance-cell">
+                      <label className="attendance-checkbox">
+                        <input
+                          type="checkbox"
+                          checked={entry.attendance[day] || false}
+                          onChange={(e) => handleChange(index, `attendance.${day}`, e.target.checked)}
+                        />
+                        <span className="checkmark"></span>
+                      </label>
+                    </td>
+                  ))}
+                  <td className="actions">
+                    <button 
+                      onClick={() => handleDeleteEntry(entry._id)}
+                      className="delete-button"
+                    >
+                      <FaTrash className="button-icon" /> Удалить
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="no-data-row">
+                <td colSpan={daysToDisplay.length + 3} className="no-data-cell">
+                  Нет данных для отображения
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

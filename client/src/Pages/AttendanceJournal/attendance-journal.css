@@ -137,6 +137,18 @@
   margin-right: 10px;
 }
 
+.no-data-row {
+  background-color: #f9f9f9;
+}
+
+.no-data-cell {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+  font-style: italic;
+}
+
 /* Адаптивные стили */
 @media (max-width: 768px) {
   .control-group {
