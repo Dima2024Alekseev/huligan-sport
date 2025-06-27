@@ -74,6 +74,15 @@ img {
     height: auto;
 }
 
+.profile-icon {
+    color: white;
+    transition: all 0.3s ease 0s;
+}
+
+.profile-icon:hover {
+    color: #e3070e;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }

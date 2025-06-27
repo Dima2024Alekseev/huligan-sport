@@ -20,6 +20,7 @@ const AdminDashboard = () => {
       <Header
         showBlock={true}
         innerTitle="Панель администратора"
+        homeRoute="/"
         linkText="Панель администратора"
         showGradient={true}
       />

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Pagination from './Pagination/Pagination';
 import Modal from './Modal Window/Modal';
-import PostsLoader from './Skeleton'; // Импортируем компонент скелетона
+import PostsLoader from './Skeleton';
 
 const Posts = ({ filterTag }) => {
   const [posts, setPosts] = useState([]);
@@ -14,9 +14,29 @@ const Posts = ({ filterTag }) => {
   const [itemsPerPage] = useState(5);
   const [modalActive, setModalActive] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [isPageLoading, setIsPageLoading] = useState(false); // Состояние для загрузки страницы
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const navigate = useNavigate();
   const mainRef = useRef(null);
+
+  const makeLinksClickable = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split(urlRegex).map((part, index) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a 
+            key={index} 
+            href={part} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: 'blue', textDecoration: 'underline' }}
+          >
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  };
 
   const fetchPosts = useCallback(() => {
     setLoading(true);
@@ -66,14 +86,12 @@ const Posts = ({ filterTag }) => {
   const currentItems = posts.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => {
-    setIsPageLoading(true); // Активируем загрузку
+    setIsPageLoading(true);
     setCurrentPage(pageNumber);
     mainRef.current.scrollIntoView({ behavior: 'smooth' });
-
-    // Имитируем задержку загрузки данных
     setTimeout(() => {
-      setIsPageLoading(false); // Деактивируем загрузку
-    }, 1000); // Задержка в 500 мс
+      setIsPageLoading(false);
+    }, 1000);
   };
 
   const openModal = (imageSrc) => {
@@ -97,14 +115,14 @@ const Posts = ({ filterTag }) => {
       ) : (
         <>
           <main ref={mainRef}>
-            {isPageLoading ? ( // Показываем скелетон, если страница загружается
+            {isPageLoading ? (
               <PostsLoader />
             ) : (
               currentItems.map(post => (
                 <article className='news' key={post.id}>
                   <div className='news-text-container'>
                     <h2 className='news-title'>{post.title}</h2>
-                    <pre className='news-text'>{post.text}</pre>
+                    <pre className='news-text'>{makeLinksClickable(post.text)}</pre>
                   </div>
                   {post.photoUrls && (
                     <figure className='news-image-container'>
